@@ -14,8 +14,8 @@ window.addEventListener('scroll', function() {
 
     // Aplicação das alterações de estilo ao longo do scroll
     homeImg.style.borderRadius = `${50 * (1 - scrollRatio)}%`;
-    homeImg.style.width = `${450 + (sobrenosImgRect.width - 500) * scrollRatio}px`;
-    homeImg.style.height = `${450 + (sobrenosImgRect.height - 450) * scrollRatio}px`;
+    homeImg.style.width = `${400 + (sobrenosImgRect.width - 500) * scrollRatio}px`;
+    homeImg.style.height = `${400 + (sobrenosImgRect.height - 450) * scrollRatio}px`;
     homeImg.style.boxShadow = `4px 4px ${45 * (1 - scrollRatio)}px rgba(99, 86, 238, 0.54)`;
     homeImg.style.background = `linear-gradient(0deg, rgba(99, 86, 238, ${0.5 * (1 - scrollRatio)}), rgba(99, 86, 238, ${0.5 * (1 - scrollRatio)})), url(../../assets/imagem-home.png)`;
     homeImg.style.backgroundSize = 'cover';
