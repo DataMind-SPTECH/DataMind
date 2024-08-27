@@ -214,9 +214,9 @@ body{
 
 .Caixa_Objetivo{
     background-color: #555555;
-    opacity: 0.5;
     border-radius: 10px;
     border: 2px solid #6356EE;
+    box-shadow: 2px 2px 40px #6356EE;
     width: 20%;
     height: 200px;
     display: flex;
@@ -224,8 +224,21 @@ body{
 }
 
 .Texto_Objetivo{
-    font-size: 25px;
+    font-size: 20px;
     text-align: center;
     color: white;
     font-weight: bolder;
     background: none;
+}
+
+.Caixa-Imagem{
+    position: absolute;
+    height: 100%;
+}
+
+.Imagem_Objetivo{
+    position: relative;
+    bottom: -55%;
+    left: 100%;
+}
+
