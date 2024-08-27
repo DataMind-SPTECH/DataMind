@@ -1,0 +1,70 @@
+*{
+    /*espaçamento*/
+    margin: 0px;
+    padding: 0px;
+    /*Detalhes*/
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    background-color: #292929;
+}
+
+body{
+    height: 2000px;
+}
+
+.Sessao_Objetivos{
+    height: 99vh;
+    width: 99,5%;
+    border: 2px solid red;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
+
+.Titulo_Objetivos{
+    font-weight: bold;
+    color: #6841F2;
+    font-size: 50px;
+    text-align: center;
+}
+
+.Objetivos{
+    border: 2px solid rgb(43, 255, 0);
+    height: 70%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+.Objetivos_Superior{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    justify-content: space-around;
+
+}
+
+.Objetivos_Inferiores{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
+
+.Caixa_Objetivo{
+    background-color: #555555;
+    opacity: 0.5;
+    border-radius: 10px;
+    border: 2px solid #6356EE;
+    width: 20%;
+    height: 200px;
+    display: flex;
+    align-items: center;
+}
+
+.Texto_Objetivo{
+    font-size: 25px;
+    text-align: center;
+    color: white;
+    font-weight: bolder;
+    background: none;
+
+}
