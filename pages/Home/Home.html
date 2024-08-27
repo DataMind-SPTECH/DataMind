@@ -1,50 +1,107 @@
+
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/DataMind/pages/Home/Home.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <script src="./Home.js"></script>
     <title>DataMind</title>
-    <link rel="stylesheet" href="Home.css">
 </head>
 <body>
-    <section class="Sessao_Objetivos">
-        <h1 class="Titulo_Objetivos">Nossos Objetivos!</h1>
-        <div class="Objetivos">
-            <div class="Objetivos_Superior">
-                <div class="Caixa_Objetivo">
-                    <p class="Texto_Objetivo">
-                        Ajudamos a evitar a perda de clientes!
-                    </p>
-                    <img src="" alt="" class="Imagem_Objetivo">
+    <header>
+        <nav class="navbar">
+            <div class="navbar-logo">
+                <img src="../../assets/logoBraca.png" alt="DataMind">
+            </div>
+            <div class="navbar-itens">
+                <ul>
+                    <li><a href="./Home.html">HOME</a></li>
+                    <li><a href="#sobrenos">SOBRE NÓS</a></li>
+                    <li><a href="">OBJETIVOS</a></li>
+                    <li><a href="">CONTATOS</a></li>
+                </ul>
+            </div>
+            <div class="navbar-button">
+                <button>ENTRAR</button>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section class="home">
+            <div class="home-slogan">
+                <p>SEUS DADOS <br> COMO <br> VOCÊ NUNCA VIU<span>.</span></p>
+            </div>
+            <div class="home-img"></div>
+            <div class="home-meio">
+                <a href="#sobrenos"><img src="../../assets/avanco-rapido.png" alt=""></a>
+            </div>
+
+            <div class="home-detalhe">
+                <img src="../../assets/image-detalhe.png" alt="">
+            </div>
+        </section>
+
+        <section id="sobrenos" style="height: 200px;">
+
+        </section>
+        <section  class="sobrenos">
+            <div class="sobrenos-txt">
+                <h1>Tranforme dados em
+                    insights poderosos<span>.<span></h1>
+                <p>
+                    Na DataMind, somos especialistas em sistemas de monitoramento de feedbacks, 
+                    proporcionando uma visão única e detalhada dos seus dados. Com nossa tecnologia avançada, 
+                    você descobre informações valiosas que antes passavam despercebidas.
+                </p>
+            </div>
+            <div class="sobrenos-img">
+                <img src="../../assets/imagem-home.png" alt="">
+            </div>
+        </section>
+        <section class="Sessao_Objetivos">
+            <h1 class="Titulo_Objetivos">Nossos Objetivos!</h1>
+            <div class="Objetivos">
+                <div class="Objetivos_Superior">
+                    <div class="Caixa_Objetivo">
+                        <p class="Texto_Objetivo">
+                            Ajudamos a evitar a perda de clientes!
+                        </p>
+                        <img src="" alt="" class="Imagem_Objetivo">
+                    </div>
+                    <div class="Caixa_Objetivo">
+                        <p class="Texto_Objetivo">
+                            Facilitar a melhoria da sua empresa atraves de ideias personalizadas baseadas nos feedbacks
+                        </p>
+                        <img src="" alt="" class="Imagem_Objetivo">
+                    </div>
+                    <div class="Caixa_Objetivo">
+                        <p class="Texto_Objetivo">
+                            Facilitar a visualização de dados atraves de uma DashBoard e KPIs feitas sobre medida
+                        </p>
+                        <img src="" alt="" class="Imagem_Objetivo">
+                    </div>
                 </div>
-                <div class="Caixa_Objetivo">
-                    <p class="Texto_Objetivo">
-                        Facilitar a melhoria da sua empresa atraves de ideias personalizadas baseadas nos feedbacks
-                    </p>
-                    <img src="" alt="" class="Imagem_Objetivo">
-                </div>
-                <div class="Caixa_Objetivo">
-                    <p class="Texto_Objetivo">
-                        Facilitar a visualização de dados atraves de uma DashBoard e KPIs feitas sobre medida
-                    </p>
-                    <img src="" alt="" class="Imagem_Objetivo">
+                <div class="Objetivos_Inferiores">
+                    <div class="Caixa_Objetivo">
+                        <p class="Texto_Objetivo">
+                            Conquistar e fidelizar novos  clientes
+                        </p>
+                        <img src="" alt="" class="Imagem_Objetivo">
+                    </div>
+                    <div class="Caixa_Objetivo">
+                        <p class="Texto_Objetivo">
+                            Melhorar a avaliação da empresa
+                        </p>
+                        <img src="" alt="" class="Imagem_Objetivo">
+                    </div>
                 </div>
             </div>
-            <div class="Objetivos_Inferiores">
-                <div class="Caixa_Objetivo">
-                    <p class="Texto_Objetivo">
-                        Conquistar e fidelizar novos  clientes
-                    </p>
-                    <img src="" alt="" class="Imagem_Objetivo">
-                </div>
-                <div class="Caixa_Objetivo">
-                    <p class="Texto_Objetivo">
-                        Melhorar a avaliação da empresa
-                    </p>
-                    <img src="" alt="" class="Imagem_Objetivo">
-                </div>
-            </div>
-        </div>
-    </section>
+        </section>
+    </main>
 </body>
 </html>
