@@ -41,7 +41,7 @@ h1 {
     font-size: 50px;
 }
 
-.input {
+.input-box {
     margin-top: -45px;
     height: 250px;
     width: 80%;
@@ -51,13 +51,41 @@ h1 {
     font-size: 30px;
 }
 
-.input input {
-    border: none;
-    border-radius: 10px;
-    height: 65px;
+.input {
+    padding: 5px;
     background-color: #393939;
+    width: 425px;
+    display: flex;
+    flex-direction: row;
+    align-items: end;
+    justify-content: space-between;
+    height: 60px;
+    border-radius: 10px;
 }
 
+.input input {
+    color: #ffffff;
+    font-size: 20px;
+    background-color: transparent;
+    height: 100%;
+    border: none;
+    border-radius: 15px;
+    width: 360px;
+    outline: 0;
+
+}
+
+.input div {
+    display: flex;
+    width: 60px;
+    height: 60px;
+    align-items: center;
+    justify-content: center;
+}
+.input img {
+    width: 40px;
+    margin-top: 0px;
+}
 
 button {
     width: 350px;
@@ -85,4 +113,13 @@ small {
 a {
     text-decoration: none;
     color: #ffffff;
+}
+
+#olho {
+    cursor: pointer;
+}
+
+.login-image{
+    background-image: url("/assets/modern-equipped-computer-lab.jpg");
+    background-size: cover;
 }
