@@ -177,7 +177,6 @@ body{
 .Sessao_Objetivos{
     height: 99vh;
     width: 99,5%;
-    border: 2px solid red;
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
@@ -191,7 +190,6 @@ body{
 }
 
 .Objetivos{
-    border: 2px solid rgb(43, 255, 0);
     height: 70%;
     display: flex;
     flex-direction: column;
@@ -217,14 +215,15 @@ body{
     border-radius: 10px;
     border: 2px solid #6356EE;
     box-shadow: 2px 2px 40px #6356EE;
-    width: 20%;
-    height: 200px;
+    width: 25%;
+    height: 250px;
     display: flex;
     align-items: center;
 }
 
 .Texto_Objetivo{
-    font-size: 20px;
+    padding: 20%;
+    font-size: 21px;
     text-align: center;
     color: white;
     font-weight: bolder;
@@ -238,7 +237,145 @@ body{
 
 .Imagem_Objetivo{
     position: relative;
-    bottom: -55%;
-    left: 100%;
+    bottom: -57%;
+    left: 125%;
 }
 
+.Sessao_Clientes{
+    height: 800px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+.Titutlo_Clientes{
+    font-size: 50px;
+    color: #29C2FD;
+    font-weight: bold;
+    text-align: center;
+}
+
+.Clientes{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+.Imagem_Cliente{
+    height: 80%;
+}
+
+.Texto_Clientes{
+    color: #FFFFFF;
+    font-size: 40px;
+    text-align: center;
+    padding-left: 10%;
+    padding-right: 10%;
+}
+
+.Sessao_Fale_Conosco{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.Titulo_Fale_Conosco{
+    color: #6356EE;
+    font-weight: bold;
+    font-size: 50px;
+    text-align: center;
+}
+
+.Texto_Fale_Conosco{
+    text-align: center;
+    color: #FFFFFF;
+    font-size: 35px;
+    font-weight: 400;
+}
+
+.Caixa_de_Contato{
+    border: 2px solid #6356EE;
+    border-radius: 20px;
+    width: 75%;
+    height: 650px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    box-shadow: 2px 2px 40px #6356EE;
+}
+
+.Caixa_Input{
+    width: 50%;
+}
+
+.Texto_Input{
+    color: #6356EE;
+    font-weight: bold;
+    font-size: 25px;
+}
+
+.Input_Contato{
+    background: none;
+    border: none;
+    border-bottom: 2px solid #6356EE;
+    width: 100%;
+    color: white;
+    font-size: 20px;
+}
+
+input:focus {
+    outline: none; 
+  }
+
+  textarea:focus {
+    outline: none; 
+  }
+  
+#Input_Duvida{
+    height: 80px;
+}
+
+.Botao_Enviar{
+    border-radius: 10px;
+    height: 10%;
+    width: 12%;
+    font-size: 22px;
+    color: #FFFFFF;
+    background-color: #6841F2;
+}
+
+
+.footer{
+    background-color: black;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    height: 80px;
+    padding: 10px;
+}
+
+.Container_Imagem{
+    width: 30%;
+}
+
+.Logo_Footer{
+    height: 50px;
+}
+
+.Texto_Footer{
+    color: #FFFFFF;
+    width: 33%;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.Icones_Redes{
+    width: 25%;
+    display: flex;
+    justify-content: space-around;
+}
+
+.Icone_Rede{
+    height: 60px;
+}
