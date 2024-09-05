@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="login-image">
+        
+    </div>
+    <div class="login">
+        <img src="/assets/logoBranco.png" alt="">
+        <H1>Cadastre-se</H1>
+        <div class="input-box">
+            <p>Nome da empresa</p>
+            <input class="input" type="text">
+            <p>E-mail</p>
+            <input class="input" type="text">
+            <p>CNPJ</p>
+            <input class="input" type="text">
+            <p>Senha</p>
+            <input class="input" type="text">
+            <p>Confirmar senha</p>
+            <input class="input" type="text">
+        </div>
+        <button>Entrar</button>
+    </div>
+</body>
+
+</html>
+
+<script>
+
+    let olho = document.getElementById("olho")
+    let senha = inputSenha
+
+    olho.addEventListener("click", function () {
+        if(document.getElementById("olho-aberto")) {
+            olho.innerHTML = "";
+            olho.innerHTML = '<img src="/assets/olho-fechado.png" alt="" id="olho-fechado">';
+            senha.setAttribute("type", "text")
+        } else {
+            olho.innerHTML = "";
+            olho.innerHTML = '<img src="/assets/olho-aberto.png" alt="" id="olho-aberto">';
+            senha.setAttribute("type", "password")
+        } 
+                    
+    })
+
+</script>
