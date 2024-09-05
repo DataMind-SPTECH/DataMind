@@ -32,23 +32,3 @@
 </body>
 
 </html>
-
-<script>
-
-    let olho = document.getElementById("olho")
-    let senha = inputSenha
-
-    olho.addEventListener("click", function () {
-        if(document.getElementById("olho-aberto")) {
-            olho.innerHTML = "";
-            olho.innerHTML = '<img src="/assets/olho-fechado.png" alt="" id="olho-fechado">';
-            senha.setAttribute("type", "text")
-        } else {
-            olho.innerHTML = "";
-            olho.innerHTML = '<img src="/assets/olho-aberto.png" alt="" id="olho-aberto">';
-            senha.setAttribute("type", "password")
-        } 
-                    
-    })
-
-</script>
