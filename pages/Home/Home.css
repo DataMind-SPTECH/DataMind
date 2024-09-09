@@ -71,6 +71,7 @@ header{
     text-decoration: none;
     color: var(--words);
     font-size: 16px;
+    
 }
 
 .navbar-button{
@@ -93,6 +94,9 @@ header{
 
 .navbar-button button:hover{
     cursor: pointer;
+    box-shadow: 2px 2px 50px rgba(132, 102, 241, 0.5);
+    transition: ease 0.4s; 
+    font-size: 20.5px;
 }
 
 /* ----------------------------------------Home---------------------------------------- */
@@ -210,7 +214,7 @@ header{
 
 }
 
-/* ----------------------------------------Sobre Nos---------------------------------------- */
+/* ----------------------------------------Objetivos---------------------------------------- */
 
 .Sessao_Objetivos{
     height: calc(100vh - 100px);
@@ -403,6 +407,9 @@ textarea:focus {
 
 .Botao_Enviar:hover{
     cursor: pointer;
+    box-shadow: 2px 2px 50px rgba(132, 102, 241, 0.5);
+    transition: ease 0.4s; 
+    font-size: 20.5px;
 }
 
 /* ----------------------------------------Footer---------------------------------------- */
