@@ -1,7 +1,10 @@
 /* ----------------------------------------Configurações gerais---------------------------------------- */
 :root{
-    --background: #292929;
-    --words: #FFFFFF;
+    --background: #FFFFFF;
+    --words: #000000;
+    --background-objetivo: #FFFFFF;
+    --background-modos: #C6C6C6;
+    --background-caixa-modo: #343434;
 }
 
 html{
@@ -71,7 +74,7 @@ header{
     text-decoration: none;
     color: var(--words);
     font-size: 16px;
-    
+    font-weight: bold;
 }
 
 .navbar-button{
@@ -97,6 +100,56 @@ header{
     box-shadow: 2px 2px 50px rgba(132, 102, 241, 0.5);
     transition: ease 0.4s; 
     font-size: 20.5px;
+}
+/* ----------------------------------------Modos---------------------------------------- */
+
+.modos{
+    display: flex;
+    align-items: center;
+    width: 233px;
+    height: 65px;
+    background-color: var(--background-modos);
+    position: fixed;
+    bottom: 100px;
+    left: 50px;
+    z-index: 2;
+    font-family: "Inter";
+    font-weight: bold;
+    font-size: 20px;
+    border-radius: 10px;
+    cursor: pointer;
+
+}
+
+.caixa-modo{
+    position: absolute;
+    width: 52px;
+    height: 52px;
+    background-color: var(--background-caixa-modo);
+    border-radius: 10px;
+    transition: 0.9s all;
+    left: 10px;
+}
+
+.caixa-modo img{
+    width: 100%;
+    height: 100%;
+    transform: scale(.7);
+}
+
+.texto-modo{
+    position: absolute;
+    transition: 0.9s all;
+    right: 30px;
+    color: var(--words);
+}
+
+.modos.escuro .caixa-modo{
+    left: 171px;
+}
+
+.modos.escuro .texto-modo{
+    right: 80px;
 }
 
 /* ----------------------------------------Home---------------------------------------- */
@@ -252,7 +305,7 @@ header{
 }
 
 .Caixa_Objetivo{
-    background-color: rgba(85, 85, 85, 0.4);
+    background-color: var(--background-objetivo);
     border-radius: 10px;
     border: 2px solid #6356EE;
     box-shadow: 2px 2px 40px #6356EE;
@@ -269,8 +322,7 @@ header{
     margin: 0 20px;
     font-size: 16px;
     text-align: center;
-    color: white;
-    font-weight: bolder;    
+    color: var(--words);
 }
 
 .Caixa-Imagem{
@@ -317,10 +369,11 @@ header{
 }
 
 .Texto_Clientes{
-    color: #FFFFFF;
+    color: var(--words);
     font-size: 32px;
     text-align: center;
     padding: 0 10%;
+    font-weight: 500;
 }
 
 /* ----------------------------------------Fale Conosco---------------------------------------- */
@@ -342,7 +395,7 @@ header{
 
 .Texto_Fale_Conosco{
     text-align: center;
-    color: #FFFFFF;
+    color: var(--words);
     font-size: 20px;
     font-weight: 400;
     margin: 10px 0 30px 0;
@@ -365,8 +418,8 @@ header{
 }
 
 .Texto_Input{
-    color: #6356EE;
-    font-weight: bold;
+    color: var(--words);
+    font-weight: 500;
     font-size: 20px;
     margin: 10px 0;
 }

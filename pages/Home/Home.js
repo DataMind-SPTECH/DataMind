@@ -8,11 +8,9 @@ window.addEventListener('scroll', function() {
     const sobrenosImgRect = sobrenosImg.getBoundingClientRect();
     const scrollRatio = Math.min(scrollY / homeHeight, 1);
 
-    // Movimenta a imagem para baixo e para a direita conforme o scroll
     homeImg.style.top = `${50 + (scrollRatio * 130)}%`;
-    homeImg.style.left = `${50 + (scrollRatio * 25)}%`;  // Adiciona o movimento para a direita
+    homeImg.style.left = `${50 + (scrollRatio * 25)}%`;
 
-    // Aplicação das alterações de estilo ao longo do scroll
     homeImg.style.borderRadius = `${50 * (1 - scrollRatio)}%`;
     homeImg.style.width = `${425 + (sobrenosImgRect.width - 500) * scrollRatio}px`;
     homeImg.style.height = `${425 + (sobrenosImgRect.height - 450) * scrollRatio}px`;
@@ -21,13 +19,59 @@ window.addEventListener('scroll', function() {
     homeImg.style.backgroundSize = 'cover';
     homeImg.style.backgroundPosition = 'center center';
 
-    // Checa se a home-img chegou à posição da sobrenos-img e a esconde
     if (scrollY >= (sobrenosImgRect.top + window.scrollY - window.innerHeight / 2)) {
         homeImg.style.opacity = '0';
         homeImg.style.transition = 'opacity 0.5s ease';
-        sobrenosImg.style.opacity = '1';  // Faz a imagem da seção sobre nós aparecer
+        sobrenosImg.style.opacity = '1';
     } else {
         homeImg.style.opacity = '1';
-        sobrenosImg.style.opacity = '0';  // Mantém a imagem da seção sobre nós invisível
+        sobrenosImg.style.opacity = '0';
     }
 });
+
+const modos = document.getElementById('modos');
+const logo = document.getElementById('logo');
+const facebook = document.getElementById('facebook');
+const whatsapp = document.getElementById('whatsapp');
+const mcDonalds = document.getElementById('mcDonalds');
+const spotify = document.getElementById('spotify');
+const modo = document.getElementById('modo');
+const textoModo = document.querySelector('.texto-modo'); 
+
+modos.addEventListener('click', ()=>{
+    // Verifica se o modo escuro já está ativado
+    if (modos.classList.contains('escuro')) {
+        // Modo claro
+        document.documentElement.style.setProperty('--background', '#FFFFFF');
+        document.documentElement.style.setProperty('--words', '#000000');
+        document.documentElement.style.setProperty('--background-objetivo', '#FFFFFF');
+        document.documentElement.style.setProperty('--background-modos', '#C6C6C6');
+        document.documentElement.style.setProperty('--background-caixa-modo', '#343434');
+
+        logo.src = '../../assets/logoPreto.png'
+        facebook.src = '../../assets/facebook.png'
+        whatsapp.src = '../../assets/whatsapp.png'
+        mcDonalds.src = '../../assets/McDonalds.png'
+        spotify.src = '../../assets/spotify.png'
+        modo.src = '../../assets/lua.png'
+        textoModo.textContent = 'Modo Escuro'; 
+
+    } else {
+        // Modo escuro
+        document.documentElement.style.setProperty('--background', '#292929');
+        document.documentElement.style.setProperty('--words', '#FFFFFF');
+        document.documentElement.style.setProperty('--background-objetivo', 'rgba(85, 85, 85, 0.4)');
+        document.documentElement.style.setProperty('--background-modos', '#555555');
+        document.documentElement.style.setProperty('--background-caixa-modo', '#FFFFFF');
+
+        logo.src = '../../assets/logoBranca.png'
+        facebook.src = '../../assets/facebook Modo Escuro.png'
+        whatsapp.src = '../../assets/whatsapp Modo Escuro.png'
+        mcDonalds.src = '../../assets/McDonalds modo escuro.png'
+        spotify.src = '../../assets/spotify Modo Escuro.png'
+        modo.src = '../../assets/sol.png'
+        textoModo.textContent = 'Modo Claro'; 
+    }
+
+    modos.classList.toggle('escuro')
+})

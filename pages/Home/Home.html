@@ -9,7 +9,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@300..700&display=swap" rel="stylesheet">
-    <script src="./Home.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
     <link rel="icon" href="../../assets/Icone_DataMind.png" type="image/x-icon">
     <title>DataMind</title>
 </head>
@@ -17,7 +17,7 @@
     <header>
         <nav class="navbar">
             <div class="navbar-logo">
-                <img src="../../assets/logoBraca.png" alt="DataMind">
+                <img id="logo" src="../../assets/logoPreto.png" alt="DataMind">
             </div>
             <div class="navbar-itens">
                 <ul>
@@ -32,6 +32,16 @@
             </div>
         </nav>
     </header>
+
+    <div class="modos" id="modos">
+        <div class="caixa-modo">
+            <img id="modo" src="../../assets/lua.png" alt="Lua">
+        </div>
+
+        <div class="texto-modo">
+            Modo Escuro
+        </div>
+    </div>
 
     <main>
         <section class="home">
@@ -113,7 +123,7 @@
                             Melhorar a avaliação da empresa
                         </p>
                         <div class="Caixa-Imagem">
-                            <img src="../../assets/Imagem - Facilitar Melhoria.png " alt="" class="Imagem_Objetivo">
+                            <img src="../../assets/Imagem - Melhorar Avaliação.png" alt="" class="Imagem_Objetivo">
                         </div>
                     </div>
                 </div>
@@ -123,10 +133,10 @@
         <section class="Sessao_Clientes">
             <h1 class="Titutlo_Clientes">Nossos Clientes</h1>
             <div class="Clientes">
-                <img src="../../assets/facebook Modo Escuro.png" alt="" class="Imagem_Cliente">
-                <img src="../../assets/whatsapp Modo Escuro.png" alt="" class="Imagem_Cliente">
-                <img src="../../assets/McDonalds modo escuro.png" alt="" class="Imagem_Cliente">
-                <img src="../../assets/spotify Modo Escuro.png" alt="" class="Imagem_Cliente">
+                <img id="facebook" src="../../assets/facebook.png" alt="" class="Imagem_Cliente">
+                <img id="whatsapp" src="../../assets/whatsapp.png" alt="" class="Imagem_Cliente">
+                <img id="mcDonalds" src="../../assets/McDonalds.png" alt="" class="Imagem_Cliente">
+                <img id="spotify" src="../../assets/spotify.png" alt="" class="Imagem_Cliente">
             </div>
             <p class="Texto_Clientes">Essas são algumas das empresas que já estão conosco, aprimorando continuamente com base no feedback. Venha fazer parte dessa jornada também!</p>
         </section>
@@ -167,3 +177,5 @@
     </main>
 </body>
 </html>
+
+<script src="./Home.js"></script>
