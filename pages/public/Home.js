@@ -15,7 +15,7 @@ window.addEventListener('scroll', function() {
     homeImg.style.width = `${425 + (sobrenosImgRect.width - 500) * scrollRatio}px`;
     homeImg.style.height = `${425 + (sobrenosImgRect.height - 450) * scrollRatio}px`;
     homeImg.style.boxShadow = `4px 4px ${45 * (1 - scrollRatio)}px rgba(99, 86, 238, 0.54)`;
-    homeImg.style.background = `linear-gradient(0deg, rgba(99, 86, 238, ${0.5 * (1 - scrollRatio)}), rgba(99, 86, 238, ${0.5 * (1 - scrollRatio)})), url(../../assets/imagem-home.png)`;
+    homeImg.style.background = `linear-gradient(0deg, rgba(99, 86, 238, ${0.5 * (1 - scrollRatio)}), rgba(99, 86, 238, ${0.5 * (1 - scrollRatio)})), url(./assets/imagem-home.png)`;
     homeImg.style.backgroundSize = 'cover';
     homeImg.style.backgroundPosition = 'center center';
 
@@ -48,12 +48,12 @@ modos.addEventListener('click', ()=>{
         document.documentElement.style.setProperty('--background-modos', '#C6C6C6');
         document.documentElement.style.setProperty('--background-caixa-modo', '#343434');
 
-        logo.src = '../../assets/logoPreto.png'
-        facebook.src = '../../assets/facebook.png'
-        whatsapp.src = '../../assets/whatsapp.png'
-        mcDonalds.src = '../../assets/McDonalds.png'
-        spotify.src = '../../assets/spotify.png'
-        modo.src = '../../assets/lua.png'
+        logo.src = './assets/logoPreto.png'
+        facebook.src = './assets/facebook.png'
+        whatsapp.src = './assets/whatsapp.png'
+        mcDonalds.src = './assets/McDonalds.png'
+        spotify.src = './assets/spotify.png'
+        modo.src = './assets/lua.png'
         textoModo.textContent = 'Modo Escuro'; 
 
     } else {
@@ -64,12 +64,12 @@ modos.addEventListener('click', ()=>{
         document.documentElement.style.setProperty('--background-modos', '#555555');
         document.documentElement.style.setProperty('--background-caixa-modo', '#FFFFFF');
 
-        logo.src = '../../assets/logoBranca.png'
-        facebook.src = '../../assets/facebook Modo Escuro.png'
-        whatsapp.src = '../../assets/whatsapp Modo Escuro.png'
-        mcDonalds.src = '../../assets/McDonalds modo escuro.png'
-        spotify.src = '../../assets/spotify Modo Escuro.png'
-        modo.src = '../../assets/sol.png'
+        logo.src = './assets/logoBranca.png'
+        facebook.src = './assets/facebook Modo Escuro.png'
+        whatsapp.src = './assets/whatsapp Modo Escuro.png'
+        mcDonalds.src = './assets/McDonalds modo escuro.png'
+        spotify.src = './assets/spotify Modo Escuro.png'
+        modo.src = './assets/sol.png'
         textoModo.textContent = 'Modo Claro'; 
     }
 

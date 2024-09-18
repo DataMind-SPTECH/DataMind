@@ -206,7 +206,7 @@ header{
     width: 425px;
     height: 425px;
     border-radius: 50%;
-    background: linear-gradient(0deg, rgba(99, 86, 238, 0.5), rgba(99, 86, 238, 0.5)), url(../../assets/imagem-home.png);
+    background: linear-gradient(0deg, rgba(99, 86, 238, 0.5), rgba(99, 86, 238, 0.5)), url(./assets/imagem-home.png);
     background-repeat: no-repeat;
     background-position: center center;
     background-size: cover;
