@@ -99,6 +99,6 @@ a {
 }
 
 .login-image{
-    background-image: url("../../assets/imagemCadastro.png");
+    background-image: url("../assets/imagemCadastro.png");
     background-size: cover;
 }

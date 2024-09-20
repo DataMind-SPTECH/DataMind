@@ -10,25 +10,25 @@
 
 <body>
     <div class="login">
-        <a href="../Home/Home.html"><img src="../../assets/logoBranco.png" alt=""></a>
+        <a href="../Home/Home.html"><img src="../assets/logoBranco.png" alt=""></a>
         <H1>Login</H1>
         <div class="input-box">
 
             <p>E-mail</p>
             <div class="input">
                 <div>
-                    <img src="../../assets/e-mail.png" alt="">
+                    <img src="../assets/e-mail.png" alt="">
                 </div>
                 <input type="text">
             </div>
             <p>Senha</p>
             <div class="input">
                 <div>
-                    <img src="../../assets/fechar.png" alt="">
+                    <img src="../assets/fechar.png" alt="">
                 </div>
                 <input type="password" id="inputSenha">
                 <div id="olho">
-                    <img src="../../assets/olho-aberto.png" alt="" id="olho-aberto">
+                    <img src="../assets/olho-aberto.png" alt="" id="olho-aberto">
                 </div>
             </div>
         </div>
@@ -50,11 +50,11 @@
     olho.addEventListener("click", function () {
         if(document.getElementById("olho-aberto")) {
             olho.innerHTML = "";
-            olho.innerHTML = '<img src="../../assets/olho-fechado.png" alt="" id="olho-fechado">';
+            olho.innerHTML = '<img src="../assets/olho-fechado.png" alt="" id="olho-fechado">';
             senha.setAttribute("type", "text")
         } else {
             olho.innerHTML = "";
-            olho.innerHTML = '<img src="../../assets/olho-aberto.png" alt="" id="olho-aberto">';
+            olho.innerHTML = '<img src="../assets/olho-aberto.png" alt="" id="olho-aberto">';
             senha.setAttribute("type", "password")
         } 
                     
