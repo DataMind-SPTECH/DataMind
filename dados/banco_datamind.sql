@@ -1,3 +1,4 @@
+
 CREATE DATABASE datamind;
 USE datamind;
 
@@ -6,9 +7,19 @@ CREATE TABLE cargo (
   nomeCargo VARCHAR(45)
 );
 
+CREATE TABLE dataset (
+  idDataset INT PRIMARY KEY AUTO_INCREMENT,
+  url VARCHAR(1000),
+  nome VARCHAR(45), 
+  descricao VARCHAR(45)
+);
+
 CREATE TABLE empresa (
   idEmpresa INT PRIMARY KEY AUTO_INCREMENT,
-  nomeEmpresa VARCHAR(45)
+  nomeEmpresa VARCHAR(45),
+  fkUrl INT, 
+	FOREIGN KEY(fkUrl)
+    REFERENCES dataset(idDataset)
 );
 
 CREATE TABLE filial (
@@ -16,10 +27,9 @@ CREATE TABLE filial (
   fkEmpresa INT, 
 	FOREIGN KEY (fkEmpresa) 
 		REFERENCES empresa(idEmpresa),
-  fkFilial INT,
-	FOREIGN KEY (fkFilial) 
-		REFERENCES filial(idFilial),
-  cnpj CHAR(11)
+  cnpj CHAR(11),
+  cep CHAR(8),
+  numero VARCHAR(10)
 );
 
 CREATE TABLE funcionario (
@@ -32,7 +42,6 @@ CREATE TABLE funcionario (
   email VARCHAR(45) UNIQUE,
   senha VARCHAR(45),
   cpf VARCHAR(45),
-  cargo VARCHAR(45),
   fkGestor INT,
 	FOREIGN KEY (fkGestor) 
 		REFERENCES funcionario(idFuncionario),
@@ -41,7 +50,5 @@ CREATE TABLE funcionario (
 		REFERENCES cargo(idCargo)
 );
 
-CREATE TABLE dataset (
-  idDataset INT PRIMARY KEY AUTO_INCREMENT
-);
+
 
