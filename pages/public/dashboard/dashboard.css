@@ -1,0 +1,125 @@
+:root{
+    --background:#171616;
+    --background_footer_lateral: #292929;
+    --words: #FFFFFF;
+    --background-modos: #555555;
+    --background-caixa-modo: #FFFFFF;
+}
+
+body {
+    height: 100vh;
+    margin: 0;
+    padding: 0;
+    background-color: var(--background);
+    font-family: 'Raleway';
+}
+
+.footer_lateral {
+    width: 13.5%;
+    height: 100%;
+    background-color: var(--background_footer_lateral);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+
+
+.div_acessos .img_logo{
+    width: 185px;
+}
+
+.div_acessos{
+    height: 40%;
+    
+}
+
+.div_acessos ul{
+    display: flex;
+    list-style: none;
+    flex-direction: column;
+    height: 100%;
+    padding: 0;
+}
+ 
+.div_acessos li{
+   width: 100%;
+    height: 80%;
+    color: var(--words);
+    display: flex;
+   align-items: center;
+}
+
+.div_acessos li img{
+    margin-right: -12px;
+    height: 24px;
+    margin-left: 30px;
+}
+
+.div_acessos p{
+    margin-left: 30px;
+}
+/* ------------------------------------------------------------------------------ */
+.modos{
+    display: flex;
+    align-items: center;
+    width: 150px;
+    height: 45px;
+    background-color: var(--background-modos);
+    bottom: 100px;
+    left: 50px;
+    z-index: 2;
+    font-family: "Inter";
+    font-weight: bold;
+    font-size: 15px;
+    border-radius: 10px;
+    cursor: pointer;
+    justify-content: space-around;
+    flex-direction: row-reverse;
+    margin-left: 20px;
+}
+
+.caixa-modo{
+    width: 38px;
+    height: 38px;
+    background-color: var(--background-caixa-modo);
+    border-radius: 10px;
+    transition: 0.9s all;
+    left: 10px;
+
+}
+
+.caixa-modo img{
+    width: 100%;
+    height: 100%;
+    transform: scale(.7);
+}
+
+.texto-modo{
+    transition: 0.9s all;
+    right: 30px;
+    color: var(--words);
+}
+
+.modos.escuro .caixa-modo{
+    left: 171px;
+}
+
+.modos.escuro .texto-modo{
+    right: 80px;
+}
+/* ----------------------------------------LOGOUT-------------------------------- */
+.logout{
+    display: flex;
+    justify-content: center;
+}
+
+.logout p{
+    color: #ff0d00;
+    margin-left: 5px;
+}
+/* ------------------------------------------------------------------------------ */
+
+.selecionado{
+    background-color: #6536ee;
+}
