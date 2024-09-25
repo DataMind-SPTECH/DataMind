@@ -7,6 +7,7 @@
 }
 
 body {
+    display: flex;
     height: 100vh;
     margin: 0;
     padding: 0;
@@ -21,6 +22,7 @@ body {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    align-items: center;
 }
 
 
@@ -48,11 +50,12 @@ body {
     color: var(--words);
     display: flex;
    align-items: center;
+   cursor: pointer;
 }
 
 .div_acessos li img{
     margin-right: -12px;
-    height: 24px;
+    
     margin-left: 30px;
 }
 
@@ -66,28 +69,23 @@ body {
     width: 150px;
     height: 45px;
     background-color: var(--background-modos);
-    bottom: 100px;
-    left: 50px;
-    z-index: 2;
     font-family: "Inter";
     font-weight: bold;
     font-size: 15px;
     border-radius: 10px;
     cursor: pointer;
-    justify-content: space-around;
-    flex-direction: row-reverse;
-    margin-left: 20px;
 }
 
 .caixa-modo{
+    position: relative;
     width: 38px;
     height: 38px;
     background-color: var(--background-caixa-modo);
     border-radius: 10px;
     transition: 0.9s all;
-    left: 10px;
-
+    left: calc(150px - 38px - 10px);
 }
+
 
 .caixa-modo img{
     width: 100%;
@@ -96,17 +94,18 @@ body {
 }
 
 .texto-modo{
+    position: relative;
     transition: 0.9s all;
     right: 30px;
     color: var(--words);
 }
 
 .modos.escuro .caixa-modo{
-    left: 171px;
+    left: 5px;
 }
 
 .modos.escuro .texto-modo{
-    right: 80px;
+    right: -10px;
 }
 /* ----------------------------------------LOGOUT-------------------------------- */
 .logout{
@@ -122,4 +121,37 @@ body {
 
 .selecionado{
     background-color: #6536ee;
+}
+
+.selecionado p{
+    color: #FFFFFF;
+}
+
+/* --------------------------------------Dashboard---------------------------------------- */
+.dashboard{ 
+    height: 100vh; 
+    width: calc(100% - 13.5%);
+}
+
+.navbar{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 10%;
+}
+
+.navbar p{
+    color: var(--words);
+    font-size: 24px;
+}
+
+.graficos{
+    height: 90%;
+}
+
+.chart-feedbacks{
+    border: 3px solid red;
+    background-color: var(--background_footer_lateral);
+    width: 50%;
+    height: 50%;
 }

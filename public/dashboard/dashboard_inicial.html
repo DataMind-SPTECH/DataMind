@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <script src="https://code.jscharting.com/latest/jscharting.js"></script>
+    <script type="text/javascript" src="https://code.jscharting.com/latest/modules/types.js"></script>
+    <script type="text/javascript" src="https://code.jscharting.com/latest/modules/toolbar.js"></script>
+    <script type="text/javascript" src="https://code.jscharting.com/latest/modules/maps.js"></script>
+    <link rel="stylesheet" href="dashboard.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="footer_lateral">
+        <div class="div_acessos">
+            <img id="logo" class="img_logo" src="../assets/logo_claro.png" alt="">
+            <ul>
+            <li class="selecionado"><p>Dashboard</p></li>
+            <li><img id="icone_relatorio" src="../assets/icon_relatorio.png" alt=""><p>Relatorios</p></li>
+            <li><img id="icone_pessoas" src="../assets/icon_pessoas.png" alt=""><p>Suporte</p></li>
+            <li><img id="maleta" src="../assets/maleta.png" alt=""><p>Meu Negócio</p></li>
+           </ul>
+        </div>
+        <!-- botao de modo escuro/claro -->
+        <div class="modos" id="modos">
+            <div class="caixa-modo">
+                <img id="modo" src="../assets/sol.png" alt="Sol">
+            </div>
+    
+            <div class="texto-modo">
+                Modo Claro
+            </div>
+        </div>
+        <!--  -->
+        <div class="logout">
+            <img src="../assets/portaSaida.svg" alt=""><p>Logout</p>
+        </div>
+    </div>
+    <div class="dashboard">
+        <div class="navbar">
+            <p>McDonald’s Denver</p>
+        </div>
+        <div class="graficos">
+            <div id="feedbacks-chart" class="chart-feedbacks"></div>
+            <!-- <div id="ratings-chart" class="chart-ratings"></div> -->
+            <!-- <div id="satisfaction-index" class="chart-satisfaction"></div> -->
+            <!-- <div id="map-chart" class="chart-map"></div> -->
+        </div>
+    </div>
+</body>
+</html>
+
+<script src="./dashboard.js"></script>

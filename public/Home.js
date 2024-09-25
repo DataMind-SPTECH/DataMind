@@ -41,22 +41,6 @@ const textoModo = document.querySelector('.texto-modo');
 modos.addEventListener('click', ()=>{
     // Verifica se o modo escuro já está ativado
     if (modos.classList.contains('escuro')) {
-        // Modo claro
-        document.documentElement.style.setProperty('--background', '#FFFFFF');
-        document.documentElement.style.setProperty('--words', '#000000');
-        document.documentElement.style.setProperty('--background-objetivo', '#FFFFFF');
-        document.documentElement.style.setProperty('--background-modos', '#C6C6C6');
-        document.documentElement.style.setProperty('--background-caixa-modo', '#343434');
-
-        logo.src = './assets/logoPreto.png'
-        facebook.src = './assets/facebook.png'
-        whatsapp.src = './assets/whatsapp.png'
-        mcDonalds.src = './assets/McDonalds.png'
-        spotify.src = './assets/spotify.png'
-        modo.src = './assets/lua.png'
-        textoModo.textContent = 'Modo Escuro'; 
-
-    } else {
         // Modo escuro
         document.documentElement.style.setProperty('--background', '#292929');
         document.documentElement.style.setProperty('--words', '#FFFFFF');
@@ -71,6 +55,22 @@ modos.addEventListener('click', ()=>{
         spotify.src = './assets/spotify Modo Escuro.png'
         modo.src = './assets/sol.png'
         textoModo.textContent = 'Modo Claro'; 
+
+    } else {
+        // Modo claro
+        document.documentElement.style.setProperty('--background', '#FFFFFF');
+        document.documentElement.style.setProperty('--words', '#000000');
+        document.documentElement.style.setProperty('--background-objetivo', '#FFFFFF');
+        document.documentElement.style.setProperty('--background-modos', '#C6C6C6');
+        document.documentElement.style.setProperty('--background-caixa-modo', '#343434');
+
+        logo.src = './assets/logoPreto.png'
+        facebook.src = './assets/facebook.png'
+        whatsapp.src = './assets/whatsapp.png'
+        mcDonalds.src = './assets/McDonalds.png'
+        spotify.src = './assets/spotify.png'
+        modo.src = './assets/lua.png'
+        textoModo.textContent = 'Modo Escuro'; 
     }
 
     modos.classList.toggle('escuro')
