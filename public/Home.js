@@ -75,3 +75,7 @@ modos.addEventListener('click', ()=>{
 
     modos.classList.toggle('escuro')
 })
+
+function acessarLogin(){
+    window.location.href = './login/login.html'
+}
