@@ -4,6 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="style.css" />
+    <script src="../cadastroResponsavel/scriptCadastroResponsavel.js"></script>
     <title>Document</title>
   </head>
   <body>
@@ -19,31 +20,31 @@
         <div class="cadastro-form_input">
           <div class="input">
             <p>Nome Completo</p>
-            <input type="text" />
+            <input class="input" id="nome_input" type="text" placeholder="Seu nome" />
           </div>
           <div class="input">
             <p>Email</p>
-            <input type="text" />
+            <input class="input" id="email_input" type="email" placeholder="meuemail@provedor.com" />
           </div>
           <div class="input">
             <p>Telefone</p>
-            <input type="text" />
+            <input class="input" id="telefone_input" type="text" placeholder="Seu telefone" />
           </div>
           <div class="input">
             <p>CPF</p>
-            <input type="text" />
+            <input class="input" id="cpf_input" type="text" placeholder="Seu CPF" />
           </div>
           <div class="input input-senha">
             <p>Senha</p>
             <div>
-              <input type="text" />
+              <input type="password" id="input_senha" name="senha" placeholder="Sua senha" />
               <img src="../assets/olho-aberto.png" id="olho" alt="" />
             </div>
           </div>
           <div class="input input-senha">
             <p>Confirmar Senha</p>
             <div>
-              <input type="text" />
+              <input type="password" id="input_senhaConfirmada" name="senha" placeholder="Sua senha" />
               <img src="../assets/olho-aberto.png" data="olho-aberto" alt="" />
             </div>
           </div>
