@@ -28,12 +28,12 @@ function cadastrar() {
 
 
     // verificação de campos
-    if (email == "" ||
-        senha == "" ||
+    if (nome == "" ||
+        email == "" ||
         telefone == "" ||
-        senhaConfirmada == "" ||
-        nome == "" ||
-        cpf == ""
+        cpf == "" ||
+        senha == "" ||
+        senhaConfirmada == ""
         ) {
         div_paiAlertas.style.display = 'block';
         div_alertasValidacao.innerHTML = `PREENCHA TODOS OS CAMPOS!`
