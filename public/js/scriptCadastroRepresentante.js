@@ -1,11 +1,10 @@
-
-function cadastrar() {
-
+function cadastrarRepresentante() {
+ 
 
     const nome = input_nome.value
     const senha = input_senha.value
     const telefone = input_telefone.value
-    const cnpj = input_cnpj.value
+    const cpf = input_cpf.value
     const email = input_email.value
     const senhaConfirmada = input_senhaConfirmada.value
     let verificarLetraMaiuscula = false
@@ -29,13 +28,13 @@ function cadastrar() {
 
 
     // verificação de campos
-    if (email == "" ||
-        senha == "" ||
+    if (nome == "" ||
+        email == "" ||
         telefone == "" ||
-        senhaConfirmada == "" ||
-        nome == "" ||
-        cnpj == "" ||
-        token == "") {
+        cpf == "" ||
+        senha == "" ||
+        senhaConfirmada == ""
+        ) {
         div_paiAlertas.style.display = 'block';
         div_alertasValidacao.innerHTML = `PREENCHA TODOS OS CAMPOS!`
 
@@ -44,76 +43,65 @@ function cadastrar() {
     else if (telefone.length < 11 || telefone.length > 11) {
         div_paiAlertas.style.display = 'block';
         div_alertasValidacao.innerHTML = "O TELEFONE NÃO ESTA COMPLETO!"
+        return
     }
     // verificação senha igual
     else if (senha != senhaConfirmada) {
         div_paiAlertas.style.display = 'block';
         div_alertasValidacao.innerHTML = "AS SENHAS PRECISAM SER IGUAIS!"
+        return
     }
     // verificação email
     else if (email.indexOf("@") == -1 || email.indexOf(".") == -1) {
         div_paiAlertas.style.display = 'block';
         div_alertasValidacao.innerHTML = "DIGITE UM E-MAIL VÁLIDO!"
+        return
     }
     // verificação de senha
     else if (senha.length < 8) {
         div_paiAlertas.style.display = 'block';
         div_alertasValidacao.innerHTML = "A SENHA TEM QUE TER NO MINIMO 8 CARACTERES"
+        return
     }
     // verificação de CPF
-    else if (documento.length != 14) {
+    else if (cpf.length != 11) {
         div_paiAlertas.style.display = 'block';
         div_alertasValidacao.innerHTML = "O CPF NÃO ESTA COMPLETO! ";
+        return
     }
     // verificação de caracter especial + letra maiuscula + for
     else if (!senhaValidada) {
         div_paiAlertas.style.display = 'block';
         div_alertasValidacao.innerHTML = "DIGITE UMA SENHA COM CARACTER ESPECIAL E LETRA MAISCULA"
-    } else {
-        fetch("/usuarios/cadastrar", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify({
-                // crie um atributo que recebe o valor recuperado aqui
-                // Agora vá para o arquivo routes/usuario.js
-                nomeServer: nome,
-                emailServer: email,
-                senhaServer: senha,
-                documentoServer: documento,
-                telefoneServer: telefone,
-                empresaServer: token
-
-            }),
-        })
-            .then(function (resposta) {
-                console.log("resposta: ", resposta);
-
-                if (resposta.ok) {
+        return
+    } else { 
+        fetch("/usuarios/cadastrarRepresentante", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+            nomeServer: nome,
+            emailServer: email,
+            cpfServer: cpf,
+            telefoneServer: telefone,
+            senhaServer: senha,
+        }),
+    })
+        .then(function (resposta) {
+            if (resposta.ok) {
+                alert("Cadastro realizado com sucesso! Redirecionando para o cadastro da empresa...");
+                window.location.href = "../cadastroEmpresa.html"; // Redireciona para a próxima tela
+            } else {
+                resposta.text().then(text => {
                     div_paiAlertas.style.display = 'block';
-                    div_alertasValidacao.innerHTML =
-                        "Cadastro realizado! Redirecionando o Login...";
-
-                    setTimeout(() => {
-                        window.location = "login.html";
-                    }, "2000");
-
-                    limparFormulario();
-
-                } else {
-                    throw "Houve um erro ao tentar realizar o cadastro!";
-                }
-            })
-            .catch(function (resposta) {
-                console.log(`#ERRO: ${resposta}`);
-
-            });
-
-        return false;
-    }
+                    div_alertasValidacao.innerHTML = `Erro ao tentar cadastrar: ${text}`;
+                });
+            }
+        })
+        .catch(function (erro) {
+            div_paiAlertas.style.display = 'block';
+            div_alertasValidacao.innerHTML = `Erro ao conectar: ${erro}`;
+        });
 }
-
-function sumirMensagem() {
-    div_alertasValidacao.style.display = "none";
 }

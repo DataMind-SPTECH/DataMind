@@ -19,7 +19,7 @@
                 <div>
                     <img src="../assets/e-mail.png" alt="">
                 </div>
-                <input type="text">
+                <input type="text" id="email_input">
             </div>
             <p>Senha</p>
             <div class="input">
@@ -32,11 +32,18 @@
                 </div>
             </div>
         </div>
-        <button>Entrar</button>
-        <small>Ainda não tem uma conta? <a href="../cadastro/cadastro.html">Clique aqui.</a></small>
+        <button onclick="autenticar()">Entrar</button>
+
+        <div class="esquerda">
+            <div id="div_paiAlertas">
+                <div id="div_alertasValidacao"></div>
+            </div>
+        </div>
+
+        <small>Ainda não tem uma conta? <a href="../cadastroRepresentante.html">Clique aqui.</a></small>
     </div>
     <div class="login-image">
-        
+
     </div>
 </body>
 
@@ -48,7 +55,7 @@
     let senha = inputSenha
 
     olho.addEventListener("click", function () {
-        if(document.getElementById("olho-aberto")) {
+        if (document.getElementById("olho-aberto")) {
             olho.innerHTML = "";
             olho.innerHTML = '<img src="../assets/olho-fechado.png" alt="" id="olho-fechado">';
             senha.setAttribute("type", "text")
@@ -56,8 +63,74 @@
             olho.innerHTML = "";
             olho.innerHTML = '<img src="../assets/olho-aberto.png" alt="" id="olho-aberto">';
             senha.setAttribute("type", "password")
-        } 
-                    
+        }
+
     })
 
+</script>
+<script>
+    function autenticar() {
+        var email = document.getElementById("email_input").value;
+        var senha = document.getElementById("inputSenha").value;
+
+        if (email == "" || senha == "") {
+            div_paiAlertas.style.display = 'block';
+            div_alertasValidacao.innerHTML = "Preencha todos os campos"
+            return false;
+        } else {
+            closeModal()
+            div_paiAlertas.style.display = 'none';
+        }
+
+        console.log("FORM LOGIN: ", email);
+        console.log("FORM SENHA: ", senha);
+
+        fetch("/usuarios/autenticar", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                emailServer: email,
+                senhaServer: senha
+            })
+        }).then(function (resposta) {
+            console.log("ESTOU NO THEN DO entrar()!")
+
+            if (resposta.ok) {
+                window.alert("Você será redirecionado para a parte premium deste site");
+                console.log(resposta);
+                resposta.json().then(json => {
+                    console.log(json);
+                    console.log(JSON.stringify(json));
+                    sessionStorage.EMAIL_USUARIO = json.email;
+                    sessionStorage.NOME_USUARIO = json.nome;
+                    sessionStorage.ID_USUARIO = json.idfuncionario;
+
+                    setTimeout(function () {
+                        window.location.href = "../dashboard/dashboard_inicial.html";
+                    }, 1000); // apenas para exibir o loading
+                });
+
+            } else {
+                window.alert("Email ou Senha inválidos, tente novamente ou se for novo cadastre-se");
+                console.log("Houve um erro ao tentar realizar o login!");
+                window.location = "login.html";
+
+                resposta.text().then(texto => {
+                    console.error(texto);
+                    finalizarAguardar(texto);
+                });
+            }
+
+        }).catch(function (erro) {
+            console.log(erro);
+        });
+
+        return false;
+    }
+
+    function closeModal() {
+        div_paiAlertas.style.display = 'none';
+    }
 </script>

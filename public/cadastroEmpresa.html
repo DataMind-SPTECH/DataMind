@@ -1,12 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
-    <script src="../cadastroEmpresa/scriptCadastroEmpresa.js"></script>
+    <link rel="stylesheet" href="./css/cadastroEmpresa.css">
+    <script src="./js/scriptCadastroEmpresa.js"></script>
     <title>Document</title>
 </head>
+
 <body>
     <main>
         <div class="cadastro-img">
@@ -39,16 +41,24 @@
                 <div class="input">
                     <p>Bairro</p>
                     <input class="input" id="bairro_input" type="text" placeholder="">
-                </div>                
+                </div>
             </div>
             <div class="input">
                 <p>Número</p>
-                <input class="input" id="numero_input" type="number" >
+                <input class="input" id="numero_input" type="number">
             </div>
-            <button class="botao-proximo">
-                Registre-se 
+            <button class="botao-proximo" onclick="cadastrarEmpresa()">
+                Registre-se
             </button>
         </div>
+
+        <div class="esquerda">
+            <div id="div_paiAlertas">
+                <div id="div_alertasValidacao"></div>
+            </div>
+        </div>
+
     </main>
 </body>
+
 </html>
