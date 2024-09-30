@@ -79,3 +79,21 @@ modos.addEventListener('click', ()=>{
 function acessarLogin(){
     window.location.href = './login/login.html'
 }
+
+const btnMenu = document.querySelector(".menu-icon")
+const overlay = document.querySelector(".overlay")
+const menu = document.querySelector(".menu")
+const btnCloseMenu = document.querySelector(".close-menu")
+
+btnMenu.addEventListener("click", openMenu)
+overlay.addEventListener("click", closeMenu)
+btnCloseMenu.addEventListener("click", closeMenu)
+
+function openMenu () {
+    menu.classList.add("open")
+    overlay.classList.add("open")
+}
+function closeMenu () {
+    menu.classList.remove("open")
+    overlay.classList.remove("open")
+} 
