@@ -35,9 +35,11 @@ body {
 
 .div_acessos{
     height: 40%;
+    width: 100%;
 }
 
 .div_acessos ul{
+    width: 100%;
     display: flex;
     list-style: none;
     flex-direction: column;
@@ -139,7 +141,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 10%;
+    height: 12%;
 }
 
 .navbar p{
@@ -169,6 +171,8 @@ body {
     height: 40%;
     justify-content: space-between;
     align-items: center;
+    margin-top: 12px;
+    margin-right: 15px;
 }
 .grafico-third{
     width: 35%;
@@ -188,6 +192,7 @@ body {
     height: 60%;
     border-radius: 10px;
     box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.25);
+    margin-right: 16px;
 }
 
 #feedbacks-chart{
@@ -199,10 +204,11 @@ body {
     display: flex;
     align-items: center;
     background-color: var(--background_footer_lateral);
-    width: 65%;
+    width: 64%;
     height: calc(100% - 10px);
     border-radius: 10px;
     box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.25);
+
 }
 
 #ratings-chart{
@@ -237,7 +243,7 @@ body {
 .main-topics{
     background-color: var(--background_footer_lateral);
     width: calc(100% - 10px);
-    height: calc(55% - 10px);
+    height: calc(54% - 10px);
     border-radius: 10px;
     display: flex;
     flex-direction: column;
