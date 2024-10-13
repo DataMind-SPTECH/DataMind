@@ -25,9 +25,10 @@ main {
 
 .cadastro-img {
     width: 50%;
-    height: 100%;
+    height: 100vh;
     background-image: url(../assets/imagemCadastro.png);
     background-size: cover;
+    position: relative;
 }
 
 .cadastro-form {
@@ -112,31 +113,24 @@ h1 {
     box-shadow: none;
 }
 
-#div_paiAlertas{
-    display: none;
-    width: 200px;
-    height: 75px;
-    background-color:#fff;
-    border-radius: 10px;
-    border: solid 2px #ff0000;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
+.div-alert {
+    box-sizing: border-box;
+    position: absolute;
+    right: 5%;
+    top: 45%;
+    width: 300px;
+    height: 100px;
+    background-color: #292929;
+    border: 2px solid #6841f2;
+    border-radius: 8px;
+    padding: 10px;
+} 
+
+.div-alert h1 {
+    font-size: 18px;
 }
 
-#div_alertasValidacao{
-    display: flex;
-    justify-content: center;
-    flex-direction: row;
-    align-items: center;
-    color: #FF0000;
-    text-align: center;
-    height: 100%;
-}
-
-.esquerda {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+.div-alert li{
+    font-size: 14px;
+    color: white;
 }

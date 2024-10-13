@@ -5,6 +5,8 @@ const telefoneInp = document.getElementById("telefone_input");
 const cepInp = document.getElementById("cep_input");
 const logradouroInp = document.getElementById("logradouro_input");
 const bairroInp = document.getElementById("bairro_input");
+const cidadeInp = document.getElementById("cidade_input");
+const estadoInp = document.getElementById("estado_input");
 const numeroInp = document.getElementById("numero_input");
 const complementoInp = document.getElementById("complemento_input");
 const btnProx = document.querySelector(".botao-proximo")
@@ -19,22 +21,22 @@ function cadastrarEmpresa() {
         bairroInp.value == '' ||
         numeroInp.value == ''
     ) {
-        console.log('preencha todos os campos ')
+        addAlert('Preencha todos os campos antes de prosseguir')
         return;
     }
 
     if (cnpjInp.value.length != 14) {
-        console.log('cnpj inválido')
+        addAlert('CNPJ inválido!')
         return;
     }
 
     if (telefoneInp.value.length != 11) {
-        console.log('telefone inválido');
+        addAlert('Telefone inválido')
         return;
     }
 
     if (cepInp.value.length != 8) {
-        console.log("numero inválido");
+        addAlert('CEP inválido')
         return;
     }
 
@@ -83,3 +85,65 @@ function cadastrarEmpresa() {
 
 } 
 
+function addAlert(mensagem, tempo = 4000) {
+    const addAlerta = document.getElementById("adicionar-alerta")
+    const divAlerta = document.querySelector(".div-alert")
+
+    addAlerta.innerHTML = mensagem
+    divAlerta.classList.add('show')
+    
+    setTimeout( ()=> {
+        divAlerta.classList.remove("show")
+    }, tempo)
+}
+
+const CaracteresPermitidos = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '-']
+
+function clearInput() {
+    logradouro.value = ''
+    cidade.value = ''
+    bairro.value = ''
+}
+
+cepInp.addEventListener('focusout', async () => {
+
+    let confirmacaoCep = false
+
+    // Verificando o campo CEP
+
+    if (cepInp.value.length >= 8 && cepInp.value.length <= 9) {
+        for (let numeroChar = 0; numeroChar < cepInp.value.length; numeroChar++) {
+            let caracter = cepInp.value[numeroChar]
+
+            if (CaracteresPermitidos.indexOf(caracter) != -1) {
+                confirmacaoCep = true;
+            } else {
+                addAlert('CEP Inválido!');
+                clearInput();
+                return;
+            }
+        }
+    } else {
+        addAlert('CEP Inválido!');
+        clearInput()
+    }
+
+
+    if (confirmacaoCep) {
+        const response = await fetch(`https://viacep.com.br/ws/${cepInp.value}/json/`)
+
+        const responseCep = await response.json();
+
+        logradouroInp.value = responseCep.logradouro;
+        bairroInp.value = responseCep.bairro;
+        estadoInp.value = responseCep.estado;
+        cidadeInp.value = responseCep.localidade;
+        logradouroInp.setAttribute('disabled', '')
+        bairroInp.setAttribute('disabled', '')
+        estadoInp.setAttribute('disabled', '')
+        cidadeInp.setAttribute('disabled', '')
+        // cidade.value = responseCep.localidade;
+    }
+
+
+})

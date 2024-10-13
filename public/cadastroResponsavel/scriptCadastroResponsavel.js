@@ -49,3 +49,14 @@ function cadastrarResponsavel () {
     return false;
 }
 
+function addAlert(mensagem, tempo = 4000) {
+    const addAlerta = document.getElementById("adicionar-alerta")
+    const divAlerta = document.querySelector(".div-alert")
+
+    addAlerta.innerHTML = mensagem
+    divAlerta.style.display = 'block'
+    
+    setTimeout( ()=> {
+        divAlerta.style.display = 'none'
+    }, tempo)
+}
