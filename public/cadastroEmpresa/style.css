@@ -91,6 +91,7 @@ h1 {
     font-weight: 600;
     box-shadow: 2px 2px 20px #6841f2;
     margin-top: 30px;
+    cursor: pointer;
 }
 
 .input.input-senha img{

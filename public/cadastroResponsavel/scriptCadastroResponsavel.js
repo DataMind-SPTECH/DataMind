@@ -1,118 +1,51 @@
-function cadastrar() {
+const nomeResponsavelInp = document.getElementById("input_nome")
+const emailInp = document.getElementById("input_email")
+const telefoneRespInp = document.getElementById("input_telefone")
+const cpfInp = document.getElementById("input_cpf")
+const senhaInp = document.getElementById("input_senha")
+const confirmarSenhaInp = document.getElementById("input_senhaConfirmada")
+const btnCadastrar = document.querySelector(".botao-proximo")
+btnCadastrar.addEventListener("click", cadastrarResponsavel)
 
+function cadastrarResponsavel () { 
+    const idEmpresa = localStorage.getItem("idEmpresa")
 
-    const nome = input_nome.value
-    const senha = input_senha.value
-    const telefone = input_telefone.value
-    const cpf = input_cpf.value
-    const email = input_email.value
-    const senhaConfirmada = input_senhaConfirmada.value
-    let verificarLetraMaiuscula = false
-    let verificarCaracterEspecial = false
-    let caracteresEspeciais = ["!", ".", "@", "#", "$", "%", "^", "&", "*", "()", ",", "?", "/", ":", "{}", "|", "<", ">",]
-    let letrasMaiusculas = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"]
-    let senhaValidada = false
+    fetch("/responsavel/cadastrar", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+            nomeServer: nomeResponsavelInp.value,
+            emailServer: emailInp.value,
+            telefoneServer: telefoneRespInp.value,
+            cpfServer: cpfInp.value,
+            senhaServer: senhaInp.value,
+            idEmpresaServer: idEmpresa
+        }),
+    })
+        .then(function (resposta) {
+            console.log("resposta: ", resposta);
 
-    for (let validacaoSenha = 0; validacaoSenha < senha.length; validacaoSenha++) {
-        let char = senha[validacaoSenha]
-        if (caracteresEspeciais.indexOf(char) != -1) {
-            verificarCaracterEspecial = true;
-        }
-        if (letrasMaiusculas.indexOf(char) != -1) {
-            verificarLetraMaiuscula = true;
-        }
-    }
-    if (verificarCaracterEspecial && verificarLetraMaiuscula) {
-        senhaValidada = true
-    }
+            if (resposta.ok) {
+                console.log('deu certo chefia')
 
+                resposta.json()
+                    .then(
+                        function (json) {
+                            localStorage.setItem('idEmpresa', json.idEmpresa)
+                        }
+                    )
 
-    // verificação de campos
-    if (nome == "" ||
-        email == "" ||
-        telefone == "" ||
-        cpf == "" ||
-        senha == "" ||
-        senhaConfirmada == ""
-        ) {
-        div_paiAlertas.style.display = 'block';
-        div_alertasValidacao.innerHTML = `PREENCHA TODOS OS CAMPOS!`
-
-    }
-    // verificação telefone
-    else if (telefone.length < 11 || telefone.length > 11) {
-        div_paiAlertas.style.display = 'block';
-        div_alertasValidacao.innerHTML = "O TELEFONE NÃO ESTA COMPLETO!"
-    }
-    // verificação senha igual
-    else if (senha != senhaConfirmada) {
-        div_paiAlertas.style.display = 'block';
-        div_alertasValidacao.innerHTML = "AS SENHAS PRECISAM SER IGUAIS!"
-    }
-    // verificação email
-    else if (email.indexOf("@") == -1 || email.indexOf(".") == -1) {
-        div_paiAlertas.style.display = 'block';
-        div_alertasValidacao.innerHTML = "DIGITE UM E-MAIL VÁLIDO!"
-    }
-    // verificação de senha
-    else if (senha.length < 8) {
-        div_paiAlertas.style.display = 'block';
-        div_alertasValidacao.innerHTML = "A SENHA TEM QUE TER NO MINIMO 8 CARACTERES"
-    }
-    // verificação de CPF
-    else if (cpf.length != 14) {
-        div_paiAlertas.style.display = 'block';
-        div_alertasValidacao.innerHTML = "O CPF NÃO ESTA COMPLETO! ";
-    }
-    // verificação de caracter especial + letra maiuscula + for
-    else if (!senhaValidada) {
-        div_paiAlertas.style.display = 'block';
-        div_alertasValidacao.innerHTML = "DIGITE UMA SENHA COM CARACTER ESPECIAL E LETRA MAISCULA"
-    } else {
-        fetch("/usuarios/cadastrar", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify({
-                // crie um atributo que recebe o valor recuperado aqui
-                // Agora vá para o arquivo routes/usuario.js
-                nomeServer: nome,
-                emailServer: email,
-                senhaServer: senha,
-                cpfServer: cpf,
-                telefoneServer: telefone
-                // empresaServer: token
-
-            }),
+            } else {
+                throw "Houve um erro ao tentar realizar o cadastro!";
+            }
         })
-            .then(function (resposta) {
-                console.log("resposta: ", resposta);
+        .catch(function (resposta) {
+            console.log(`#ERRO: ${resposta}`);
 
-                if (resposta.ok) {
-                    div_paiAlertas.style.display = 'block';
-                    div_alertasValidacao.innerHTML =
-                        "Cadastro realizado! Redirecionando o Login...";
+        });
 
-                    setTimeout(() => {
-                        window.location = "login.html";
-                    }, "2000");
-
-                    limparFormulario();
-
-                } else {
-                    throw "Houve um erro ao tentar realizar o cadastro!";
-                }
-            })
-            .catch(function (resposta) {
-                console.log(`#ERRO: ${resposta}`);
-
-            });
-
-        return false;
-    }
+    return false;
 }
 
-function sumirMensagem() {
-    div_alertasValidacao.style.display = "none";
-}
