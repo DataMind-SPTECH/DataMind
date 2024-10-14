@@ -21,7 +21,7 @@ public class GerenciadorFeedbacks {
         List<Feedback> feedbacks = new ArrayList<>();
 
         //Recuperando o arquivo
-        @Cleanup FileInputStream file = new FileInputStream("src\\main\\java\\resources\\Feedbacks McDonalds (50).xlsx");
+        @Cleanup FileInputStream file = new FileInputStream("Java-DataMind\\src\\main\\resources\\Feedbacks McDonalds (50).xlsx");
         Workbook workbook = new XSSFWorkbook(file);
 
         //Setando a aba
