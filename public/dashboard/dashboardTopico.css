@@ -5,6 +5,7 @@
     --background-modos: #555555;
     --background-caixa-modo: #FFFFFF;
     --background-topics: #4C4C4C;
+    
 }
 
 body {
@@ -172,7 +173,10 @@ body {
     justify-content: space-between;
     align-items: center;
     margin-top: 12px;
+    margin-bottom: -5px;
 }
+
+
 .grafico-third{
     width: 35%;
     height: calc(100% - 10px);
@@ -182,31 +186,86 @@ body {
     justify-content: space-between;
 }
 
-.chart-recomendacao{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-color: var(--background_footer_lateral);
-    width: calc(100% - 20px);
-    height: 50%;
-    border-radius: 5px;
-    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.25);
-}
-
 #feedbacks-chart{
     height: calc(100% - 20px);
     width: calc(100% - 40px);
 }
 
-.chart-comentarios{
+/* Todos os cometários relácionados */
+
+.main-comentarios{
     display: flex;
+    flex-direction: column;
     align-items: center;
     background-color: var(--background_footer_lateral);
     width: calc(100% - 20px);
     height: calc(100% - 10px);
     border-radius: 5px;
     box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.25);
-    margin-top: 40px;
+    margin-top: -12px;
+    justify-content:space-evenly;
+    overflow-y: scroll;
+}
+
+::-webkit-scrollbar{
+    background-color: #777777;
+    width: 5px;
+    margin-right: 5px;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb{
+    background-color: #6356EE;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+}
+
+.comentario{
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-around;
+    background-color: var(--background-comentario);
+    color: var(--words);
+    width: 90%;
+    box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 10px;
+    height: 35%;
+    margin-top: 15px;
+}
+
+.comentario p{
+    font-size: 14px;
+    margin: 10px;
+}
+
+
+.comentario-conteudo, .comentario-nota {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+}
+
+.comentario-conteudo p, .comentario-nota p {
+    margin-bottom: 5px;
+}
+
+.nota {
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.nota.baixa {
+    color: #FF0000;
+}
+
+.nota.media {
+    color: #FFEE00;
+}
+
+.nota.alta {
+    color: #40FF00;
 }
 
 #ratings-chart{
@@ -215,41 +274,35 @@ body {
 }
 
 .chart-comentarios-second{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     background-color: var(--background_footer_lateral);
     width: calc(35% - 40px);
     height: calc(100% - 10px);
     border-radius: 5px;
     box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.25);
+    margin-bottom: 0;
+    color: var(--words);
+}
+
+.chart-comentarios-second .nota{
+    font-size: 30px;
+    margin-block: auto;
 }
 
 .chart-satisfaction{
     background-color: var(--background_footer_lateral);
     width: calc(100% - 20px);
-    height: calc(30% - 32px);
+    height: calc(55% + 0px);
     border-radius: 5px;
     box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.25);
 }
 
-.chart-map{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-color: var(--background_footer_lateral);
-    width: calc(100% - 10px);
-    height: 45%;
-    border-radius: 10px;
-    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.25);
-}
-
-#map-chart{
-    height: calc(100% - 20px);
-    width: calc(100% - 40px);
-}
-
 .main-topics{
     background-color: var(--background_footer_lateral);
-    width: calc(100% - 10px);
-    height: calc(70% - 9px);
+    width: calc(100% - 20px);
+    height: calc(120% + 180px);
     border-radius: 5px;
     display: flex;
     flex-direction: column;
@@ -258,7 +311,8 @@ body {
     color: var(--words);
     font-family: 'Montserrat';
     box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.25);
-    margin-top: 5px;
+    /* margin-bottom: 10px; */
+    margin-top: -12px;
 }
 
 .main-topics p {
@@ -270,15 +324,88 @@ body {
 .topics{
     display: flex;
     align-items: center;
-    background-color: var(--background-topics);
+    /* color: var(--background-topics); */
     width: 90%;
-    box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.25);
+    /* box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.25); */
     border-radius: 10px;
     height: 15%;
 }
 
 .topics p{
-    margin-left: 20px;
-    font-size: 16px;
+    margin-left: 10px;
+    font-size: 20px;
     font-weight: 600;
 }
+
+#positivas{
+    color: #40FF00;
+}
+
+#regulares{
+    color: #FFEE00;
+}
+
+#negativas{
+    color: #FF0000;
+}
+
+p.palavras-text{
+    font-size: 14px;
+    margin: 0 auto;
+    text-align:center;
+    font-weight: normal;
+
+}
+
+.title{
+    color: var(--words);
+    font-family: 'Montserrat'; 
+    font-weight: 600;
+    text-align: center;
+}
+
+/* Recomendações */
+.main-recomendacao{
+    display: flex;
+    flex-direction: column;
+    /* align-items: center; */
+    justify-content: center;
+    background-color: var(--background_footer_lateral);
+    width: calc(100% - 20px);
+    height: 50%;
+    border-radius: 5px;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.25);
+}
+
+.main-recomendacao h3{
+    display: flex;
+    justify-content: center;
+    color: var(--words);
+    margin: 0;
+}
+
+
+.recomendation{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-left: 15px;
+}
+
+.main-recomendacao ul {
+   
+    list-style: none; /* Remove a marcação padrão dos itens da lista */
+    padding: 0;
+    margin-top: -15spx;
+    color: var(--words) ;
+}
+
+.main-recomendacao li {
+    font-size: 18px;
+    font-weight: normal;
+}
+
+/* satisfation */
+/* .title-satisfaction{
+    margin: -25px;
+} */
