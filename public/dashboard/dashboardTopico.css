@@ -391,6 +391,11 @@ p.palavras-text{
     text-align: center;
 }
 
+h2#Palavras-chaves.title{
+    margin: 30px;
+    margin-top: 10px;
+}
+
 /* Recomendações */
 .main-recomendacao{
     display: flex;
