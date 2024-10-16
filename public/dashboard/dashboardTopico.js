@@ -81,7 +81,7 @@ function criarGrafico() {
 		legend_visible: false,
 		chartArea_boxVisible: false,
 		title_label_text:
-			"",
+			"<span style='font-family: 'Montserrat'; font-weight: 600;text-align: center;'></span>",
 		title_label_style: {
 			fontSize: 20,
 			color: textoGrafico,

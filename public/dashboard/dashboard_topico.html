@@ -11,12 +11,16 @@
     <link rel="stylesheet" href="dashboardTopico.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&display=swap"
+        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
+        rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="icon" href="../assets/Icone_DataMind.png" type="image/x-icon">
+
 </head>
 
-<body>
+<body data-theme="escuro">
     <div class="footer_lateral">
         <div class="div_acessos">
             <img id="logo" class="img_logo" src="../assets/logo_claro.png" alt="">
@@ -54,6 +58,7 @@
     <div class="dashboard">
         <div class="navbar">
             <p>Qualidade da comida</p>
+            <i class="fas fa-chevron-down icon"></i>
         </div>
         <div class="graficos">
             <div class="grafico-first">
@@ -135,7 +140,7 @@
                             <p><strong>Nota</strong></p>
                             <p class="nota baixa">2/5</p>
                         </div>
-                        <div class="comentario-data">
+                        <div class="comentario-data"><br>
                             <p> <i class="fa-regular fa-calendar-days"></i> 15/09/2024</p>
                         </div>
                     </div>
@@ -158,9 +163,12 @@
             </div>
 
             <div class="grafico-third">
-                <span class="title">Índice de <br> Satisfação</span>
-                <div id="satisfaction-index" class="chart-satisfaction"></div>
-
+                <!-- <div class="container-indice-satisfaction"> -->
+                <span class="title indice">Índice de <br> Satisfação</span>
+                <div class="main-indice">
+                    <div id="satisfaction-index" class="chart-satisfaction"></div>
+                <!-- </div> -->
+                </div>
                 <h2 class="title">Palavras Chaves</h2>
                 <div class="main-topics">
 
