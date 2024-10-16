@@ -100,7 +100,6 @@ function addAlert(mensagem, tempo = 4000) {
 const CaracteresPermitidos = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '-']
 
 function clearInput() {
-    logradouro.value = ''
     cidade.value = ''
     bairro.value = ''
 }
@@ -141,8 +140,7 @@ cepInp.addEventListener('focusout', async () => {
         logradouroInp.setAttribute('disabled', '')
         bairroInp.setAttribute('disabled', '')
         estadoInp.setAttribute('disabled', '')
-        cidadeInp.setAttribute('disabled', '')
-        // cidade.value = responseCep.localidade;
+        cidadeInp.setAttribute('disabled', '') 
     }
 
 

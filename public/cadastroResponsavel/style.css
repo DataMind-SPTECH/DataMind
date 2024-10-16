@@ -116,7 +116,7 @@ h1 {
 .div-alert {
     box-sizing: border-box;
     position: absolute;
-    right: 5%;
+    right: 100%;
     top: 45%;
     width: 300px;
     height: 100px;
@@ -124,7 +124,32 @@ h1 {
     border: 2px solid #6841f2;
     border-radius: 8px;
     padding: 10px;
+    transition: ease 0.4s;
 } 
+
+.div-alert.show {
+    right: 5%;
+}
+
+.div-alert.password {
+    top: 65%;
+    height: 120px;
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+    padding-left: 15px;
+    right: 100%;
+    transition: ease 0.4s;
+}
+
+.div-alert.password.show {
+    right: 5%;
+}
+
+.div-alert.password li {
+    font-size: 12px;
+    color: #bd4b4b;
+}
 
 .div-alert h1 {
     font-size: 18px;
