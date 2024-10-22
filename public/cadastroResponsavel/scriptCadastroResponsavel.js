@@ -1,118 +1,156 @@
-function cadastrar() {
+const nomeResponsavelInp = document.getElementById("input_nome")
+const emailInp = document.getElementById("input_email")
+const telefoneRespInp = document.getElementById("input_telefone")
+const cpfInp = document.getElementById("input_cpf")
+const senhaInp = document.getElementById("input_senha")
+const confirmarSenhaInp = document.getElementById("input_senhaConfirmada")
+const btnCadastrar = document.querySelector(".botao-proximo")
+btnCadastrar.addEventListener("click", cadastrarResponsavel)
 
-
-    const nome = input_nome.value
-    const senha = input_senha.value
-    const telefone = input_telefone.value
-    const cpf = input_cpf.value
-    const email = input_email.value
-    const senhaConfirmada = input_senhaConfirmada.value
-    let verificarLetraMaiuscula = false
-    let verificarCaracterEspecial = false
-    let caracteresEspeciais = ["!", ".", "@", "#", "$", "%", "^", "&", "*", "()", ",", "?", "/", ":", "{}", "|", "<", ">",]
-    let letrasMaiusculas = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"]
-    let senhaValidada = false
-
-    for (let validacaoSenha = 0; validacaoSenha < senha.length; validacaoSenha++) {
-        let char = senha[validacaoSenha]
-        if (caracteresEspeciais.indexOf(char) != -1) {
-            verificarCaracterEspecial = true;
-        }
-        if (letrasMaiusculas.indexOf(char) != -1) {
-            verificarLetraMaiuscula = true;
-        }
-    }
-    if (verificarCaracterEspecial && verificarLetraMaiuscula) {
-        senhaValidada = true
-    }
-
-
-    // verificação de campos
-    if (nome == "" ||
-        email == "" ||
-        telefone == "" ||
-        cpf == "" ||
-        senha == "" ||
-        senhaConfirmada == ""
+function cadastrarResponsavel() {
+    if (!nomeResponsavelInp.value ||
+         !emailInp.value || 
+         !telefoneRespInp.value || 
+         !cpfInp.value ||
+         !senhaInp.value ||
+         !confirmarSenhaInp 
         ) {
-        div_paiAlertas.style.display = 'block';
-        div_alertasValidacao.innerHTML = `PREENCHA TODOS OS CAMPOS!`
+            addAlert("Preencha todos os campos antes de prosseguir")
+            return
+        }
 
-    }
-    // verificação telefone
-    else if (telefone.length < 11 || telefone.length > 11) {
-        div_paiAlertas.style.display = 'block';
-        div_alertasValidacao.innerHTML = "O TELEFONE NÃO ESTA COMPLETO!"
-    }
-    // verificação senha igual
-    else if (senha != senhaConfirmada) {
-        div_paiAlertas.style.display = 'block';
-        div_alertasValidacao.innerHTML = "AS SENHAS PRECISAM SER IGUAIS!"
-    }
-    // verificação email
-    else if (email.indexOf("@") == -1 || email.indexOf(".") == -1) {
-        div_paiAlertas.style.display = 'block';
-        div_alertasValidacao.innerHTML = "DIGITE UM E-MAIL VÁLIDO!"
-    }
-    // verificação de senha
-    else if (senha.length < 8) {
-        div_paiAlertas.style.display = 'block';
-        div_alertasValidacao.innerHTML = "A SENHA TEM QUE TER NO MINIMO 8 CARACTERES"
-    }
-    // verificação de CPF
-    else if (cpf.length != 14) {
-        div_paiAlertas.style.display = 'block';
-        div_alertasValidacao.innerHTML = "O CPF NÃO ESTA COMPLETO! ";
-    }
-    // verificação de caracter especial + letra maiuscula + for
-    else if (!senhaValidada) {
-        div_paiAlertas.style.display = 'block';
-        div_alertasValidacao.innerHTML = "DIGITE UMA SENHA COM CARACTER ESPECIAL E LETRA MAISCULA"
-    } else {
-        fetch("/usuarios/cadastrar", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify({
-                // crie um atributo que recebe o valor recuperado aqui
-                // Agora vá para o arquivo routes/usuario.js
-                nomeServer: nome,
-                emailServer: email,
-                senhaServer: senha,
-                cpfServer: cpf,
-                telefoneServer: telefone
-                // empresaServer: token
+        if (telefoneRespInp.value.length != 11) {
+            addAlert("Telefone inválido")
+            return
+        }
+        
+        if (cpfInp.value.length != 11) {
+            addAlert("CPF inválido")
+            return
+        }  
 
-            }),
+        if(!verificarSenha(senhaInp.value)) {
+            addAlert("Senha inválida")
+            return
+        }
+
+        if(senhaInp.value != confirmarSenhaInp.value) {
+            addAlert("As senhas não correspondem")
+            return 
+        }
+
+    const idEmpresa = localStorage.getItem("idEmpresa")
+
+    fetch("/responsavel/cadastrar", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+            nomeServer: nomeResponsavelInp.value,
+            emailServer: emailInp.value,
+            telefoneServer: telefoneRespInp.value,
+            cpfServer: cpfInp.value,
+            senhaServer: senhaInp.value,
+            idEmpresaServer: idEmpresa
+        }),
+    })
+        .then(function (resposta) {
+            console.log("resposta: ", resposta);
+
+            if (resposta.ok) {
+                console.log('deu certo chefia')
+                addAlert("Cadastro realizado com sucesso... Redirecionando.")
+                setTimeout(() => window.location = '../login/login.html', 4000)
+            } else {
+                throw "Houve um erro ao tentar realizar o cadastro!";
+            }
         })
-            .then(function (resposta) {
-                console.log("resposta: ", resposta);
+        .catch(function (resposta) {
+            console.log(`#ERRO: ${resposta}`);
 
-                if (resposta.ok) {
-                    div_paiAlertas.style.display = 'block';
-                    div_alertasValidacao.innerHTML =
-                        "Cadastro realizado! Redirecionando o Login...";
+        });
 
-                    setTimeout(() => {
-                        window.location = "login.html";
-                    }, "2000");
+    return false;
+}
 
-                    limparFormulario();
+function addAlert(mensagem, tempo = 4000) {
+    const addAlerta = document.getElementById("adicionar-alerta")
+    const divAlerta = document.querySelector(".div-alert")
 
-                } else {
-                    throw "Houve um erro ao tentar realizar o cadastro!";
-                }
-            })
-            .catch(function (resposta) {
-                console.log(`#ERRO: ${resposta}`);
+    addAlerta.innerHTML = mensagem
+    divAlerta.classList.add('show')
+    
+    setTimeout( ()=> {
+        divAlerta.classList.remove("show")
+    }, tempo)
+}
 
-            });
+senhaInp.addEventListener('keyup', (e) => {
+    if(e.target.value.length < 1 ) {
+        passwordAlert('close')
+    } else {
+        passwordAlert('show')
+    }
 
-        return false;
+    verificarSenha(e.target.value)
+    console.log(verificarSenha(e.target.value))
+})
+
+const alertaSenha = document.querySelector("#alerta-senha")
+
+function passwordAlert(action) {
+    if (action == 'show' ) {
+        alertaSenha.classList.add("show")
+    }
+    
+    if(action == 'close') {
+        alertaSenha.classList.remove("show")
     }
 }
 
-function sumirMensagem() {
-    div_alertasValidacao.style.display = "none";
+function verificarSenha(string) {
+    const alertaMinChar = document.getElementById('alerta-minChar');
+    const alertaMaiscula = document.getElementById('alerta-maiuscula');
+    const alertaMinuscula = document.getElementById('alerta-minuscula');
+    const alertaNumero = document.getElementById('alerta-numero');
+    const alertaEspChar = document.getElementById('alerta-espChar');
+
+    const temMinChar = minChar(string)
+    const temMais = temMaiuscula(string)
+    const temMinus = temMinuscula(string)
+    const temNum = temNumero(string)
+    const temEsp = temEspecial(string) 
+
+    temMinChar ? alertaMinChar.style.color = 'green' : alertaMinChar.style.color = '#bd4b4b'
+    temMais ? alertaMaiscula.style.color = 'green' : alertaMaiscula.style.color = '#bd4b4b'
+    temMinus? alertaMinuscula.style.color = 'green' : alertaMinuscula.style.color = '#bd4b4b'
+    temNum ? alertaNumero.style.color = 'green' : alertaNumero.style.color = '#bd4b4b'
+    temEsp ? alertaEspChar.style.color = 'green' : alertaEspChar.style.color = '#bd4b4b'
+    
+    return temMinChar && temMais && temMinus && temNum && temEsp 
+} 
+
+function minChar(string) {
+    return string.length >= 6
 }
+
+function temMaiuscula(string) {
+    const regex = /[A-Z]/
+    return regex.test(string)
+} 
+
+function temMinuscula(string) {
+    const regex = /[a-z]/
+    return regex.test(string)
+}
+
+function temNumero(string) {
+    const regex = /[0-9]/
+    return regex.test(string)
+} 
+
+function temEspecial(string) {
+    const regex =  /[!@#$%^&*(),.?":{}|<>]/
+    return regex.test(string)
+} 

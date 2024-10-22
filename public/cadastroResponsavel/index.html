@@ -1,63 +1,71 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="style.css" />
-    <script src="../cadastroResponsavel/scriptCadastroResponsavel.js"></script>
-    <title>Document</title>
-  </head>
-  <body>
-    <main>
-      <div class="cadastro-img"></div>
-      <div class="cadastro-form">
-        <img
-          class="cadastro-logo"
-          src="../assets/Ideias_de_logos-removebg-preview 6.png"
-          alt=""
-        />
-        <h1>Cadastre-se <br />(Responsável Legal)</h1>
-        <div class="cadastro-form_input">
-          <div class="input">
-            <p>Nome Completo</p>
-            <input class="input" id="input_nome" type="text" placeholder="Seu nome" />
-          </div>
 
-          <div class="input">
-            <p>Email</p>
-            <input class="input" id="input_email" type="email" placeholder="meuemail@provedor.com" />
-          </div>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="style.css" />
+  <script src="../cadastroResponsavel/scriptCadastroResponsavel.js" defer></script>
+  <title>Document</title>
+</head>
 
-          <div class="input">
-            <p>Telefone</p>
-            <input class="input" id="input_telefone" type="text" placeholder="Seu telefone" />
-          </div>
-          <div class="input">
-            <p>CPF</p>
-            <input class="input" id="input_cpf" type="text" placeholder="Seu CPF" />
-          </div>
-          <div class="input input-senha">
-            <p>Senha</p>
-            <div>
-              <input type="password" id="input_senha" name="senha" placeholder="Sua senha" />
-              <img src="../assets/olho-aberto.png" id="olho" alt="" />
-            </div>
-          </div>
-          <div class="input input-senha">
-            <p>Confirmar Senha</p>
-            <div>
-              <input type="password" id="input_senhaConfirmada" name="senha" placeholder="Sua senha" />
-              <img src="../assets/olho-aberto.png" data="olho-aberto" alt="" />
-            </div>
-          </div>
-          <button class="botao-proximo" onclick="cadastrar()" >Próximo</button>
-        </div>
+<body>
+  <main>
+    <div class="cadastro-img">
+      <div class="div-alert">
+        <h1>Atenção!</h1>
+        <li id="adicionar-alerta">sei que a sei que la </li>
       </div>
-      <div class="esquerda">
-        <div id="div_paiAlertas">
-            <div id="div_alertasValidacao"></div>
-        </div>
+      <div class="div-alert password" id="alerta-senha">
+        <h1 >Sua senha deve conter:</h1>
+        <li id="alerta-minChar">Pelo menos seis caracteres</li>
+        <li id="alerta-maiuscula">Pelo menos um letra mínuscula</li>
+        <li id="alerta-minuscula">Pelo menos um letra maíuscula </li>
+        <li id="alerta-numero">Pelo menos um número</li>
+        <li id="alerta-espChar">Pelo menos um Caractere especial</li>
+      </div>
     </div>
-    </main>
-  </body>
+    <div class="cadastro-form">
+      <img class="cadastro-logo" src="../assets/Ideias_de_logos-removebg-preview 6.png" alt="" />
+      <h1>Cadastre-se <br />(Responsável Legal)</h1>
+      <div class="cadastro-form_input">
+        <div class="input">
+          <p>Nome Completo</p>
+          <input class="input" id="input_nome" type="text" placeholder="Seu nome" />
+        </div>
+
+        <div class="input">
+          <p>Email</p>
+          <input class="input" id="input_email" type="email" placeholder="meuemail@provedor.com" />
+        </div>
+
+        <div class="input">
+          <p>Telefone</p>
+          <input class="input" id="input_telefone" type="text" placeholder="Seu telefone" />
+        </div>
+        <div class="input">
+          <p>CPF</p>
+          <input class="input" id="input_cpf" type="text" placeholder="Seu CPF" />
+        </div>
+        <div class="input input-senha">
+          <p>Senha</p>
+          <div>
+            <input type="password" id="input_senha" name="senha" placeholder="Sua senha" />
+            <img src="../assets/olho-aberto.png" id="olho" alt="" />
+          </div>
+        </div>
+        <div class="input input-senha">
+          <p>Confirmar Senha</p>
+          <div>
+            <input type="password" id="input_senhaConfirmada" name="senha" placeholder="Sua senha" />
+            <img src="../assets/olho-aberto.png" data="olho-aberto" alt="" />
+          </div>
+        </div>
+        <button class="botao-proximo">Cadastrar</button>
+      </div>
+    </div>
+  </main>
+
+</body>
+
 </html>

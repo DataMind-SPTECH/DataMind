@@ -1,119 +1,147 @@
+// Declaração de variáveis 
+const nomeInp = document.getElementById("nome_input");
+const cnpjInp = document.getElementById("cnpj_input");
+const telefoneInp = document.getElementById("telefone_input");
+const cepInp = document.getElementById("cep_input");
+const logradouroInp = document.getElementById("logradouro_input");
+const bairroInp = document.getElementById("bairro_input");
+const cidadeInp = document.getElementById("cidade_input");
+const estadoInp = document.getElementById("estado_input");
+const numeroInp = document.getElementById("numero_input");
+const complementoInp = document.getElementById("complemento_input");
+const btnProx = document.querySelector(".botao-proximo")
+btnProx.addEventListener('click', cadastrarEmpresa)
 
-function cadastrar() {
-
-
-    const nome = input_nome.value
-    const senha = input_senha.value
-    const telefone = input_telefone.value
-    const cnpj = input_cnpj.value
-    const email = input_email.value
-    const senhaConfirmada = input_senhaConfirmada.value
-    let verificarLetraMaiuscula = false
-    let verificarCaracterEspecial = false
-    let caracteresEspeciais = ["!", ".", "@", "#", "$", "%", "^", "&", "*", "()", ",", "?", "/", ":", "{}", "|", "<", ">",]
-    let letrasMaiusculas = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"]
-    let senhaValidada = false
-
-    for (let validacaoSenha = 0; validacaoSenha < senha.length; validacaoSenha++) {
-        let char = senha[validacaoSenha]
-        if (caracteresEspeciais.indexOf(char) != -1) {
-            verificarCaracterEspecial = true;
-        }
-        if (letrasMaiusculas.indexOf(char) != -1) {
-            verificarLetraMaiuscula = true;
-        }
-    }
-    if (verificarCaracterEspecial && verificarLetraMaiuscula) {
-        senhaValidada = true
+function cadastrarEmpresa() {
+    if (nomeInp.value == '' ||
+        cnpjInp.value == '' ||
+        telefoneInp.value == '' ||
+        cepInp.value == '' ||
+        logradouroInp.value == '' ||
+        bairroInp.value == '' ||
+        numeroInp.value == ''
+    ) {
+        addAlert('Preencha todos os campos antes de prosseguir')
+        return;
     }
 
+    if (cnpjInp.value.length != 14) {
+        addAlert('CNPJ inválido!')
+        return;
+    }
 
-    // verificação de campos
-    if (email == "" ||
-        senha == "" ||
-        telefone == "" ||
-        senhaConfirmada == "" ||
-        nome == "" ||
-        cnpj == "" ||
-        token == "") {
-        div_paiAlertas.style.display = 'block';
-        div_alertasValidacao.innerHTML = `PREENCHA TODOS OS CAMPOS!`
+    if (telefoneInp.value.length != 11) {
+        addAlert('Telefone inválido')
+        return;
+    }
 
+    if (cepInp.value.length != 8) {
+        addAlert('CEP inválido')
+        return;
     }
-    // verificação telefone
-    else if (telefone.length < 11 || telefone.length > 11) {
-        div_paiAlertas.style.display = 'block';
-        div_alertasValidacao.innerHTML = "O TELEFONE NÃO ESTA COMPLETO!"
-    }
-    // verificação senha igual
-    else if (senha != senhaConfirmada) {
-        div_paiAlertas.style.display = 'block';
-        div_alertasValidacao.innerHTML = "AS SENHAS PRECISAM SER IGUAIS!"
-    }
-    // verificação email
-    else if (email.indexOf("@") == -1 || email.indexOf(".") == -1) {
-        div_paiAlertas.style.display = 'block';
-        div_alertasValidacao.innerHTML = "DIGITE UM E-MAIL VÁLIDO!"
-    }
-    // verificação de senha
-    else if (senha.length < 8) {
-        div_paiAlertas.style.display = 'block';
-        div_alertasValidacao.innerHTML = "A SENHA TEM QUE TER NO MINIMO 8 CARACTERES"
-    }
-    // verificação de CPF
-    else if (documento.length != 14) {
-        div_paiAlertas.style.display = 'block';
-        div_alertasValidacao.innerHTML = "O CPF NÃO ESTA COMPLETO! ";
-    }
-    // verificação de caracter especial + letra maiuscula + for
-    else if (!senhaValidada) {
-        div_paiAlertas.style.display = 'block';
-        div_alertasValidacao.innerHTML = "DIGITE UMA SENHA COM CARACTER ESPECIAL E LETRA MAISCULA"
-    } else {
-        fetch("/usuarios/cadastrar", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify({
-                // crie um atributo que recebe o valor recuperado aqui
-                // Agora vá para o arquivo routes/usuario.js
-                nomeServer: nome,
-                emailServer: email,
-                senhaServer: senha,
-                documentoServer: documento,
-                telefoneServer: telefone,
-                empresaServer: token
 
-            }),
+
+    fetch("/empresas/cadastrar", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+            nomeServer: nomeInp.value,
+            cnpjServer: cnpjInp.value,
+            telefoneServer: telefoneInp.value,
+            cepServer: cepInp.value,
+            logradouroServer: logradouroInp.value,
+            bairroServer: bairroInp.value,
+            numeroServer: numeroInp.value,
+            complementoServer: complementoInp.value
+
+        }),
+    })
+        .then(function (resposta) {
+            console.log("resposta: ", resposta);
+
+            if (resposta.ok) {
+                console.log('deu certo chefia')
+
+                resposta.json()
+                    .then(
+                        function (json) {
+                            localStorage.setItem('idEmpresa', json.idEmpresa)
+                            window.location = '../cadastroResponsavel/index.html'
+                        }
+                    )
+
+            } else {
+                throw "Houve um erro ao tentar realizar o cadastro!";
+            }
         })
-            .then(function (resposta) {
-                console.log("resposta: ", resposta);
+        .catch(function (resposta) {
+            console.log(`#ERRO: ${resposta}`);
 
-                if (resposta.ok) {
-                    div_paiAlertas.style.display = 'block';
-                    div_alertasValidacao.innerHTML =
-                        "Cadastro realizado! Redirecionando o Login...";
+        });
 
-                    setTimeout(() => {
-                        window.location = "login.html";
-                    }, "2000");
+    return false;
 
-                    limparFormulario();
+} 
 
-                } else {
-                    throw "Houve um erro ao tentar realizar o cadastro!";
-                }
-            })
-            .catch(function (resposta) {
-                console.log(`#ERRO: ${resposta}`);
+function addAlert(mensagem, tempo = 4000) {
+    const addAlerta = document.getElementById("adicionar-alerta")
+    const divAlerta = document.querySelector(".div-alert")
 
-            });
+    addAlerta.innerHTML = mensagem
+    divAlerta.classList.add('show')
+    
+    setTimeout( ()=> {
+        divAlerta.classList.remove("show")
+    }, tempo)
+}
 
-        return false;
+const CaracteresPermitidos = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '-']
+
+function clearInput() {
+    cidade.value = ''
+    bairro.value = ''
+}
+
+cepInp.addEventListener('focusout', async () => {
+
+    let confirmacaoCep = false
+
+    // Verificando o campo CEP
+
+    if (cepInp.value.length >= 8 && cepInp.value.length <= 9) {
+        for (let numeroChar = 0; numeroChar < cepInp.value.length; numeroChar++) {
+            let caracter = cepInp.value[numeroChar]
+
+            if (CaracteresPermitidos.indexOf(caracter) != -1) {
+                confirmacaoCep = true;
+            } else {
+                addAlert('CEP Inválido!');
+                clearInput();
+                return;
+            }
+        }
+    } else {
+        addAlert('CEP Inválido!');
+        clearInput()
     }
-}
 
-function sumirMensagem() {
-    div_alertasValidacao.style.display = "none";
-}
+
+    if (confirmacaoCep) {
+        const response = await fetch(`https://viacep.com.br/ws/${cepInp.value}/json/`)
+
+        const responseCep = await response.json();
+
+        logradouroInp.value = responseCep.logradouro;
+        bairroInp.value = responseCep.bairro;
+        estadoInp.value = responseCep.estado;
+        cidadeInp.value = responseCep.localidade;
+        logradouroInp.setAttribute('disabled', '')
+        bairroInp.setAttribute('disabled', '')
+        estadoInp.setAttribute('disabled', '')
+        cidadeInp.setAttribute('disabled', '') 
+    }
+
+
+})

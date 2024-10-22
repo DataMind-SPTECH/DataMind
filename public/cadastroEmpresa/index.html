@@ -4,13 +4,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
-    <script src="../cadastroEmpresa/scriptCadastroEmpresa.js"></script>
+    <script src="../cadastroEmpresa/scriptCadastroEmpresa.js" defer></script>
     <title>Document</title>
 </head>
 <body>
     <main>
         <div class="cadastro-img">
-
+            <div class="div-alert">
+                <h1>Atenção!</h1>
+                <li id="adicionar-alerta">sei que sei que la </li>
+              </div>
         </div>
         <div class="cadastro-form">
             <img class="cadastro-logo" src="../assets/Ideias_de_logos-removebg-preview 6.png" alt="">
@@ -18,37 +21,50 @@
             <div class="cadastro-form_input">
                 <div class="input">
                     <p>Nome</p>
-                    <input class="input" id="nome_input" type="text" placeholder="Seu nome">
+                    <input class="input" id="nome_input" type="text" placeholder='"Nome da sua empresa"'>
                 </div>
                 <div class="input">
                     <p>CNPJ</p>
-                    <input class="input" id="cnpj_input" type="text" placeholder="CNPJ da Empresa">
+                    <input class="input" id="cnpj_input" type="text" placeholder="XX.XXX.XXX/000X-XX">
                 </div>
                 <div class="input">
                     <p>Telefone</p>
-                    <input class="input" id="telefone_input" type="text" placeholder="Telefone da Empresa">
+                    <input class="input" id="telefone_input" type="text" placeholder="(XX) XXXXX-XXXX">
                 </div>
                 <div class="input">
                     <p>CEP</p>
-                    <input class="input" id="cep_input" type="text" placeholder="CEP da Empresa">
+                    <input class="input" id="cep_input" type="text" placeholder="XXXXX-XXX">
                 </div>
                 <div class="input">
                     <p>Logradouro</p>
-                    <input class="input" id="logradouro_input" type="text" placeholder="">
+                    <input class="input" id="logradouro_input" type="text" placeholder="Ex: Alameda Data">
                 </div>
                 <div class="input">
                     <p>Bairro</p>
-                    <input class="input" id="bairro_input" type="text" placeholder="">
+                    <input class="input" id="bairro_input" type="text" placeholder="Ex: Vila Mind">
+                </div>                
+                <div class="input">
+                    <p>Cidade</p>
+                    <input class="input" id="cidade_input" type="text" placeholder="Ex: Suzano">
+                </div>                
+                <div class="input">
+                    <p>Estado</p>
+                    <input class="input" id="estado_input" type="text" placeholder="Ex: São Paulo">
+                </div>                
+                <div class="input">
+                    <p>Numero</p>
+                    <input class="input" id="numero_input" type="number" placeholder="000">
+                </div>                
+                <div class="input">
+                    <p>Complemento</p>
+                    <input class="input" id="complemento_input" type="text" placeholder="Ex: Estúdio, Apto X, Andar Y">
                 </div>                
             </div>
-            <div class="input">
-                <p>Número</p>
-                <input class="input" id="numero_input" type="number" >
-            </div>
             <button class="botao-proximo">
-                Registre-se 
+                Próximo 
             </button>
         </div>
     </main>
+
 </body>
 </html>
