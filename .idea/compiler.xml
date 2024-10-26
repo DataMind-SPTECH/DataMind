@@ -8,9 +8,11 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="Java-DataMind" />
+        <module name="conexao-bd-java" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
+      <module name="DataMind" target="21" />
       <module name="leitura-arquivos-excel" target="21" />
     </bytecodeTargetLevel>
   </component>

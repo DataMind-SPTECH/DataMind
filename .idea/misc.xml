@@ -6,6 +6,7 @@
       <list>
         <option value="$PROJECT_DIR$/pom.xlm" />
         <option value="$PROJECT_DIR$/pom.xml" />
+        <option value="$PROJECT_DIR$/conexao-bd-java/pom.xml" />
       </list>
     </option>
   </component>

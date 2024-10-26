@@ -1,3 +1,5 @@
+package datamind;
+
 import lombok.Cleanup;
 import org.apache.commons.collections4.IteratorUtils;
 import org.apache.poi.ss.usermodel.Cell;
@@ -6,22 +8,20 @@ import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
-import javax.swing.plaf.basic.BasicIconFactory;
 import java.io.FileInputStream;
 import java.io.IOException;
-import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
 public class GerenciadorFeedbacks {
 
-    public List<Feedback> criar() throws IOException {
+    public List<Feedback_POI> criar() throws IOException {
 
-        List<Feedback> feedbacks = new ArrayList<>();
+        List<Feedback_POI> feedbacks = new ArrayList<>();
 
         //Recuperando o arquivo
-        @Cleanup FileInputStream file = new FileInputStream("Java-DataMind\\src\\main\\resources\\Feedbacks McDonalds (50).xlsx");
+        @Cleanup FileInputStream file = new FileInputStream("src\\main\\resources\\Feedbacks McDonalds (50).xlsx");
         Workbook workbook = new XSSFWorkbook(file);
 
         //Setando a aba
@@ -38,7 +38,7 @@ public class GerenciadorFeedbacks {
             List<Cell> cells = (List<Cell>) toList(row.cellIterator());
 
             //Atribui os valores para classe feedback
-            Feedback feedback = Feedback.builder()
+            Feedback_POI feedback = Feedback_POI.builder()
                     .Id((int) cells.get(0).getNumericCellValue())
                     .Nome(cells.get(1).getStringCellValue())
                     .Categoria(cells.get(2).getStringCellValue())
@@ -63,7 +63,7 @@ public class GerenciadorFeedbacks {
         return IteratorUtils.toList(iterator);
     }
 
-    public void imprimir(List<Feedback> feedbacks){
+    public void imprimir(List<Feedback_POI> feedbacks){
         feedbacks.forEach(System.out::println);
     }
 }

@@ -1,10 +1,12 @@
+package datamind;
+
 import lombok.Builder;
 import lombok.Data;
 
 @Data
 @Builder
 
-public class Feedback {
+public class Feedback_POI {
     private Integer Id;
     private String Nome;
     private String Categoria;
