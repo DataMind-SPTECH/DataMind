@@ -6,6 +6,7 @@ import java.util.List;
 
 import datamind.Feedback_POI;
 import datamind.GerenciadorFeedbacks;
+import datamind.TratacaoDeDados;
 
 
 
@@ -14,20 +15,25 @@ public class Main {
     public static void main(String[] args) throws IOException {
         Main app = new Main();
 
+        // Função para gerenciar conexão e criar tabelas
+//        app.setupDatabase();
+
         // Função para gerenciar feedbacks
         app.runFeedbackManager();
 
-        // Função para gerenciar conexão e criar tabelas
-//        app.setupDatabase();
     }
 
     private void runFeedbackManager() throws IOException {
         GerenciadorFeedbacks gerenciadorFeedbacks = new GerenciadorFeedbacks();
         List<Feedback_POI> feedbacks = gerenciadorFeedbacks.criar();
-        gerenciadorFeedbacks.imprimir(feedbacks);
+        gerenciadorFeedbacks.imprimirPorIndice(feedbacks, 0);
+        //gerenciadorFeedbacks.imprimir(feedbacks);
+        TratacaoDeDados TratadorDeDados = new TratacaoDeDados();
+        List<Feedback_POI> dadosTratados = TratadorDeDados.processarDados(feedbacks);
+        gerenciadorFeedbacks.imprimir(dadosTratados);
     }
 
- /*   private void setupDatabase() {
+  /*  private void setupDatabase() {
         // Realizando conexão
         DBConnectionProvider dbConnectionProvider = new DBConnectionProvider();
         JdbcTemplate connection = dbConnectionProvider.getConnection();

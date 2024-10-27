@@ -66,4 +66,13 @@ public class GerenciadorFeedbacks {
     public void imprimir(List<Feedback_POI> feedbacks){
         feedbacks.forEach(System.out::println);
     }
+
+    public void imprimirPorIndice(List<Feedback_POI> feedbacks, int indice) {
+        if (indice >= 0 && indice < feedbacks.size()) {
+            System.out.println(feedbacks.get(indice));
+        } else {
+            System.out.println("Índice inválido.");
+        }
+    }
+
 }
