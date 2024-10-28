@@ -1,19 +1,22 @@
 /* ----------------------------------------Configurações gerais---------------------------------------- */
-:root{
+:root {
     --background: #FFFFFF;
     --words: #000000;
     --background-objetivo: #FFFFFF;
     --background-modos: #C6C6C6;
     --background-caixa-modo: #343434;
+    --roxo-principal: #6356EE;
 }
 
-html{
+
+
+html {
     margin: 0;
     padding: 0;
     scroll-behavior: smooth;
 }
 
-body{
+body {
     margin: 0;
     padding: 0;
     background-color: var(--background);
@@ -23,22 +26,22 @@ body{
 body::-webkit-scrollbar {
     width: 4px;
 }
-  
+
 body::-webkit-scrollbar-track {
     background: var(--background);
 }
-  
+
 body::-webkit-scrollbar-thumb {
     background-color: #6841F2;
     border-radius: 20px;
 }
 
 /* ----------------------------------------NavBar---------------------------------------- */
-header{
+header {
     height: 100px;
 }
 
-.navbar{
+.navbar {
     display: flex;
     justify-content: space-around;
     align-items: center;
@@ -50,39 +53,39 @@ header{
     box-shadow: 2px 2px 40px var(--background);
 }
 
-.navbar-logo{
+.navbar-logo {
     width: 15%;
 }
 
-.navbar-logo img{
+.navbar-logo img {
     width: 100%;
 }
 
-.navbar-itens{
+.navbar-itens {
     width: 40%;
 }
 
 
-.navbar-itens ul{
+.navbar-itens ul {
     padding: 0;
     list-style: none;
     display: flex;
     justify-content: space-between;
 }
 
-.navbar-itens li a{
+.navbar-itens li a {
     text-decoration: none;
     color: var(--words);
     font-size: 16px;
     font-weight: bold;
 }
 
-.navbar-button{
+.navbar-button {
     width: 10%;
     height: 35%;
 }
 
-.navbar-button button{
+.navbar-button button {
     color: #FFFFFF;
     width: 100%;
     height: 100%;
@@ -95,15 +98,20 @@ header{
     border: none;
 }
 
-.navbar-button button:hover{
+.navbar-button button:hover {
     cursor: pointer;
     box-shadow: 2px 2px 50px rgba(132, 102, 241, 0.5);
-    transition: ease 0.4s; 
+    transition: ease 0.4s;
     font-size: 20.5px;
 }
+
+.menu-icon {
+    display: none;
+}
+
 /* ----------------------------------------Modos---------------------------------------- */
 
-.modos{
+.modos {
     display: flex;
     align-items: center;
     width: 233px;
@@ -121,7 +129,7 @@ header{
 
 }
 
-.caixa-modo{
+.caixa-modo {
     position: absolute;
     width: 52px;
     height: 52px;
@@ -131,30 +139,30 @@ header{
     left: 10px;
 }
 
-.caixa-modo img{
+.caixa-modo img {
     width: 100%;
     height: 100%;
     transform: scale(.7);
 }
 
-.texto-modo{
+.texto-modo {
     position: absolute;
     transition: 0.9s all;
     right: 30px;
     color: var(--words);
 }
 
-.modos.escuro .caixa-modo{
+.modos.escuro .caixa-modo {
     left: 171px;
 }
 
-.modos.escuro .texto-modo{
+.modos.escuro .texto-modo {
     right: 80px;
 }
 
 /* ----------------------------------------Home---------------------------------------- */
 
-.home{
+.home {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -162,7 +170,7 @@ header{
     height: calc(100vh - 100px);
 }
 
-.home-slogan{
+.home-slogan {
     width: 40%;
     height: 100%;
     display: flex;
@@ -170,7 +178,7 @@ header{
     align-items: center;
 }
 
-.home-slogan p{
+.home-slogan p {
     color: var(--words);
     font-size: 36px;
     font-weight: 800;
@@ -178,11 +186,11 @@ header{
     margin: 0;
 }
 
-.home-slogan span{
+.home-slogan span {
     color: #6841F2;
 }
 
-.home-meio{
+.home-meio {
     display: flex;
     flex-direction: column;
     justify-content: end;
@@ -190,15 +198,15 @@ header{
     height: 85%;
 }
 
-.home-meio a{
+.home-meio a {
     width: 80%;
 }
 
-.home-meio img{
+.home-meio img {
     width: 100%;
 }
 
-.home-img{
+.home-img {
     position: absolute;
     top: 50%;
     left: 50%;
@@ -217,48 +225,48 @@ header{
 }
 
 
-.home-detalhe{
+.home-detalhe {
     height: 100%;
     display: flex;
     justify-content: end;
     width: 40%;
 }
 
-.home-detalhe img{
+.home-detalhe img {
     height: 100%;
 }
 
 /* ----------------------------------------Sobre Nos---------------------------------------- */
 
-.sobrenos{
+.sobrenos {
     display: flex;
     justify-content: space-around;
     align-items: center;
     color: var(--words);
 }
 
-.sobrenos-txt{
+.sobrenos-txt {
     width: 40%;
 }
 
-.sobrenos-txt span{
+.sobrenos-txt span {
     color: #6841F2;
 }
 
-.sobrenos-txt h1{
+.sobrenos-txt h1 {
     font-size: 36px;
 }
 
-.sobrenos-txt p{
+.sobrenos-txt p {
     font-size: 24px;
 }
 
-.sobrenos-img{
+.sobrenos-img {
     width: 50%;
 }
 
-.sobrenos-img img{
-    opacity: 0;
+.sobrenos-img img {
+    opacity: 1;
     width: 100%;
     transition: opacity 0.5s ease;
     border: 2px solid #383993;
@@ -269,7 +277,7 @@ header{
 
 /* ----------------------------------------Objetivos---------------------------------------- */
 
-.Sessao_Objetivos{
+.Sessao_Objetivos {
     height: calc(100vh - 100px);
     width: 100%;
     display: flex;
@@ -277,7 +285,7 @@ header{
     justify-content: space-evenly;
 }
 
-.Titulo_Objetivos{
+.Titulo_Objetivos {
     font-weight: bold;
     color: #6841F2;
     font-size: 44px;
@@ -285,26 +293,26 @@ header{
     margin: 0;
 }
 
-.Objetivos{
+.Objetivos {
     height: 100%;
     display: flex;
     flex-direction: column;
     justify-content: space-around;
-    
+
 }
 
-.Objetivos_Superior{
+.Objetivos_Superior {
     display: flex;
     justify-content: center;
     justify-content: space-around;
 }
 
-.Objetivos_Inferiores{
+.Objetivos_Inferiores {
     display: flex;
     justify-content: space-evenly;
 }
 
-.Caixa_Objetivo{
+.Caixa_Objetivo {
     background-color: var(--background-objetivo);
     border-radius: 10px;
     border: 2px solid #6356EE;
@@ -315,7 +323,7 @@ header{
     align-items: center;
 }
 
-.Texto_Objetivo{
+.Texto_Objetivo {
     display: flex;
     width: 100%;
     justify-content: center;
@@ -325,13 +333,13 @@ header{
     color: var(--words);
 }
 
-.Caixa-Imagem{
+.Caixa-Imagem {
     position: absolute;
     height: 170px;
     width: 24%;
 }
 
-.Imagem_Objetivo{
+.Imagem_Objetivo {
     width: 25%;
     position: relative;
     bottom: -80%;
@@ -341,16 +349,16 @@ header{
 
 /* ----------------------------------------Clientes---------------------------------------- */
 
-.Sessao_Clientes{
+.Sessao_Clientes {
     margin-top: 100px;
     height: calc(100vh - 100px);
     display: flex;
     flex-direction: column;
     justify-content: space-around;
-    
+
 }
 
-.Titutlo_Clientes{
+.Titutlo_Clientes {
     font-size: 44px;
     color: #29C2FD;
     font-weight: bold;
@@ -358,17 +366,17 @@ header{
 
 }
 
-.Clientes{
+.Clientes {
     display: flex;
     justify-content: space-around;
     align-items: center;
 }
 
-.Imagem_Cliente{
+.Imagem_Cliente {
     height: 65%;
 }
 
-.Texto_Clientes{
+.Texto_Clientes {
     color: var(--words);
     font-size: 32px;
     text-align: center;
@@ -378,14 +386,14 @@ header{
 
 /* ----------------------------------------Fale Conosco---------------------------------------- */
 
-.Sessao_Fale_Conosco{
+.Sessao_Fale_Conosco {
     height: calc(100vh - 100px);
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
-.Titulo_Fale_Conosco{
+.Titulo_Fale_Conosco {
     color: #6356EE;
     font-weight: bold;
     font-size: 44px;
@@ -393,7 +401,7 @@ header{
     text-align: center;
 }
 
-.Texto_Fale_Conosco{
+.Texto_Fale_Conosco {
     text-align: center;
     color: var(--words);
     font-size: 20px;
@@ -401,7 +409,7 @@ header{
     margin: 10px 0 30px 0;
 }
 
-.Caixa_de_Contato{
+.Caixa_de_Contato {
     border: 2px solid #6356EE;
     border-radius: 20px;
     width: 60%;
@@ -413,18 +421,18 @@ header{
     box-shadow: 2px 2px 40px #6356EE;
 }
 
-.Caixa_Input{
+.Caixa_Input {
     width: 50%;
 }
 
-.Texto_Input{
+.Texto_Input {
     color: var(--words);
     font-weight: 500;
     font-size: 20px;
     margin: 10px 0;
 }
 
-.Input_Contato{
+.Input_Contato {
     background: none;
     border: none;
     border-bottom: 2px solid #6356EE;
@@ -434,20 +442,20 @@ header{
 }
 
 input:focus {
-    outline: none; 
+    outline: none;
 }
 
 textarea:focus {
-    outline: none; 
+    outline: none;
 }
-  
-#Input_Duvida{
+
+#Input_Duvida {
     height: 70px;
     overflow-y: hidden;
     resize: none;
 }
 
-.Botao_Enviar{
+.Botao_Enviar {
     border-radius: 10px;
     height: 10%;
     width: 15%;
@@ -458,16 +466,16 @@ textarea:focus {
     box-shadow: 2px 2px 40px rgba(104, 65, 242, 0.54);
 }
 
-.Botao_Enviar:hover{
+.Botao_Enviar:hover {
     cursor: pointer;
     box-shadow: 2px 2px 50px rgba(132, 102, 241, 0.5);
-    transition: ease 0.4s; 
+    transition: ease 0.4s;
     font-size: 20.5px;
 }
 
 /* ----------------------------------------Footer---------------------------------------- */
 
-.footer{
+.footer {
     background-color: black;
     display: flex;
     justify-content: space-around;
@@ -477,22 +485,292 @@ textarea:focus {
     margin-top: 100px;
 }
 
-.Logo_Footer{
+.Logo_Footer {
     height: 50px;
 }
 
-.Texto_Footer{
+.Texto_Footer {
     color: #FFFFFF;
     font-family: "Fira Code";
     font-size: 12px;
 }
 
-.Icones_Redes{
+.Icones_Redes {
     width: 25%;
     display: flex;
     justify-content: space-around;
 }
 
-.Icone_Rede{
+.Icone_Rede {
     height: 50px;
+}
+
+
+/* Menu hamburguer */
+.overlay {
+    position: fixed;
+    top: 0;
+    min-height: 100%;
+    background: rgba(0, 0, 0, 0.4);
+    width: 20%;
+}
+
+.overlay.left {
+    left: -100%;
+}
+
+.overlay.left.open {
+    left: 0;
+    transition: all 0.2s;
+    z-index: 100;
+}
+
+.menu {
+    position: fixed;
+    background-color: #f1f1f1;
+    top: 0;
+    min-height: 100%;
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    gap: 30px;
+    align-items: start;
+    z-index: 100;
+}
+
+.menu .banner__conteudo_button {
+    margin: 0;
+
+}
+
+.menu.right {
+    transition: all 0.3s;
+    right: -100%;
+}
+
+.menu.right.open {
+    transition: all 0.3s;
+    right: 0;
+}
+
+.close-menu {
+    list-style: none;
+    font-size: 30px;
+
+}
+
+.menu-button {
+ padding: 10px 30px;
+ border: none;
+ background-color: var(--roxo-principal);
+ border-radius: 8px;
+ color: white;
+ font-family: 'Montserrat';
+ font-size: 20px;
+}
+
+.menu ul {
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.menu li, .menu a {
+    list-style: none;
+    text-decoration: none;
+    color: #000000;
+    font-size: 20px;
+    font-weight: 600;
+}
+
+@media screen and (max-width: 390px) {
+
+    header {
+        max-width: 100vw;
+    }
+
+    .navbar {
+        box-sizing: border-box;
+        padding: 10px;
+        max-width: 100vw;
+        justify-content: space-between;
+    }
+
+    .navbar-itens {
+        display: none;
+    }
+
+    .menu-icon {
+        display: block;
+        background-color: transparent;
+        border: none;
+    }
+
+    .menu-icon img {
+        width: 50px;
+    }
+
+    .navbar-logo {
+        width: 150px;
+    }
+
+    .navbar-button {
+        display: none;
+    }
+
+    #modos {
+        display: none;
+    }
+
+    .home {
+        flex-direction: column;
+        gap: 20px;
+        height: 75vh;
+        background-image: url("../public/assets/image-detalhe.png");
+        background-size: 30%;
+        background-repeat: no-repeat;
+        background-position-x: right;
+        background-position-y: bottom;
+    }
+
+    .home-slogan {
+        width: 100%;
+        font-size: 32px;
+        height: fit-content;
+    }
+
+    .home-img {
+        top: 65%;
+        width: 250px;
+        height: 250px;
+    }
+
+    .home-detalhe {
+        display: none;
+    }
+
+    .home-meio {
+        position: absolute;
+        bottom: 5%;
+    }
+
+    .home-meio a{
+        
+        width: 50%;
+    }
+
+    .sobrenos {
+        display: flex;
+        flex-direction: column-reverse;
+    }
+
+    .sobrenos h1 {
+        font-size: 24px;
+        text-align: center;
+    }
+
+    .sobrenos-txt{
+        width: 90%;
+        text-align: center;
+    }
+
+    .sobrenos-img {
+        width: 75%;
+    }
+
+    .Titulo_Objetivos {
+        font-size: 24px;
+    }
+
+    .Objetivos_Superior {
+        flex-direction: column;
+        align-items: center;
+        gap: 45px;
+        margin-top: 45px;
+    }
+    
+    .Caixa_Objetivo {
+        width: 250px;
+        height: 150px;
+    }
+
+    .Objetivos_Inferiores {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 45px;
+        margin-top: 45px;
+    }
+
+    .Imagem_Objetivo {
+        width: 50px;
+        bottom: -80%;
+        left: 140%;
+    }
+
+    .Sessao_Clientes {
+        margin-top: 550px;
+    }
+
+    .Titutlo_Clientes {
+        font-size: 24px;
+    }
+
+
+
+    .Imagem_Cliente {
+        width: 50px;
+        height: 50px;
+    }
+
+    .Clientes {
+        margin-top: 20px;
+    }
+
+    .Texto_Clientes {
+        font-size:20px;
+    }
+
+    .Titulo_Fale_Conosco {
+        font-size: 24px;
+    }
+
+    .Texto_Fale_Conosco {
+        font-size: 18px;
+    }
+
+    .Caixa_de_Contato{
+        width: 90vw;
+        height: 220px;
+    }
+
+    .Texto_Input {
+        margin: 0;
+        font-size: 14px;
+    }
+
+    #Input_Duvida {
+        height: 30px;
+    }
+
+    .Botao_Enviar {
+        font-size: 14px;
+    }
+
+    .footer {
+        height: fit-content;
+        flex-direction: column;
+    }
+
+    .Icones_Redes {
+        align-items: center;
+        justify-content: center;
+        gap: 25px;
+    }
+
+    .Icone_Rede {
+        width: 50px;
+    }
 }
