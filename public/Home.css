@@ -266,7 +266,7 @@ header {
 }
 
 .sobrenos-img img {
-    opacity: 0;
+    opacity: 1;
     width: 100%;
     transition: opacity 0.5s ease;
     border: 2px solid #383993;
@@ -642,13 +642,135 @@ textarea:focus {
     }
 
     .home-img {
-        margin-top: 30px;
-        width: 300px;
-        height: 300px;
+        top: 65%;
+        width: 250px;
+        height: 250px;
     }
 
     .home-detalhe {
         display: none;
     }
 
+    .home-meio {
+        position: absolute;
+        bottom: 5%;
+    }
+
+    .home-meio a{
+        
+        width: 50%;
+    }
+
+    .sobrenos {
+        display: flex;
+        flex-direction: column-reverse;
+    }
+
+    .sobrenos h1 {
+        font-size: 24px;
+        text-align: center;
+    }
+
+    .sobrenos-txt{
+        width: 90%;
+        text-align: center;
+    }
+
+    .sobrenos-img {
+        width: 75%;
+    }
+
+    .Titulo_Objetivos {
+        font-size: 24px;
+    }
+
+    .Objetivos_Superior {
+        flex-direction: column;
+        align-items: center;
+        gap: 45px;
+        margin-top: 45px;
+    }
+    
+    .Caixa_Objetivo {
+        width: 250px;
+        height: 150px;
+    }
+
+    .Objetivos_Inferiores {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 45px;
+        margin-top: 45px;
+    }
+
+    .Imagem_Objetivo {
+        width: 50px;
+        bottom: -80%;
+        left: 140%;
+    }
+
+    .Sessao_Clientes {
+        margin-top: 550px;
+    }
+
+    .Titutlo_Clientes {
+        font-size: 24px;
+    }
+
+
+
+    .Imagem_Cliente {
+        width: 50px;
+        height: 50px;
+    }
+
+    .Clientes {
+        margin-top: 20px;
+    }
+
+    .Texto_Clientes {
+        font-size:20px;
+    }
+
+    .Titulo_Fale_Conosco {
+        font-size: 24px;
+    }
+
+    .Texto_Fale_Conosco {
+        font-size: 18px;
+    }
+
+    .Caixa_de_Contato{
+        width: 90vw;
+        height: 220px;
+    }
+
+    .Texto_Input {
+        margin: 0;
+        font-size: 14px;
+    }
+
+    #Input_Duvida {
+        height: 30px;
+    }
+
+    .Botao_Enviar {
+        font-size: 14px;
+    }
+
+    .footer {
+        height: fit-content;
+        flex-direction: column;
+    }
+
+    .Icones_Redes {
+        align-items: center;
+        justify-content: center;
+        gap: 25px;
+    }
+
+    .Icone_Rede {
+        width: 50px;
+    }
 }
