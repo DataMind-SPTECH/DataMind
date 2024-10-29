@@ -3,6 +3,7 @@ package datamind;
 import java.util.ArrayList;
 import java.util.List;
 
+
 public class Empresa {
 
     private Integer idEmpresa;
@@ -20,7 +21,7 @@ public class Empresa {
     private List<Feedback> feedbacks = new ArrayList<>();
     private Dataset dataset;
 
-    public Empresa() {
+    public Empresa(String s) {
     }
 
     public Empresa(Integer idEmpresa, String nomeEmpresa, String cnpj, String cep, String rua, String bairro, String complemento, String cidade, String estado, String numero, Empresa matriz, Funcionario funcionarios, Feedback feedbacks, Dataset dataset) {

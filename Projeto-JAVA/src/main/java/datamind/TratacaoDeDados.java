@@ -48,4 +48,10 @@ public class TratacaoDeDados {
         System.out.println("Total de feedbacks tratados: " + dadosTratados.size());
         return dadosTratados;
     }
+
+    public void inserindoDadosNoBanco(List<Feedback_POI> feedback){
+        String descricao = feedback.getDescricao();
+        connection.update("INSERT IGNORE INTO feedback (idFeedback, descricao, rating , fkEmpresa, fkCategoria) VALUES (?, ?, ?, ?, ?);", 1, descricao);
+
+    }
 }

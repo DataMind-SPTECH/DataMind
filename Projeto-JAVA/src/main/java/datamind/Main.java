@@ -7,7 +7,7 @@ import java.util.List;
 import datamind.Feedback_POI;
 import datamind.GerenciadorFeedbacks;
 import datamind.TratacaoDeDados;
-
+import org.springframework.jdbc.core.JdbcTemplate;
 
 
 public class Main {
@@ -16,7 +16,7 @@ public class Main {
         Main app = new Main();
 
         // Função para gerenciar conexão e criar tabelas
-//        app.setupDatabase();
+        app.setupDatabase();
 
         // Função para gerenciar feedbacks
         app.runFeedbackManager();
@@ -32,9 +32,13 @@ public class Main {
         List<Feedback_POI> dadosTratados = TratadorDeDados.processarDados(feedbacks);
         gerenciadorFeedbacks.imprimir(dadosTratados);
 
+        TratacaoDeDados TratadorDeDados1 = new TratacaoDeDados();
+        List<Feedback_POI> dadosTratados1 = TratacaoDeDados.inserindoDadosNoBanco();
+
+
     }
 
-  /*  private void setupDatabase() {
+    private void setupDatabase() {
         // Realizando conexão
         DBConnectionProvider dbConnectionProvider = new DBConnectionProvider();
         JdbcTemplate connection = dbConnectionProvider.getConnection();
@@ -126,5 +130,5 @@ public class Main {
         List<String> tabelas = connection.queryForList("SHOW TABLES", String.class);
         System.out.println("Tabelas no banco de dados:");
         tabelas.forEach(System.out::println);
-    }*/
+    }
 }
