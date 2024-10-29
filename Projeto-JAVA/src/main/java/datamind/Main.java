@@ -7,7 +7,7 @@ import java.util.List;
 import datamind.Feedback_POI;
 import datamind.GerenciadorFeedbacks;
 import datamind.TratacaoDeDados;
-
+import org.springframework.jdbc.core.JdbcTemplate;
 
 
 public class Main {
@@ -34,7 +34,7 @@ public class Main {
 
     }
 
-  /*  private void setupDatabase() {
+    private void setupDatabase() {
         // Realizando conexão
         DBConnectionProvider dbConnectionProvider = new DBConnectionProvider();
         JdbcTemplate connection = dbConnectionProvider.getConnection();
@@ -68,6 +68,9 @@ public class Main {
                 );
                 """);
 
+        // Inserindo dados da empresa
+        connection.update("INSERT IGNORE INTO empresa (idEmpresa, nomeEmpresa, cnpj, cep, rua, bairro, complemento, cidade, estado, numero, fkDataset, fkMatriz) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);", 1, "Mc Donalds", "42591651000143" , "06333272", "Avenida Paulista", "Cerqueira Cesar", "Andar 1", "São Paulo", "São Paulo", "1000", "1", "1" );
+
         connection.execute("""
                 CREATE TABLE IF NOT EXISTS cargo (
                     idCargo INT PRIMARY KEY AUTO_INCREMENT,
@@ -98,6 +101,11 @@ public class Main {
                 );
                 """);
 
+        //Inserindo recomendação
+        connection.update("INSERT IGNORE INTO recomendacoesIA (idRecomendacao, descricao, dtCriacao) VALUES (?, ?, ?);", 1, "Você poderia redistribuir os funcionários conforme a demanda do Drive-Thru", "2024-10-29");
+        connection.update("INSERT IGNORE INTO recomendacoesIA (idRecomendacao, descricao, dtCriacao) VALUES (?, ?, ?);", 2, "Você poderia acelerar a montagem do lanche para que ele não esfrie", "2024-10-30");
+
+
         connection.execute("""
                 CREATE TABLE IF NOT EXISTS categoria (
                     idCategoria INT PRIMARY KEY AUTO_INCREMENT,
@@ -106,6 +114,10 @@ public class Main {
                     FOREIGN KEY (fkRecomendacao) REFERENCES recomendacoesIA(idRecomendacao)
                 );
                 """);
+
+        //Inserindo categorias
+        connection.update("INSERT IGNORE INTO categoria (idCategoria, descricao, fkRecomendacao) VALUES (?, ?, ?);", 1, "Velocidade do Drive-Thru", 1);
+        connection.update("INSERT IGNORE INTO categoria (idCategoria, descricao, fkRecomendacao) VALUES (?, ?, ?);", 2, "Lanche frio", 2);
 
         connection.execute("""
                 CREATE TABLE IF NOT EXISTS feedback (
@@ -126,5 +138,5 @@ public class Main {
         List<String> tabelas = connection.queryForList("SHOW TABLES", String.class);
         System.out.println("Tabelas no banco de dados:");
         tabelas.forEach(System.out::println);
-    }*/
+    }
 }
