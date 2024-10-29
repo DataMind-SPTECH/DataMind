@@ -19,7 +19,7 @@
                 <div>
                     <img src="../assets/e-mail.png" alt="">
                 </div>
-                <input type="text">
+                <input id='inputEmail' type="text">
             </div>
             <p>Senha</p>
             <div class="input">
@@ -29,35 +29,18 @@
                 <input type="password" id="inputSenha">
                 <div id="olho">
                     <img src="../assets/olho-aberto.png" alt="" id="olho-aberto">
+                    <img src="../assets/olho-fechado.png" alt="" id="olho-fechado">
                 </div>
             </div>
         </div>
-        <button>Entrar</button>
+        <small id="login-alert"></small>
+        <button id="entrar">Entrar</button>
         <small>Ainda não tem uma conta? <a href="../cadastro/cadastro.html">Clique aqui.</a></small>
     </div>
     <div class="login-image">
         
     </div>
+    <script src="./login.js"></script>
 </body>
 
 </html>
-
-<script>
-
-    let olho = document.getElementById("olho")
-    let senha = inputSenha
-
-    olho.addEventListener("click", function () {
-        if(document.getElementById("olho-aberto")) {
-            olho.innerHTML = "";
-            olho.innerHTML = '<img src="../assets/olho-fechado.png" alt="" id="olho-fechado">';
-            senha.setAttribute("type", "text")
-        } else {
-            olho.innerHTML = "";
-            olho.innerHTML = '<img src="../assets/olho-aberto.png" alt="" id="olho-aberto">';
-            senha.setAttribute("type", "password")
-        } 
-                    
-    })
-
-</script>
