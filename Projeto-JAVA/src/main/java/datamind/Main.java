@@ -26,7 +26,7 @@ public class Main {
     private void runFeedbackManager() throws IOException {
         GerenciadorFeedbacks gerenciadorFeedbacks = new GerenciadorFeedbacks();
         List<Feedback_POI> feedbacks = gerenciadorFeedbacks.criar();
-        gerenciadorFeedbacks.imprimirPorIndice(feedbacks, 0);
+//        gerenciadorFeedbacks.imprimirPorIndice(feedbacks, 0);
         //gerenciadorFeedbacks.imprimir(feedbacks);
         TratacaoDeDados TratadorDeDados = new TratacaoDeDados();
         List<Feedback_POI> dadosTratados = TratadorDeDados.processarDados(feedbacks);
