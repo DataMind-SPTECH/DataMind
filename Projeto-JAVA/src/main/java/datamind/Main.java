@@ -31,6 +31,7 @@ public class Main {
         TratacaoDeDados TratadorDeDados = new TratacaoDeDados();
         List<Feedback_POI> dadosTratados = TratadorDeDados.processarDados(feedbacks);
         gerenciadorFeedbacks.imprimir(dadosTratados);
+
     }
 
   /*  private void setupDatabase() {

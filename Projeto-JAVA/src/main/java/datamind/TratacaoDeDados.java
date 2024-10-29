@@ -11,6 +11,8 @@ public class TratacaoDeDados {
             String comentario = feedback.getComentario();
             String avaliacao = feedback.getAvaliacao(); // Corrigido para pegar a avaliação correta
 
+
+
             // Condição 1: Verificar se um caractere específico está presente no comentário
             if (comentario.contains("½ï¿")) { // Substitua "½ï¿" pelo caractere que deseja filtrar
                 continue; // Não adiciona se o caractere estiver presente
@@ -25,7 +27,7 @@ public class TratacaoDeDados {
                     // Criar um novo objeto Feedback_POI com o comentário e a nota
                     Feedback_POI feedbackTratado = new Feedback_POI(
                             comentario, // Comentário mantido
-                            number // Nota obtida
+                            number // Nota obtid
                     );
                     dadosTratados.add(feedbackTratado);
                 }
