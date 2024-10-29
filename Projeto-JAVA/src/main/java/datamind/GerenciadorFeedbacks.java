@@ -80,6 +80,10 @@ public class GerenciadorFeedbacks {
         System.out.println("\n========== Fim da impressão dos feedbacks ==========");
     }
 
+    public void imprimirRecomendacao(List<Categoria> categorias){
+        categorias.forEach(System.out::println);
+    }
+
     public void imprimirPorIndice(List<Feedback_POI> feedbacks, int indice) {
         System.out.println("\n========== Imprimindo feedback por índice ==========\n");
         if (indice >= 0 && indice < feedbacks.size()) {

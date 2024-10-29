@@ -9,16 +9,13 @@ public class RecomendacoesIA {
     private Integer idRecomendacao;
     private String descricao;
     private Date dtCriacao;
-    private List<Categoria> categorias = new ArrayList<>();
 
     public RecomendacoesIA() {
     }
-
-    public RecomendacoesIA(Integer idRecomendacao, String descricao, Date dtCriacao, Categoria categorias) {
+    public RecomendacoesIA(Integer idRecomendacao, String descricao, Date dtCriacao) {
         this.idRecomendacao = idRecomendacao;
         this.descricao = descricao;
         this.dtCriacao = dtCriacao;
-        this.categorias.add(categorias);
     }
 
     public Integer getIdRecomendacao() {
@@ -43,13 +40,5 @@ public class RecomendacoesIA {
 
     public void setDtCriacao(Date dtCriacao) {
         this.dtCriacao = dtCriacao;
-    }
-
-    public List<Categoria> getCategorias() {
-        return categorias;
-    }
-
-    public void setCategorias(List<Categoria> categorias) {
-        this.categorias = categorias;
     }
 }
