@@ -67,6 +67,10 @@ public class GerenciadorFeedbacks {
         feedbacks.forEach(System.out::println);
     }
 
+    public void imprimirRecomendacao(List<Categoria> categorias){
+        categorias.forEach(System.out::println);
+    }
+
     public void imprimirPorIndice(List<Feedback_POI> feedbacks, int indice) {
         if (indice >= 0 && indice < feedbacks.size()) {
             System.out.println(feedbacks.get(indice));
