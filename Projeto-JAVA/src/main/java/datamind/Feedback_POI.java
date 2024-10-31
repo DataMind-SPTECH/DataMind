@@ -40,12 +40,5 @@ public class Feedback_POI {
         this.Avaliacao = avaliacao;
     }
 
-    public String getAvaliacao() {
-        return Avaliacao;
-    }
-
-    public String getComentario() {
-        return Comentario;
-    }
 }
 

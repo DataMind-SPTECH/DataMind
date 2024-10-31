@@ -2,6 +2,7 @@ package datamind;
 
 import java.util.ArrayList;
 import java.util.List;
+import org.springframework.jdbc.core.JdbcTemplate;
 
 public class TratacaoDeDados {
     public List<Feedback_POI> processarDados(List<Feedback_POI> feedbacks) {
@@ -49,9 +50,23 @@ public class TratacaoDeDados {
         return dadosTratados;
     }
 
-    public void inserindoDadosNoBanco(List<Feedback_POI> feedback){
-        String descricao = feedback.getDescricao();
-        connection.update("INSERT IGNORE INTO feedback (idFeedback, descricao, rating , fkEmpresa, fkCategoria) VALUES (?, ?, ?, ?, ?);", 1, descricao);
+    public static void inserindoDadosNoBanco(List<Feedback_POI> feedbacks){
 
+        DBConnectionProvider dbConnectionProvider = new DBConnectionProvider();
+        JdbcTemplate connection = dbConnectionProvider.getConnection();
+
+        for (Feedback_POI feedback : feedbacks) {
+            String comentario = feedback.getComentario();
+            String avaliacao = feedback.getAvaliacao();
+
+            if (comentario.contains("½ï¿")) {
+                continue;
+            }
+
+            connection.update("INSERT IGNORE INTO feedback (descricao, rating , fkEmpresa, fkCategoria) VALUES (?, ?, ?, ?);", comentario, avaliacao, 1, 1);
+
+            //System.out.println("Processando feedback com comentário: \"" + comentario + "\" e avaliação: \"" + avaliacao + "\"");
+
+}
     }
 }

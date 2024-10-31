@@ -32,8 +32,7 @@ public class Main {
         List<Feedback_POI> dadosTratados = TratadorDeDados.processarDados(feedbacks);
         gerenciadorFeedbacks.imprimir(dadosTratados);
 
-        TratacaoDeDados TratadorDeDados1 = new TratacaoDeDados();
-        List<Feedback_POI> dadosTratados1 = TratacaoDeDados.inserindoDadosNoBanco();
+        TratacaoDeDados.inserindoDadosNoBanco(feedbacks);
 
 
     }
@@ -73,7 +72,7 @@ public class Main {
                 """);
 
         // Inserindo dados da empresa
-        connection.update("INSERT IGNORE INTO empresa (idEmpresa, nomeEmpresa, cnpj, cep, rua, bairro, complemento, cidade, estado, numero, fkDataset, fkMatriz) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);", 1, "Mc Donalds", "42591651000143" , "06333272", "Avenida Paulista", "Cerqueira Cesar", "Andar 1", "São Paulo", "São Paulo", "1000", "1", "1" );
+        connection.update("INSERT IGNORE INTO empresa (idEmpresa, nomeEmpresa, cnpj, cep, rua, bairro, complemento, cidade, estado, numero, fkDataset, fkMatriz) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);", 1, "Mc Donalds", "42591651000143" , "06333272", "Avenida Paulista", "Cerqueira Cesar", "Andar 1", "São Paulo", "São Paulo", "1000", 1, 1 );
 
         connection.execute("""
                 CREATE TABLE IF NOT EXISTS cargo (
