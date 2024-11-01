@@ -32,7 +32,7 @@ public class Main {
         List<Feedback_POI> dadosTratados = TratadorDeDados.processarDados(feedbacks);
         gerenciadorFeedbacks.imprimir(dadosTratados);
 
-        TratacaoDeDados.inserindoDadosNoBanco(feedbacks);
+        TratacaoDeDados.inserindoDadosNoBanco(dadosTratados);
 
 
     }

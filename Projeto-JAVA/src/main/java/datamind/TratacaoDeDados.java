@@ -59,13 +59,7 @@ public class TratacaoDeDados {
             String comentario = feedback.getComentario();
             String avaliacao = feedback.getAvaliacao();
 
-            if (comentario.contains("½ï¿")) {
-                continue;
-            }
-
             connection.update("INSERT IGNORE INTO feedback (descricao, rating , fkEmpresa, fkCategoria) VALUES (?, ?, ?, ?);", comentario, avaliacao, 1, 1);
-
-            //System.out.println("Processando feedback com comentário: \"" + comentario + "\" e avaliação: \"" + avaliacao + "\"");
 
 }
     }
