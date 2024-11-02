@@ -1,33 +1,33 @@
-window.addEventListener('scroll', function() {
-    const homeImg = document.querySelector('.home-img');
-    const sobrenosImg = document.querySelector('.sobrenos-img img');
-    const homeSection = document.querySelector('.home');
-    const scrollY = window.scrollY;
+// window.addEventListener('scroll', function() {
+//     const homeImg = document.querySelector('.home-img');
+//     const sobrenosImg = document.querySelector('.sobrenos-img img');
+//     const homeSection = document.querySelector('.home');
+//     const scrollY = window.scrollY;
 
-    const homeHeight = homeSection.offsetHeight;
-    const sobrenosImgRect = sobrenosImg.getBoundingClientRect();
-    const scrollRatio = Math.min(scrollY / homeHeight, 1);
+//     const homeHeight = homeSection.offsetHeight;
+//     const sobrenosImgRect = sobrenosImg.getBoundingClientRect();
+//     const scrollRatio = Math.min(scrollY / homeHeight, 1);
 
-    homeImg.style.top = `${50 + (scrollRatio * 130)}%`;
-    homeImg.style.left = `${50 + (scrollRatio * 25)}%`;
+//     homeImg.style.top = `${50 + (scrollRatio * 130)}%`;
+//     homeImg.style.left = `${50 + (scrollRatio * 25)}%`;
 
-    homeImg.style.borderRadius = `${50 * (1 - scrollRatio)}%`;
-    homeImg.style.width = `${425 + (sobrenosImgRect.width - 500) * scrollRatio}px`;
-    homeImg.style.height = `${425 + (sobrenosImgRect.height - 450) * scrollRatio}px`;
-    homeImg.style.boxShadow = `4px 4px ${45 * (1 - scrollRatio)}px rgba(99, 86, 238, 0.54)`;
-    homeImg.style.background = `linear-gradient(0deg, rgba(99, 86, 238, ${0.5 * (1 - scrollRatio)}), rgba(99, 86, 238, ${0.5 * (1 - scrollRatio)})), url(./assets/imagem-home.png)`;
-    homeImg.style.backgroundSize = 'cover';
-    homeImg.style.backgroundPosition = 'center center';
+//     homeImg.style.borderRadius = `${50 * (1 - scrollRatio)}%`;
+//     homeImg.style.width = `${425 + (sobrenosImgRect.width - 500) * scrollRatio}px`;
+//     homeImg.style.height = `${425 + (sobrenosImgRect.height - 450) * scrollRatio}px`;
+//     homeImg.style.boxShadow = `4px 4px ${45 * (1 - scrollRatio)}px rgba(99, 86, 238, 0.54)`;
+//     homeImg.style.background = `linear-gradient(0deg, rgba(99, 86, 238, ${0.5 * (1 - scrollRatio)}), rgba(99, 86, 238, ${0.5 * (1 - scrollRatio)})), url(./assets/imagem-home.png)`;
+//     homeImg.style.backgroundSize = 'cover';
+//     homeImg.style.backgroundPosition = 'center center';
 
-    if (scrollY >= (sobrenosImgRect.top + window.scrollY - window.innerHeight / 2)) {
-        homeImg.style.opacity = '0';
-        homeImg.style.transition = 'opacity 0.5s ease';
-        sobrenosImg.style.opacity = '1';
-    } else {
-        homeImg.style.opacity = '1';
-        sobrenosImg.style.opacity = '0';
-    }
-});
+//     if (scrollY >= (sobrenosImgRect.top + window.scrollY - window.innerHeight / 2)) {
+//         homeImg.style.opacity = '0';
+//         homeImg.style.transition = 'opacity 0.5s ease';
+//         sobrenosImg.style.opacity = '1';
+//     } else {
+//         homeImg.style.opacity = '1';
+//         sobrenosImg.style.opacity = '0';
+//     }
+// });
 
 const modos = document.getElementById('modos');
 const logo = document.getElementById('logo');
@@ -79,3 +79,21 @@ modos.addEventListener('click', ()=>{
 function acessarLogin(){
     window.location.href = './login/login.html'
 }
+
+const btnMenu = document.querySelector(".menu-icon")
+const overlay = document.querySelector(".overlay")
+const menu = document.querySelector(".menu")
+const btnCloseMenu = document.querySelector(".close-menu")
+
+btnMenu.addEventListener("click", openMenu)
+overlay.addEventListener("click", closeMenu)
+btnCloseMenu.addEventListener("click", closeMenu)
+
+function openMenu () {
+    menu.classList.add("open")
+    overlay.classList.add("open")
+}
+function closeMenu () {
+    menu.classList.remove("open")
+    overlay.classList.remove("open")
+} 

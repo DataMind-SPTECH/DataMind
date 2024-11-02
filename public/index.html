@@ -1,20 +1,46 @@
-
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./Home.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
+        rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@300..700&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
+        rel="stylesheet">
     <link rel="icon" href="./assets/Icone_DataMind.png" type="image/x-icon">
     <title>DataMind</title>
 </head>
+
 <body>
     <header>
+        <div class="overlay left"></div>
+        <div class="menu right">
+            <li onclick="fecharMenu()" class="close-menu">&times;</li>
+            <button class="menu-button">
+                ENTRAR
+            </button>
+                <ul>
+                    <li><a href="./Home.html">HOME</a></li>
+                    <li><a href="#sobrenos">SOBRE NÓS</a></li>
+                    <li><a href="#objetivos">OBJETIVOS</a></li>
+                    <li><a href="#faleConosco">CONTATOS</a></li>
+                </ul>
+            <div class="modos escuro" id="modos">
+                <div class="caixa-modo">
+                    <img id="modo" src="./assets/lua.png" alt="Lua">
+                </div>
+        
+                <div class="texto-modo">
+                    Modo Escuro
+                </div>
+            </div>
+        </div>
         <nav class="navbar">
             <div class="navbar-logo">
                 <img id="logo" src="./assets/logoPreto.png" alt="DataMind">
@@ -30,6 +56,9 @@
             <div class="navbar-button">
                 <button onclick="acessarLogin()">ENTRAR</button>
             </div>
+            <button class="menu-icon">
+                <img src="../public/assets/menuHamburguer.png" alt="">
+            </button>
         </nav>
     </header>
 
@@ -61,13 +90,13 @@
         <section id="sobrenos" style="height: 200px;">
 
         </section>
-        <section  class="sobrenos">
+        <section class="sobrenos">
             <div class="sobrenos-txt">
                 <h1>Tranforme dados em
                     insights poderosos<span>.<span></h1>
                 <p>
-                    Na DataMind, somos especialistas em sistemas de monitoramento de feedbacks, 
-                    proporcionando uma visão única e detalhada dos seus dados. Com nossa tecnologia avançada, 
+                    Na DataMind, somos especialistas em sistemas de monitoramento de feedbacks,
+                    proporcionando uma visão única e detalhada dos seus dados. Com nossa tecnologia avançada,
                     você descobre informações valiosas que antes passavam despercebidas.
                 </p>
             </div>
@@ -76,8 +105,8 @@
             </div>
         </section>
 
-        <section id="objetivos"  style="height: 100px;">
-            
+        <section id="objetivos" style="height: 100px;">
+
         </section>
 
         <section class="Sessao_Objetivos">
@@ -112,7 +141,7 @@
                 <div class="Objetivos_Inferiores">
                     <div class="Caixa_Objetivo">
                         <p class="Texto_Objetivo">
-                            Conquistar e fidelizar novos  clientes
+                            Conquistar e fidelizar novos clientes
                         </p>
                         <div class="Caixa-Imagem">
                             <img src="./assets/Imagem - Conquistar e fidelizar.png" alt="" class="Imagem_Objetivo">
@@ -138,31 +167,33 @@
                 <img id="mcDonalds" src="./assets/McDonalds.png" alt="" class="Imagem_Cliente">
                 <img id="spotify" src="./assets/spotify.png" alt="" class="Imagem_Cliente">
             </div>
-            <p class="Texto_Clientes">Essas são algumas das empresas que já estão conosco, aprimorando continuamente com base no feedback. Venha fazer parte dessa jornada também!</p>
+            <p class="Texto_Clientes">Essas são algumas das empresas que já estão conosco, aprimorando continuamente com
+                base no feedback. Venha fazer parte dessa jornada também!</p>
         </section>
 
         <section id="faleConosco" style="height: 100px;""></section>
 
-        <section class="Sessao_Fale_Conosco">
-                <h1 class="Titulo_Fale_Conosco">Fale Conosco</h1>
-                <h3 class="Texto_Fale_Conosco">Quer ser mais uma das empresas inovando no mercado? <span style=" color: #6356EE; font-weight: bold; font-style: italic;">Contate-nos</span></h3>
-                <div class="Caixa_de_Contato">
-                    <div class="Caixa_Input">
-                        <p class="Texto_Input">Empresa</p>
-                        <input type="text" class="Input_Contato">
-                    </div>
-                    <div class="Caixa_Input">
-                        <p class="Texto_Input">Responsável</p>
-                        <input type="text" class="Input_Contato">
-                    </div>
-                    <div class="Caixa_Input">
-                        <p class="Texto_Input">Fale sobre seu projeto ou sua dúvida... </p>
-                        <textarea type="text" class="Input_Contato" id="Input_Duvida"></textarea>
-                    </div>
-                    <button class="Botao_Enviar">Enviar</button>
+        <section class=" Sessao_Fale_Conosco">
+            <h1 class="Titulo_Fale_Conosco">Fale Conosco</h1>
+            <h3 class="Texto_Fale_Conosco">Quer ser mais uma das empresas inovando no mercado? <span
+                    style=" color: #6356EE; font-weight: bold; font-style: italic;">Contate-nos</span></h3>
+            <div class="Caixa_de_Contato">
+                <div class="Caixa_Input">
+                    <p class="Texto_Input">Empresa</p>
+                    <input type="text" class="Input_Contato">
                 </div>
+                <div class="Caixa_Input">
+                    <p class="Texto_Input">Responsável</p>
+                    <input type="text" class="Input_Contato">
+                </div>
+                <div class="Caixa_Input">
+                    <p class="Texto_Input">Fale sobre seu projeto ou sua dúvida... </p>
+                    <textarea type="text" class="Input_Contato" id="Input_Duvida"></textarea>
+                </div>
+                <button class="Botao_Enviar">Enviar</button>
+            </div>
         </section>
-        
+
         <footer class="footer">
             <div class="Container_Imagem">
                 <img src="./assets/logoBraca.png" alt="" class="Logo_Footer">
@@ -176,6 +207,7 @@
         </footer>
     </main>
 </body>
+
 </html>
 
 <script src="./Home.js"></script>
