@@ -26,15 +26,10 @@ public class Main {
     private void runFeedbackManager() throws IOException {
         GerenciadorFeedbacks gerenciadorFeedbacks = new GerenciadorFeedbacks();
         List<Feedback_POI> feedbacks = gerenciadorFeedbacks.criar();
-//        gerenciadorFeedbacks.imprimirPorIndice(feedbacks, 0);
-        //gerenciadorFeedbacks.imprimir(feedbacks);
         TratacaoDeDados TratadorDeDados = new TratacaoDeDados();
         List<Feedback_POI> dadosTratados = TratadorDeDados.processarDados(feedbacks);
-        gerenciadorFeedbacks.imprimir(dadosTratados);
 
         TratacaoDeDados.inserindoDadosNoBanco(dadosTratados);
-
-
     }
 
     private void setupDatabase() {
@@ -51,6 +46,7 @@ public class Main {
                     descricao VARCHAR(50)
                 );
                 """);
+        connection.update("INSERT IGNORE INTO dataset(idDataset, url, nome, descricao) VALUES (?, ?, ?, ?)",1, "datasetmac.com", "Mc Donald's dados", "50 feedbacks");
 
         connection.execute("""
                 CREATE TABLE IF NOT EXISTS empresa (
@@ -72,7 +68,7 @@ public class Main {
                 """);
 
         // Inserindo dados da empresa
-        connection.update("INSERT IGNORE INTO empresa (idEmpresa, nomeEmpresa, cnpj, cep, rua, bairro, complemento, cidade, estado, numero, fkDataset, fkMatriz) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);", 1, "Mc Donalds", "42591651000143" , "06333272", "Avenida Paulista", "Cerqueira Cesar", "Andar 1", "São Paulo", "São Paulo", "1000", 1, 1 );
+        connection.update("INSERT IGNORE INTO empresa (idEmpresa, nomeEmpresa, cnpj, cep, rua, bairro, complemento, cidade, estado, numero, fkDataset, fkMatriz) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);", 1, "Mc Donalds", "42591651000143" , "06333272", "Avenida Paulista", "Cerqueira Cesar", "Andar 1", "São Paulo", "São Paulo", "1000", 1, null);
 
         connection.execute("""
                 CREATE TABLE IF NOT EXISTS cargo (
@@ -97,35 +93,35 @@ public class Main {
                 """);
 
         connection.execute("""
-                CREATE TABLE IF NOT EXISTS recomendacoesIA (
-                    idRecomendacao INT PRIMARY KEY AUTO_INCREMENT,
-                    descricao VARCHAR(500),
-                    dtCriacao DATE
-                );
-                """);
-
-        //Inserindo recomendação
-        connection.update("INSERT IGNORE INTO recomendacoesIA (idRecomendacao, descricao, dtCriacao) VALUES (?, ?, ?);", 1, "Você poderia redistribuir os funcionários conforme a demanda do Drive-Thru", "2024-10-29");
-        connection.update("INSERT IGNORE INTO recomendacoesIA (idRecomendacao, descricao, dtCriacao) VALUES (?, ?, ?);", 2, "Você poderia acelerar a montagem do lanche para que ele não esfrie", "2024-10-30");
-
-
-        connection.execute("""
                 CREATE TABLE IF NOT EXISTS categoria (
                     idCategoria INT PRIMARY KEY AUTO_INCREMENT,
-                    descricao VARCHAR(45),
-                    fkRecomendacao INT,
-                    FOREIGN KEY (fkRecomendacao) REFERENCES recomendacoesIA(idRecomendacao)
+                    descricao VARCHAR(45)
                 );
                 """);
 
         //Inserindo categorias
-        connection.update("INSERT IGNORE INTO categoria (idCategoria, descricao, fkRecomendacao) VALUES (?, ?, ?);", 1, "Velocidade do Drive-Thru", 1);
-        connection.update("INSERT IGNORE INTO categoria (idCategoria, descricao, fkRecomendacao) VALUES (?, ?, ?);", 2, "Lanche frio", 2);
+        connection.update("INSERT IGNORE INTO categoria (idCategoria, descricao) VALUES (?, ?);", 1, "Velocidade do Drive-Thru");
+        connection.update("INSERT IGNORE INTO categoria (idCategoria, descricao) VALUES (?, ?);", 2, "Lanche frio");
+
+        connection.execute("""
+                CREATE TABLE IF NOT EXISTS recomendacoesIA (
+                    idRecomendacao INT PRIMARY KEY AUTO_INCREMENT,
+                    descricao VARCHAR(500),
+                  	dtCriacao DATE,
+                    fkCategoria INT,
+                  	FOREIGN KEY (fkCategoria) REFERENCES categoria(idCategoria)
+                );
+                """);
+
+        //Inserindo recomendação
+        connection.update("INSERT IGNORE INTO recomendacoesIA (idRecomendacao, descricao, dtCriacao, fkCategoria) VALUES (?, ?, ?, ?);", 1, "Você poderia redistribuir os funcionários conforme a demanda do Drive-Thru", "2024-10-29", 1);
+        connection.update("INSERT IGNORE INTO recomendacoesIA (idRecomendacao, descricao, dtCriacao, fkCategoria) VALUES (?, ?, ?, ?);", 2, "Você poderia acelerar a montagem do lanche para que ele não esfrie", "2024-10-30", 2);
+
 
         connection.execute("""
                 CREATE TABLE IF NOT EXISTS feedback (
                     idFeedback INT PRIMARY KEY AUTO_INCREMENT,
-                    descricao VARCHAR(1000),
+                    descricao VARCHAR(2000),
                     rating INT,
                     fkEmpresa INT,
                     fkCategoria INT,
@@ -136,10 +132,5 @@ public class Main {
 
         // Inserindo cargo de exemplo
         connection.update("INSERT IGNORE INTO cargo (idCargo, cargo) VALUES (?, ?);", 1, "Responsável Legal");
-
-        // Listando tabelas
-        List<String> tabelas = connection.queryForList("SHOW TABLES", String.class);
-        System.out.println("Tabelas no banco de dados:");
-        tabelas.forEach(System.out::println);
     }
 }

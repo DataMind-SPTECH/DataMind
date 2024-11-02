@@ -17,17 +17,17 @@ import java.util.List;
 public class GerenciadorFeedbacks {
 
     public List<Feedback_POI> criar() throws IOException {
-        System.out.println("\n========== Iniciando criação de feedbacks ==========\n");
+        System.out.println("========== Iniciando criação de feedbacks ==========");
 
         List<Feedback_POI> feedbacks = new ArrayList<>();
 
         // Recuperando o arquivo
-        System.out.println("Abrindo arquivo Excel...\n");
+        System.out.println("Abrindo arquivo Excel...");
         @Cleanup FileInputStream file = new FileInputStream("src\\main\\resources\\Feedbacks McDonalds (50).xlsx");
         Workbook workbook = new XSSFWorkbook(file);
 
         // Setando a aba
-        System.out.println("Carregando primeira aba da planilha...\n");
+        System.out.println("Carregando primeira aba da planilha...");
         Sheet sheet = workbook.getSheetAt(0);
 
         // Setando as linhas
@@ -36,12 +36,9 @@ public class GerenciadorFeedbacks {
 
         // Removendo os títulos
         rows.remove(0);
-        System.out.println("Removido cabeçalho das colunas.\n");
 
         // Processando cada linha
         rows.forEach(row -> {
-            System.out.println("---------------------------------------------------------");
-            System.out.println("Processando linha " + row.getRowNum());
 
             // Setando as células
             List<Cell> cells = (List<Cell>) toList(row.cellIterator());
@@ -61,23 +58,15 @@ public class GerenciadorFeedbacks {
                     .build();
 
             feedbacks.add(feedback);
-            System.out.println("Feedback adicionado: " + feedback);
-            System.out.println("---------------------------------------------------------\n");
         });
 
-        System.out.println("========== Criação de feedbacks concluída ==========\n");
-        System.out.println("Total de feedbacks criados: " + feedbacks.size());
+        System.out.println("========== Criação de feedbacks concluída ==========");
+        System.out.println("Total de feedbacks criados: " + feedbacks.size() + "\n");
         return feedbacks;
     }
 
     public List<?> toList(Iterator<?> iterator) {
         return IteratorUtils.toList(iterator);
-    }
-
-    public void imprimir(List<Feedback_POI> feedbacks) {
-        System.out.println("\n========== Imprimindo todos os feedbacks ==========\n");
-        feedbacks.forEach(System.out::println);
-        System.out.println("\n========== Fim da impressão dos feedbacks ==========");
     }
 
     public void imprimirRecomendacao(List<Categoria> categorias){
