@@ -1,19 +1,30 @@
 package datamind;
 
 //import org.springframework.jdbc.core.JdbcTemplate;
+import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
+import java.nio.file.Files;
 import java.util.List;
+import java.util.Scanner;
+import java.util.UUID;
 
 import datamind.Feedback_POI;
 import datamind.GerenciadorFeedbacks;
 import datamind.TratacaoDeDados;
 import org.springframework.jdbc.core.JdbcTemplate;
-
+import software.amazon.awssdk.core.sync.RequestBody;
+import software.amazon.awssdk.services.s3.S3Client;
+import software.amazon.awssdk.services.s3.model.*;
+import software.amazon.awssdk.core.sync.ResponseTransformer;
 
 public class Main {
 
     public static void main(String[] args) throws IOException {
         Main app = new Main();
+
+        // Função para conectar no bucket
+        app.connectionBucket();
 
         // Função para gerenciar conexão e criar tabelas
         app.setupDatabase();
@@ -21,6 +32,69 @@ public class Main {
         // Função para gerenciar feedbacks
         app.runFeedbackManager();
 
+    }
+
+    private void connectionBucket(){
+        S3Client s3Client = new S3Provider().getS3Client();
+        String bucketName = System.getenv("NAME_BUCKET");
+
+        // Listando objetos do bucket
+        System.out.println("========== Iniciando Conexão com o banco ==========");
+        List<S3Object> objects = null;
+        try {
+            ListObjectsRequest listObjects = ListObjectsRequest.builder()
+                    .bucket(bucketName)
+                    .build();
+
+            objects = s3Client.listObjects(listObjects).contents();
+
+            if (objects.isEmpty()) {
+                System.out.println("O bucket está vazio. Realizando upload de um novo arquivo...");
+                uploadFile(s3Client, bucketName);
+            } else {
+                System.out.println("Objetos no bucket " + bucketName + ":");
+                for (S3Object object : objects) {
+                    System.out.println("- " + object.key());
+                }
+                downloadFiles(s3Client, bucketName, objects);
+            }
+        } catch (S3Exception e) {
+            System.err.println("Erro ao listar objetos no bucket: " + e.getMessage());
+        }
+    }
+
+    private void uploadFile(S3Client s3Client, String bucketName) {
+        try {
+            String uniqueFileName = "DataSet-McDonalds.xlsx";
+            PutObjectRequest putObjectRequest = PutObjectRequest.builder()
+                    .bucket(bucketName)
+                    .key(uniqueFileName)
+                    .build();
+
+            File file = new File("src\\main\\resources\\Feedbacks McDonalds (50).xlsx");
+            s3Client.putObject(putObjectRequest, RequestBody.fromFile(file));
+
+            System.out.println("Arquivo '" + file.getName() + "' enviado com sucesso com o nome: " + uniqueFileName);
+        } catch (S3Exception e) {
+            System.err.println("Erro ao fazer upload do arquivo ou arquivo já existente: " + e.getMessage());
+        }
+    }
+
+    private void downloadFiles(S3Client s3Client, String bucketName, List<S3Object> objects) {
+        try {
+            for (S3Object object : objects) {
+                GetObjectRequest getObjectRequest = GetObjectRequest.builder()
+                        .bucket(bucketName)
+                        .key(object.key())
+                        .build();
+
+                InputStream inputStream = s3Client.getObject(getObjectRequest, ResponseTransformer.toInputStream());
+                Files.copy(inputStream, new File(object.key()).toPath());
+                System.out.println("Arquivo baixado: " + object.key());
+            }
+        } catch (IOException | S3Exception e) {
+            System.err.println("Erro ao fazer download dos arquivos: " + e.getMessage());
+        }
     }
 
     private void runFeedbackManager() throws IOException {

@@ -17,13 +17,13 @@ import java.util.List;
 public class GerenciadorFeedbacks {
 
     public List<Feedback_POI> criar() throws IOException {
-        System.out.println("========== Iniciando criação de feedbacks ==========");
+        System.out.println("\n========== Iniciando criação de feedbacks ==========");
 
         List<Feedback_POI> feedbacks = new ArrayList<>();
 
         // Recuperando o arquivo
         System.out.println("Abrindo arquivo Excel...");
-        @Cleanup FileInputStream file = new FileInputStream("src\\main\\resources\\Feedbacks McDonalds (50).xlsx");
+        @Cleanup FileInputStream file = new FileInputStream("DataSet-McDonalds.xlsx");
         Workbook workbook = new XSSFWorkbook(file);
 
         // Setando a aba
