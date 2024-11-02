@@ -5,6 +5,8 @@ import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.file.Files;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 import java.util.Scanner;
 import java.util.UUID;
@@ -34,12 +36,18 @@ public class Main {
 
     }
 
+    public String getCurrentTimestamp() {
+        SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
+        return sdf.format(new Date());
+    }
+
     private void connectionBucket(){
         S3Client s3Client = new S3Provider().getS3Client();
         String bucketName = System.getenv("NAME_BUCKET");
 
         // Listando objetos do bucket
-        System.out.println("========== Iniciando Conexão com o banco ==========");
+        String date = getCurrentTimestamp();
+        System.out.println("========== Iniciando Conexão com o banco " + date + " ==========");
         List<S3Object> objects = null;
         try {
             ListObjectsRequest listObjects = ListObjectsRequest.builder()

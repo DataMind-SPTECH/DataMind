@@ -12,8 +12,8 @@ public class DBConnectionProvider {
     public DBConnectionProvider() {
         BasicDataSource basicDataSource = new BasicDataSource();
         basicDataSource.setUrl("jdbc:mysql://localhost:3306/datamind");
-        basicDataSource.setUsername("root");
-        basicDataSource.setPassword("F4m1l145!");
+        basicDataSource.setUsername(System.getenv("DB_USER"));
+        basicDataSource.setPassword(System.getenv("DB_PASSWORD"));
         basicDataSource.setDriverClassName("com.mysql.cj.jdbc.Driver");
 
         this.dataSource = basicDataSource;

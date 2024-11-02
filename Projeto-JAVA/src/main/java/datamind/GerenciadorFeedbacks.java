@@ -10,14 +10,16 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 
 public class GerenciadorFeedbacks {
 
     public List<Feedback_POI> criar() throws IOException {
-        System.out.println("\n========== Iniciando criação de feedbacks ==========");
+        System.out.println("\n========== Iniciando criação de feedbacks "+ getCurrentTimestamp() +" ==========");
 
         List<Feedback_POI> feedbacks = new ArrayList<>();
 
@@ -60,9 +62,14 @@ public class GerenciadorFeedbacks {
             feedbacks.add(feedback);
         });
 
-        System.out.println("========== Criação de feedbacks concluída ==========");
+        System.out.println("========== Criação de feedbacks concluída "+ getCurrentTimestamp() + " ==========");
         System.out.println("Total de feedbacks criados: " + feedbacks.size() + "\n");
         return feedbacks;
+    }
+
+    public String getCurrentTimestamp() {
+        SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
+        return sdf.format(new Date());
     }
 
     public List<?> toList(Iterator<?> iterator) {
