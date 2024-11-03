@@ -365,6 +365,9 @@ function criarGrafico() {
 		],
 	});
 }
+function carregarConteudo() {
+	window.location = "./dashboard_topico.html"
+}
 
 // Chama o gráfico pela primeira vez ao carregar a página
 criarGrafico();
