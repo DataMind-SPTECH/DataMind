@@ -333,7 +333,7 @@ function criarGrafico() {
 		title_position: "center",
 		box_fill: "none",
 		mapping: {
-			referenceLayers: "./UsCapitals.json",
+			referenceLayers: "./uscapitals.json",
 			base: {
 				layers: "us",
 			},
