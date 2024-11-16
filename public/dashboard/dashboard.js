@@ -5,6 +5,7 @@ const icone_pessoas = document.getElementById("icone_pessoas");
 const maleta = document.getElementById("maleta");
 const modo = document.getElementById("modo");
 const textoModo = document.querySelector(".texto-modo");
+const selectFilial  = document.getElementById('select-filial')
 let textoGrafico = "#FFFFFF";
 let textoBolinha = "#2D2D2D";
 
@@ -71,12 +72,44 @@ modos.addEventListener("click", () => {
 });
 
 // Função para criar o gráfico com base no valor atual de textoGrafico
-function criarGrafico() {
+function criarGrafico(data) {
+
+
+	const avaliacoes = {
+		positiva: 0,
+		neutra: 0, 
+		negativa: 0 
+	};
+
+	data.forEach(avaliacao => {
+
+		switch (avaliacao.rating) {
+			case 1:
+				avaliacoes.negativa += avaliacao.quantidade_feedbacks; 
+				break;
+			case 2:
+				avaliacoes.negativa += avaliacao.quantidade_feedbacks; 
+				break;
+			case 3:
+				avaliacoes.neutra += avaliacao.quantidade_feedbacks;  
+				break;
+			case 4:
+				avaliacoes.neutra += avaliacao.quantidade_feedbacks;  
+				break;
+			case 5:
+				avaliacoes.positiva += avaliacao.quantidade_feedbacks; 
+				break;
+
+			default:
+				break;
+		}
+	})
+
 	JSC.Chart("feedbacks-chart", {
 		debug: true,
 		type: "horizontal column solid",
 		title_label_text:
-			"<span style='font-family: Montserrat; font-weight: 600;text-align: center;'>Feedbacks de Janeiro</span>",
+			"<span style='font-family: Montserrat; font-weight: 600;text-align: center;'>Feedbacks</span>",
 		title_label_style: {
 			fontSize: 24,
 			color: textoGrafico,
@@ -109,19 +142,19 @@ function criarGrafico() {
 				points: [
 					{
 						name: "Positivo",
-						y: 200,
+						y: avaliacoes.positiva,
 						color: "rgba(153, 255, 153, 0.57)",
 						outline: { color: "#99FF99", width: 3 },
 					},
 					{
 						name: "Neutro",
-						y: 344,
+						y: avaliacoes.neutra,
 						color: "rgba(255, 255, 153, 0.57)",
 						outline: { color: "#FFFF99", width: 3 },
 					},
 					{
 						name: "Negativo",
-						y: 112,
+						y: avaliacoes.negativa,
 						color: "rgba(255, 153, 153, 0.57)",
 						outline: { color: "#FF9999", width: 3 },
 					},
@@ -201,6 +234,28 @@ function criarGrafico() {
 	});
 
 	// Índice de Satisfação
+
+	let total = 0;
+	let quantidade = 0;
+	data.forEach(rating => {
+		total += (rating.rating * rating.quantidade_feedbacks)
+		quantidade += rating.quantidade_feedbacks
+	})
+
+	const indice = ((total / quantidade) * 2 ) * 100 
+
+	let textoIndice = ''
+
+	if (indice < 500) {
+		textoIndice = 'Ruim!'
+	} else if (indice < 700) {
+		textoIndice = 'Ok.'
+	} else if (indice < 850) {
+		textoIndice = 'Bom!'
+	} else {
+		textoIndice = 'Muito Bom!'
+	}
+ 
 	JSC.chart("satisfaction-index", {
 		debug: true,
 		type: "gauge ",
@@ -223,7 +278,7 @@ function criarGrafico() {
 				{ value: 0, color: "#FF5353" },
 				{ value: 500, color: "#FFD221" },
 				{ value: 700, color: "#77E6B4" },
-				{ value: [900, 1000], color: "#21D683" },
+				{ value: [850, 1000], color: "#21D683" },
 			],
 		},
 		yAxis: {
@@ -251,7 +306,7 @@ function criarGrafico() {
 				type: "marker",
 				name: "Score",
 				shape_label: {
-					text: "720<br/> <span style='fontSize: 24px;'>Bom!</span>",
+					text: `${indice.toFixed(0)}<br/> <span style='fontSize: 24px;'>${textoIndice}</span>`,
 					style: { fontSize: 24, color: textoGrafico },
 				},
 				defaultPoint: {
@@ -267,7 +322,7 @@ function criarGrafico() {
 						size: 15,
 					},
 				},
-				points: [[1, 720]],
+				points: [[1, indice]],
 			},
 		],
 	});
@@ -365,9 +420,79 @@ function criarGrafico() {
 		],
 	});
 }
+
 function carregarConteudo() {
 	window.location = "./dashboard_topico.html"
 }
 
 // Chama o gráfico pela primeira vez ao carregar a página
-criarGrafico();
+
+
+
+selectFilial.addEventListener("change", getQtdFeedbacks)
+
+async function getLojasSelect() {
+
+	try {
+		const idEmpresa = sessionStorage.getItem("ID_EMPRESA")
+
+		const res = await fetch("/dashboard/filiais", {
+			method: "POST",
+			headers: {
+				"Content-Type": "application/json"
+			},
+			body: JSON.stringify({
+				idEmpresa
+			})
+		})
+
+		
+
+		if(res.ok) {
+			data = await res.json()
+
+			data.forEach(filial => {
+				selectFilial.innerHTML += `
+                    <option value="${filial.idFilial}">${filial.endereco}</option>
+				
+				`
+			});
+
+			getQtdFeedbacks();
+		}
+
+	} catch (error) {
+		console.log(error)
+	}
+}
+
+async function getQtdFeedbacks() {
+
+	try {
+		const idFilial = selectFilial.value
+
+		const res = await fetch("/dashboard/qtdfeedbacks", {
+			method: "POST",
+			headers: {
+				"Content-Type": "application/json"
+			},
+			body: JSON.stringify({
+				idFilial
+			})
+		})
+
+		
+
+		if(res.ok) {
+			data = await res.json();
+
+			criarGrafico(data); 
+		}
+
+	} catch (error) {
+		console.log(error)
+	}
+}
+
+
+getLojasSelect();

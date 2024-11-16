@@ -11,51 +11,51 @@ btnOlhoAberto.addEventListener("click", mostrarSenha)
 btnOlhoFechado.addEventListener("click", esconderSenha)
 
 async function autenticar() {
-    // const emailVar = inputEmail.value;
-    // const senhaVar = inputSenha.value;
+    const emailVar = inputEmail.value;
+    const senhaVar = inputSenha.value;
 
-    // if(emailVar == '' || senhaVar == '') {
-    //     alertaLogin("Preencha todos os campos antes de prosseguir.", 'erro')
-    //     return;
-    // } 
+    if(emailVar == '' || senhaVar == '') {
+        alertaLogin("Preencha todos os campos antes de prosseguir.", 'erro')
+        return;
+    } 
 
-    // fetch("/usuarios/autenticar", {
-    //     method: "POST",
-    //     headers: {
-    //         "Content-Type": "application/json"
-    //     },
-    //     body: JSON.stringify({
-    //         emailServer: emailVar,
-    //         senhaServer: senhaVar
-    //     })
-    // })
-    // .then(function (resposta) {
-    //     console.log("ESTOU NO THEN DO entrar()!");
+    fetch("/usuarios/autenticar", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            emailServer: emailVar,
+            senhaServer: senhaVar
+        })
+    })
+    .then(function (resposta) {
+        console.log("ESTOU NO THEN DO entrar()!");
 
-    //     if (resposta.ok) {
-    //         console.log(resposta);
+        if (resposta.ok) {
+            console.log(resposta);
 
-    //         resposta.json().then(json => {
-    //             console.log(json);
-    //             console.log(JSON.stringify(json));
-    //             sessionStorage.EMAIL_USUARIO = json.email;
-    //             sessionStorage.NOME_USUARIO = json.nome;
-    //             sessionStorage.ID_USUARIO = json.id;
+            resposta.json().then(json => {
+                console.log(json);
+                console.log(JSON.stringify(json));
+                sessionStorage.EMAIL_USUARIO = json.email;
+                sessionStorage.NOME_USUARIO = json.nome;
+                sessionStorage.ID_USUARIO = json.id;
+                sessionStorage.ID_EMPRESA = json.idEmpresa;
 
-    //             alertaLogin("Autenticado com sucesso.. Redirecionando", 'sucesso')
-    //             setTimeout(function () {
-    //                 console.log('autenticou')
-    //                 window.location = "../dashboard/dashboard_inicial.html";
-    //             }, 3000); 
+                alertaLogin("Autenticado com sucesso.. Redirecionando", 'sucesso')
+                setTimeout(function () {
+                    console.log('autenticou')
+                    window.location = "../dashboard/dashboard_inicial.html";
+                }, 3000); 
 
-    //         });
-    //     } else {
-    //         alertaLogin("Email ou senha incorretos!", 'erro')
+            });
+        } else {
+            alertaLogin("Email ou senha incorretos!", 'erro')
 
-    //     }
-    // })
+        }
+    })
 
-    window.location = '../dashboard/dashboard_inicial.html'
 }
 
 function alertaLogin(mensagem, type) {
