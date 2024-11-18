@@ -5,7 +5,8 @@ const icone_pessoas = document.getElementById("icone_pessoas");
 const maleta = document.getElementById("maleta");
 const modo = document.getElementById("modo");
 const textoModo = document.querySelector(".texto-modo");
-const selectFilial  = document.getElementById('select-filial')
+const selectFilial = document.getElementById('select-filial')
+const topicosSection = document.getElementById('topicos-principais')
 let textoGrafico = "#FFFFFF";
 let textoBolinha = "#2D2D2D";
 
@@ -77,27 +78,27 @@ function criarGrafico(data) {
 
 	const avaliacoes = {
 		positiva: 0,
-		neutra: 0, 
-		negativa: 0 
+		neutra: 0,
+		negativa: 0
 	};
 
 	data.forEach(avaliacao => {
 
 		switch (avaliacao.rating) {
 			case 1:
-				avaliacoes.negativa += avaliacao.quantidade_feedbacks; 
+				avaliacoes.negativa += avaliacao.quantidade_feedbacks;
 				break;
 			case 2:
-				avaliacoes.negativa += avaliacao.quantidade_feedbacks; 
+				avaliacoes.negativa += avaliacao.quantidade_feedbacks;
 				break;
 			case 3:
-				avaliacoes.neutra += avaliacao.quantidade_feedbacks;  
+				avaliacoes.neutra += avaliacao.quantidade_feedbacks;
 				break;
 			case 4:
-				avaliacoes.neutra += avaliacao.quantidade_feedbacks;  
+				avaliacoes.neutra += avaliacao.quantidade_feedbacks;
 				break;
 			case 5:
-				avaliacoes.positiva += avaliacao.quantidade_feedbacks; 
+				avaliacoes.positiva += avaliacao.quantidade_feedbacks;
 				break;
 
 			default:
@@ -200,31 +201,31 @@ function criarGrafico(data) {
 				points: [
 					{
 						name: "1",
-						y: 200,
+						y: data[0].quantidade_feedbacks,
 						color: "rgba(255, 153, 153, 0.57)",
 						outline: { color: "#FF9999", width: 3 },
 					},
 					{
 						name: "2",
-						y: 344,
+						y: data[1].quantidade_feedbacks,
 						color: "rgba(255, 204, 153, 0.57)",
 						outline: { color: "#FFCC99", width: 3 },
 					},
 					{
 						name: "3",
-						y: 112,
+						y: data[2].quantidade_feedbacks,
 						color: "rgba(255, 255, 153, 0.57)",
 						outline: { color: "#FFFF99", width: 3 },
 					},
 					{
 						name: "4",
-						y: 626,
+						y: data[3].quantidade_feedbacks,
 						color: "rgba(204, 255, 153, 0.57)",
 						outline: { color: "#CCFF99", width: 3 },
 					},
 					{
 						name: "5",
-						y: 626,
+						y: data[4].quantidade_feedbacks,
 						color: "rgba(153, 255, 153, 0.57)",
 						outline: { color: "#99FF99", width: 3 },
 					},
@@ -242,7 +243,7 @@ function criarGrafico(data) {
 		quantidade += rating.quantidade_feedbacks
 	})
 
-	const indice = ((total / quantidade) * 2 ) * 100 
+	const indice = ((total / quantidade) * 2) * 100
 
 	let textoIndice = ''
 
@@ -255,7 +256,7 @@ function criarGrafico(data) {
 	} else {
 		textoIndice = 'Muito Bom!'
 	}
- 
+
 	JSC.chart("satisfaction-index", {
 		debug: true,
 		type: "gauge ",
@@ -429,7 +430,10 @@ function carregarConteudo() {
 
 
 
-selectFilial.addEventListener("change", getQtdFeedbacks)
+selectFilial.addEventListener("change", () => {
+	getQtdFeedbacks();
+	sessionStorage.setItem("ID_FILIAL_SELECIONADA", selectFilial.value)
+})
 
 async function getLojasSelect() {
 
@@ -446,9 +450,9 @@ async function getLojasSelect() {
 			})
 		})
 
-		
 
-		if(res.ok) {
+
+		if (res.ok) {
 			data = await res.json()
 
 			data.forEach(filial => {
@@ -458,6 +462,7 @@ async function getLojasSelect() {
 				`
 			});
 
+			sessionStorage.setItem('ID_FILIAL_SELECIONADA', selectFilial.value)
 			getQtdFeedbacks();
 		}
 
@@ -481,12 +486,14 @@ async function getQtdFeedbacks() {
 			})
 		})
 
-		
 
-		if(res.ok) {
+
+		if (res.ok) {
 			data = await res.json();
 
-			criarGrafico(data); 
+			criarGrafico(data);
+			getTopicos();
+
 		}
 
 	} catch (error) {
@@ -494,5 +501,41 @@ async function getQtdFeedbacks() {
 	}
 }
 
+async function getTopicos() {
+	try {
+		const idFilial = selectFilial.value
+
+		const res = await fetch(`/dashboard/topicos/${idFilial}`, {
+			method: "GET",
+			headers: {
+				"Content-Type": "application/json"
+			}
+		})
+
+
+		if (res.ok) {
+			data = await res.json();
+
+			topicosSection.innerHTML = '<p>Tópicos Principais</p>'
+
+			data.forEach((topico, index) => {
+				topicosSection.innerHTML += `
+				<div data-id-categoria=${topico.id_categoria} onClick="redirecionarParaTopicos(event.currentTarget.dataset.idCategoria)" class="topics">
+                        <p>${index + 1} - ${topico.categoria}</p>
+                </div>
+				`
+			})
+		}
+
+	} catch (error) {
+		console.log(error)
+	}
+}
+
+function redirecionarParaTopicos(idTopico){
+	sessionStorage.setItem('ID_CATEGORIA_SELECIONADA', idTopico)
+
+	window.location = './dashboard_topico.html'
+}
 
 getLojasSelect();

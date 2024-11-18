@@ -23,9 +23,9 @@ var dashboardModel = require("../models/dashboardModel");
  function FeedbacksPorQuantidades(req, res) {
     var idFilial = req.body.idFilial;
     
-    // if(idFilial == undefined) {
-    //     res.status(400).send('ID DA FILIAL ESTÁ UNDEFINED ')
-    // }
+    if(idFilial == undefined) {
+        res.status(400).send('ID DA FILIAL ESTÁ UNDEFINED ')
+    }
 
     dashboardModel.buscarQuantidadeFeedbacksPorFilial(idFilial).then((resultado) => {
       if (resultado.length > 0) {
@@ -41,7 +41,63 @@ var dashboardModel = require("../models/dashboardModel");
   }
   
 
+  function listarTopicosPrincipais (req, res) {
+    var idFilial = req.params.idFilial;
+
+    console.log(`Buscando Tópicos`);
+
+    dashboardModel.listarTopicosPrincipais(idFilial).then(function (resultado) {
+        if (resultado.length > 0) {
+            res.status(200).json(resultado);
+        } else {
+            res.status(204).send("Nenhum resultado encontrado!")
+        }
+    }).catch(function (erro) {
+        console.log(erro);
+        console.log("Houve um erro ao buscar os tópicos", erro.sqlMessage);
+        res.status(500).json(erro.sqlMessage);
+    });
+  } 
+
+  function buscarCategorias (req,res) {
+    console.log(`Buscando Categorias`);
+
+    dashboardModel.buscarCategorias().then(function (resultado) {
+        if (resultado.length > 0) {
+            res.status(200).json(resultado);
+        } else {
+            res.status(204).send("Nenhum resultado encontrado!")
+        }
+    }).catch(function (erro) {
+        console.log(erro);
+        console.log("Houve um erro ao buscar os tópicos", erro.sqlMessage);
+        res.status(500).json(erro.sqlMessage);
+    });
+  }
+
+  function listarFeedbacksPorCategoriaEFilial (req, res) {
+    var idFilial = req.params.idFilial;
+    var idCategoria = req.params.idCategoria
+
+    console.log(`Buscando Tópicos`);
+
+    dashboardModel.buscarFeedbackPorCategoriaEFilial(idFilial, idCategoria).then(function (resultado) {
+        if (resultado.length > 0) {
+            res.status(200).json(resultado);
+        } else {
+            res.status(204).send("Nenhum resultado encontrado!")
+        }
+    }).catch(function (erro) {
+        console.log(erro);
+        console.log("Houve um erro ao buscar os feedbacks", erro.sqlMessage);
+        res.status(500).json(erro.sqlMessage);
+    });
+  } 
+
 module.exports =  {
     buscarFiliasPorEmpresa,
-    FeedbacksPorQuantidades
-}
+    FeedbacksPorQuantidades,
+    listarTopicosPrincipais,
+    buscarCategorias,
+    listarFeedbacksPorCategoriaEFilial
+};

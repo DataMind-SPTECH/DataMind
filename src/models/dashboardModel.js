@@ -1,6 +1,6 @@
 var database = require("../database/config");
 
- function listarFiliais(idEmpresa) {
+function listarFiliais(idEmpresa) {
     console.log("ACESSEI O AVISO  MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function listar()");
     var instrucaoSql = `
     select * from filial where fkEmpresa = ${idEmpresa};
@@ -9,7 +9,7 @@ var database = require("../database/config");
     return database.executar(instrucaoSql);
 }
 
- function buscarQuantidadeFeedbacksPorFilial(idFilial) {
+function buscarQuantidadeFeedbacksPorFilial(idFilial) {
     console.log("ACESSEI O AVISO  MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function listar()");
     var instrucaoSql = `
     SELECT rating, COUNT(*) AS quantidade_feedbacks FROM feedback where fkFilial = ${idFilial} GROUP BY rating  ORDER BY rating ;
@@ -18,7 +18,69 @@ var database = require("../database/config");
     return database.executar(instrucaoSql);
 }
 
- module.exports = {
+function listarTopicosPrincipais(idFilial) {
+    console.log("ACESSEI O AVISO  MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function listar()");
+    var instrucaoSql = `
+    SELECT 
+    c.idCategoria AS id_categoria,
+    c.descricao AS categoria,
+    COUNT(f.idFeedback) AS total_feedbacks
+    FROM 
+    feedback f
+    JOIN 
+    categoria c ON f.fkCategoria = c.idCategoria
+    WHERE 
+    f.fkFilial = ${idFilial}
+    GROUP BY 
+    c.idCategoria, c.descricao
+    ORDER BY 
+    total_feedbacks DESC;
+    
+    `;
+    console.log("Executando a instrução SQL: \n" + instrucaoSql);
+    return database.executar(instrucaoSql);
+}
+
+function buscarCategorias() {
+    console.log("ACESSEI O AVISO  MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function listar()");
+    var instrucaoSql = `
+   select * from categoria;
+   `;
+    console.log("Executando a instrução SQL: \n" + instrucaoSql);
+    return database.executar(instrucaoSql);
+}
+
+function buscarFeedbackPorCategoriaEFilial(idFilial, idCategoria) {
+    console.log("ACESSEI O AVISO  MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function listar()");
+    var instrucaoSql = `
+  SELECT 
+    f.idFeedback AS id_feedback,
+    f.descricao AS descricao_feedback,
+    f.rating as rating,
+    fi.idFilial AS id_filial,
+    fi.endereco AS filial,
+    c.idCategoria AS id_categoria,
+    c.descricao AS categoria
+FROM 
+    feedback f
+JOIN 
+    filial fi ON f.fkFilial = fi.idFilial
+JOIN 
+    categoria c ON f.fkCategoria = c.idCategoria
+WHERE 
+    idFilial = ${idFilial} and idCategoria = ${idCategoria}
+ORDER BY 
+    fi.idFilial, c.idCategoria;
+   `;
+    console.log("Executando a instrução SQL: \n" + instrucaoSql);
+    return database.executar(instrucaoSql);
+}
+
+
+module.exports = {
     listarFiliais,
-    buscarQuantidadeFeedbacksPorFilial
- }
+    buscarQuantidadeFeedbacksPorFilial,
+    listarTopicosPrincipais,
+    buscarCategorias,
+    buscarFeedbackPorCategoriaEFilial
+}

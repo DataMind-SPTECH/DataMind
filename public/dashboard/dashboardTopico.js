@@ -5,6 +5,8 @@ const icone_pessoas = document.getElementById("icone_pessoas");
 const maleta = document.getElementById("maleta");
 const modo = document.getElementById("modo");
 const textoModo = document.querySelector(".texto-modo");
+const selectCategoria = document.getElementById("select-categoria")
+const insertFeedbacks = document.querySelector('.main-comentarios')
 let textoGrafico = "#FFFFFF";
 let textoBolinha = "#2D2D2D";
 
@@ -151,3 +153,76 @@ function criarGrafico() {
 
 // Chama o gráfico pela primeira vez ao carregar a página
 criarGrafico();
+
+
+async function getCategorias() {
+	try {
+
+		const res = await fetch(`/dashboard/categorias`, {
+			method: "GET",
+			headers: {
+				"Content-Type": "application/json"
+			}
+		})
+
+
+		if (res.ok) {
+			data = await res.json();
+
+			data.forEach(categoria => {
+				selectCategoria.innerHTML += `
+				<option value=${categoria.idCategoria}>${categoria.descricao}</	option>
+				`
+			});
+
+			selectCategoria.value = sessionStorage.getItem('ID_CATEGORIA_SELECIONADA')
+		}
+
+	} catch (error) {
+		console.log(error)
+	}
+}
+
+async function getFeedbacks() {
+	try {
+		const idCategoria = sessionStorage.getItem("ID_CATEGORIA_SELECIONADA") 
+		const idFilial = sessionStorage.getItem("ID_FILIAL_SELECIONADA")
+
+		const res = await fetch(`/dashboard/feedbacks/${idFilial}/${idCategoria}`, {
+			method: "GET",
+			headers: {
+				"Content-Type": "application/json"
+			}
+		})
+
+
+		if (res.ok) {
+			data = await res.json();
+
+			console.log(data)
+
+			data.forEach(feedback => {
+				insertFeedbacks.innerHTML += `
+				<div class="comentario">
+                        <div class="comentario-conteudo">
+                            <p><strong>Comentario</strong></p>
+                            <p>“${feedback.descricao_feedback}”</p>
+                        </div>
+                        <div class="comentario-nota">
+                            <p><strong>Nota</strong></p>
+                            <p class="nota ${feedback.rating == 5 ? 'alta' : feedback.rating > 2 ? 'media' : 'baixa'}">${feedback.rating}/5</p>
+                        </div>
+                        
+                    </div>
+				`
+
+			})
+		}
+
+	} catch (error) {
+		console.log(error)
+	}
+}
+
+getCategorias();
+getFeedbacks();
