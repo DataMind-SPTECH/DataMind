@@ -7,6 +7,10 @@ const modo = document.getElementById("modo");
 const textoModo = document.querySelector(".texto-modo");
 const selectCategoria = document.getElementById("select-categoria")
 const insertFeedbacks = document.querySelector('.main-comentarios')
+const insertPositivos = document.getElementById("qtdPositivos")
+const insertNeutros = document.getElementById("qtdNeutros")
+const insertNegativos = document.getElementById("qtdNegativos")
+
 let textoGrafico = "#FFFFFF";
 let textoBolinha = "#2D2D2D";
 
@@ -73,8 +77,22 @@ modos.addEventListener("click", () => {
 });
 
 // Função para criar o gráfico com base no valor atual de textoGrafico
-function criarGrafico() {
-	
+function criarGrafico(valor) {
+
+	const indice = valor
+
+	let textoIndice = ''
+
+	if (indice < 500) {
+		textoIndice = 'Ruim!'
+	} else if (indice < 700) {
+		textoIndice = 'Ok.'
+	} else if (indice < 850) {
+		textoIndice = 'Bom!'
+	} else {
+		textoIndice = 'Muito Bom!'
+	}
+
 	// Índice de Satisfação
 	// JS 
 	JSC.chart("satisfaction-index", {
@@ -99,7 +117,7 @@ function criarGrafico() {
 				{ value: 0, color: "#FF5353" },
 				{ value: 500, color: "#FFD221" },
 				{ value: 700, color: "#77E6B4" },
-				{ value: [900, 1000], color: "#21D683" },
+				{ value: [850, 1000], color: "#21D683" },
 			],
 		},
 		yAxis: {
@@ -126,8 +144,8 @@ function criarGrafico() {
 			{
 				type: "marker",
 				name: "Score",
-				shape_label: {
-					text: "560<br/> <span style= 'font-family: 'Montserrat'; fontSize: 18px; '>Regular!</span>",
+				shape_label: {	
+					text: `${valor.toFixed(0)}<br/> <span style= 'font-family: 'Montserrat'; fontSize: 18px; '>${textoIndice}</span>`,
 					style: { fontSize: 24, color: textoGrafico },
 				},
 				defaultPoint: {
@@ -143,7 +161,7 @@ function criarGrafico() {
 						size: 15,
 					},
 				},
-				points: [[1, 560]],
+				points: [[1, Number(valor.toFixed(0))]],
 			},
 		],
 	});
@@ -151,9 +169,11 @@ function criarGrafico() {
 
 }
 
-// Chama o gráfico pela primeira vez ao carregar a página
-criarGrafico();
 
+selectCategoria.addEventListener('change', (e) => {
+	sessionStorage.setItem("ID_CATEGORIA_SELECIONADA", e.target.value)
+	getFeedbacks()
+})
 
 async function getCategorias() {
 	try {
@@ -185,7 +205,7 @@ async function getCategorias() {
 
 async function getFeedbacks() {
 	try {
-		const idCategoria = sessionStorage.getItem("ID_CATEGORIA_SELECIONADA") 
+		const idCategoria = sessionStorage.getItem("ID_CATEGORIA_SELECIONADA")
 		const idFilial = sessionStorage.getItem("ID_FILIAL_SELECIONADA")
 
 		const res = await fetch(`/dashboard/feedbacks/${idFilial}/${idCategoria}`, {
@@ -199,7 +219,8 @@ async function getFeedbacks() {
 		if (res.ok) {
 			data = await res.json();
 
-			console.log(data)
+			insertFeedbacks.innerHTML = ''
+
 
 			data.forEach(feedback => {
 				insertFeedbacks.innerHTML += `
@@ -217,11 +238,46 @@ async function getFeedbacks() {
 				`
 
 			})
+
+			calcularIndicadores(data)
 		}
 
 	} catch (error) {
 		console.log(error)
 	}
+}
+
+function calcularIndicadores (feedbacks) {
+	let qtdFeedbacks = 0;
+	let totalRating = 0;
+
+	let qtdPositivos = 0;
+	let qtdNegativos = 0;
+	let qtdNeutros = 0;
+
+
+	feedbacks.forEach(feedback => {
+		qtdFeedbacks++;
+		totalRating += feedback.rating;
+		
+		if(feedback.rating == 1 || feedback.rating == 2) {
+			qtdNegativos ++
+		} else if (feedback.rating == 3 || feedback.rating == 4 ) {
+			qtdNeutros ++
+		} else {
+			qtdPositivos ++ 
+		}
+		
+	})
+
+	insertPositivos.innerHTML = qtdPositivos;	
+	insertNegativos.innerHTML = qtdNegativos;
+	insertNeutros.innerHTML = qtdNeutros;
+
+	let indice = ((totalRating / qtdFeedbacks) * 2) * 100;
+
+
+	criarGrafico(indice)
 }
 
 getCategorias();

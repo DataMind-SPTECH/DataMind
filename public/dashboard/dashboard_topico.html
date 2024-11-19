@@ -57,7 +57,7 @@
     </div>
     <div class="dashboard">
         <div class="navbar">
-            <div class="divSelect">                
+            <div class="divSelect">
                 <select class="select-filial" id="select-categoria">
                 </select>
                 <label for="select-filial">
@@ -153,27 +153,28 @@
 
                 <div class="comentarios-second">
                     <div id="comentarios-positivos" class="chart-comentarios-second">
-                        <p>Comentarios Positivos</p>
-                        <p class="nota alta">98.431</p>
+                        <p>Positivos</p>
+                        <p class="nota alta" id="qtdPositivos">98.431</p>
                     </div>
                     <div id="comentarios-regulares" class="chart-comentarios-second">
-                        <p>Comentarios Regulares</p>
-                        <p class="nota media">232.323</p><br>
+                        <p>Regulares</p>
+                        <p class="nota media" id="qtdNeutros">232.323</p><br>
                     </div>
                     <div id="comentarios-negativos" class="chart-comentarios-second">
-                        <p>Comentarios Negativos</p>
-                        <p class="nota baixa">54.656</p>
+                        <p>Negativos</p>
+                        <p class="nota baixa" id="qtdNegativos">54.656</p>
                     </div>
                 </div>
             </div>
 
             <div class="grafico-third">
-                <!-- <div class="container-indice-satisfaction"> -->
-                <span class="title indice">Índice de <br> Satisfação</span>
                 <div class="main-indice">
+                    <div class="titulo-grafico">
+                        <span class="title indice">Índice de Satisfação</span>
+                    </div>
                     <div id="satisfaction-index" class="chart-satisfaction"></div>
-                <!-- </div> -->
                 </div>
+
                 <h2 class="title" id="Palavras-chaves">Palavras Chaves</h2>
                 <div class="main-topics">
 
