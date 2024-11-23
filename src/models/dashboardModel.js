@@ -76,11 +76,42 @@ ORDER BY
     return database.executar(instrucaoSql);
 }
 
+function buscarRecomendacoesPorFilialECategoria(idFilial, idCategoria) {
+    console.log("ACESSEI O AVISO  MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function listar()");
+    var instrucaoSql = `
+SELECT 
+    r.idRecomendacao,
+    r.descricao AS recomendacao,
+    r.dtCriacao,
+    c.descricao AS categoria
+FROM 
+    recomendacoesIA r
+JOIN 
+    categoria c ON r.fkCategoria = c.idCategoria
+JOIN 
+    feedback f ON f.fkCategoria = c.idCategoria
+JOIN 
+    filial fi ON f.fkFilial = fi.idFilial
+
+WHERE 
+    fi.idFilial = ${idFilial}
+    AND c.idCategoria = ${idCategoria}
+GROUP BY 
+	idRecomendacao
+ORDER BY 
+    r.dtCriacao DESC;
+   `;
+    console.log("Executando a instrução SQL: \n" + instrucaoSql);
+    return database.executar(instrucaoSql);
+}
+
+
 
 module.exports = {
     listarFiliais,
     buscarQuantidadeFeedbacksPorFilial,
     listarTopicosPrincipais,
     buscarCategorias,
-    buscarFeedbackPorCategoriaEFilial
+    buscarFeedbackPorCategoriaEFilial,
+    buscarRecomendacoesPorFilialECategoria
 }

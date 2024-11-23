@@ -93,11 +93,32 @@ var dashboardModel = require("../models/dashboardModel");
         res.status(500).json(erro.sqlMessage);
     });
   } 
+  
+  function buscarRecomendacoesPorFilialECategoria (req, res) {
+    var idFilial = req.params.idFilial;
+    var idCategoria = req.params.idCategoria
+  
+    console.log(`Buscando Tópicos`);
+  
+    dashboardModel.buscarRecomendacoesPorFilialECategoria(idFilial, idCategoria).then(function (resultado) {
+        if (resultado.length > 0) {
+            res.status(200).json(resultado);
+        } else {
+            res.status(204).send("Nenhum resultado encontrado!")
+        }
+    }).catch(function (erro) {
+        console.log(erro);
+        console.log("Houve um erro ao buscar as recomendações", erro.sqlMessage);
+        res.status(500).json(erro.sqlMessage);
+    });
+
+  }
 
 module.exports =  {
     buscarFiliasPorEmpresa,
     FeedbacksPorQuantidades,
     listarTopicosPrincipais,
     buscarCategorias,
-    listarFeedbacksPorCategoriaEFilial
+    listarFeedbacksPorCategoriaEFilial,
+    buscarRecomendacoesPorFilialECategoria
 };

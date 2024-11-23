@@ -146,7 +146,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 12%;
+    height: 10%;
 }
 
 .navbar p{
@@ -258,7 +258,6 @@ body {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    text-align: center;
 }
 
 .comentario-conteudo p, .comentario-nota p {
@@ -433,8 +432,8 @@ h2#Palavras-chaves.title{
 
 .recomendation{
     width: 95%;
-    height: 135px;
     overflow-y: auto;
+    height: 135px;
 }
 
 .main-recomendacao ul {

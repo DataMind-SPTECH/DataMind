@@ -10,6 +10,7 @@ const insertFeedbacks = document.querySelector('.main-comentarios')
 const insertPositivos = document.getElementById("qtdPositivos")
 const insertNeutros = document.getElementById("qtdNeutros")
 const insertNegativos = document.getElementById("qtdNegativos")
+const inserirRecomendacoes = document.getElementById("inserir-recomedacoes")
 
 let textoGrafico = "#FFFFFF";
 let textoBolinha = "#2D2D2D";
@@ -173,6 +174,7 @@ function criarGrafico(valor) {
 selectCategoria.addEventListener('change', (e) => {
 	sessionStorage.setItem("ID_CATEGORIA_SELECIONADA", e.target.value)
 	getFeedbacks()
+	getRecomendacoes()
 })
 
 async function getCategorias() {
@@ -226,7 +228,7 @@ async function getFeedbacks() {
 				insertFeedbacks.innerHTML += `
 				<div class="comentario">
                         <div class="comentario-conteudo">
-                            <p><strong>Comentario</strong></p>
+                            <p><strong>Comentário: </strong></p>
                             <p>“${feedback.descricao_feedback}”</p>
                         </div>
                         <div class="comentario-nota">
@@ -240,6 +242,41 @@ async function getFeedbacks() {
 			})
 
 			calcularIndicadores(data)
+		}
+
+	} catch (error) {
+		console.log(error)
+	}
+}
+
+async function getRecomendacoes() {
+	try {
+		const idCategoria = sessionStorage.getItem("ID_CATEGORIA_SELECIONADA")
+		const idFilial = sessionStorage.getItem("ID_FILIAL_SELECIONADA")
+
+		const res = await fetch(`/dashboard/recomendacoes/${idFilial}/${idCategoria}`, {
+			method: "GET",
+			headers: {
+				"Content-Type": "application/json"
+			}
+		})
+
+
+		if (res.status == 200) {
+			const data = await res.json()
+				
+			inserirRecomendacoes.innerHTML = ''
+			data.forEach(recomendacao => {
+				inserirRecomendacoes.innerHTML += `
+				<li>${recomendacao.recomendacao}</li>
+				`
+			})
+		} else if (res.status == 204) {
+			inserirRecomendacoes.innerHTML = ''
+			inserirRecomendacoes.innerHTML = `
+			<li>Ainda não há recomedações para está categoria.</li>
+			`
+			
 		}
 
 	} catch (error) {
@@ -282,3 +319,4 @@ function calcularIndicadores (feedbacks) {
 
 getCategorias();
 getFeedbacks();
+getRecomendacoes();

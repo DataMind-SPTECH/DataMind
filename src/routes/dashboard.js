@@ -23,5 +23,10 @@ router.get("/feedbacks/:idFilial/:idCategoria", function (req, res) {
     dashboardController.listarFeedbacksPorCategoriaEFilial(req, res);
 });
 
+router.get("/recomendacoes/:idFilial/:idCategoria", function (req, res) {
+    dashboardController.buscarRecomendacoesPorFilialECategoria(req, res);
+});
+
+
 
 module.exports = router;
