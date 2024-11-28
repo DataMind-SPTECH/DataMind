@@ -53,7 +53,7 @@ function buscarCategorias() {
 function listarFuncionarios(idEmpresa) {
     console.log("ACESSEI O AVISO  MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function listar()");
     var instrucaoSql = `
-        select * from funcionario where fkEmpresa = ${idEmpresa};
+        select f.idFuncionario, f.nome, f.email, c.cargo from funcionario f join cargo c on fkCargo = idCargo where fkEmpresa = ${idEmpresa} ;
    `;
     console.log("Executando a instrução SQL: \n" + instrucaoSql);
     return database.executar(instrucaoSql);
@@ -114,6 +114,16 @@ ORDER BY
     return database.executar(instrucaoSql);
 }
 
+function cadastrarFuncionario(nome, email, senha, cpf, idEmpresa, idCargo) {
+    console.log("ACESSEI O AVISO  MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function listar()");
+    var instrucaoSql = `
+    INSERT INTO funcionario (nome, email, senha, cpf, fkEmpresa, fkCargo) VALUES
+    ('${nome}', '${email}', '${senha}', '${cpf}', ${idEmpresa}, ${idCargo});
+   `;
+    console.log("Executando a instrução SQL: \n" + instrucaoSql);
+    return database.executar(instrucaoSql);
+}
+
 
 
 module.exports = {
@@ -123,5 +133,6 @@ module.exports = {
     buscarCategorias,
     buscarFeedbackPorCategoriaEFilial,
     buscarRecomendacoesPorFilialECategoria,
-    listarFuncionarios
+    listarFuncionarios,
+    cadastrarFuncionario
 }

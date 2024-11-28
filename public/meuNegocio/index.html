@@ -24,31 +24,39 @@
 <body>
     <div class="overlay close">
         <div class="modal">
-            <img id="closeModalBtn"  src="../assets/close 1.png" alt="">
+            <img id="closeModalBtn" src="../assets/close 1.png" alt="">
             <div class="modal_container">
-                <h1>Adicionar Funcionário</h1>
-                
-                <div class="input">
-                    <p>Nome</p>
-                    <input type="text">
+                <div>
+
+                    <h1>Adicionar Funcionário</h1>
+
+                    <div class="input" >
+                        <p>Nome</p>
+                        <input type="text" id="input_nome">
+                    </div>
+                    <div class="input">
+                        <p>Email</p>
+                        <input type="text" id="input_email">
+                    </div>
+                    <div class="input">
+                        <p>CPF</p>
+                        <input type="text" id="input_cpf">
+                    </div>
+                    <div class="input">
+                        <p>Senha</p>
+                        <input type="text" id="input_senha">
+                    </div>
+                    <div class="select">
+                        <p>Cargo</p>
+                        <select id="select_cargo">
+                            <option value="">Selecione um cargo</option>
+                            <option value="3">Desenvolvedor</option>
+                        </select>
+                    </div>
+
+                    <button class="btn cadastrar" id="btn_adicionar">Adicionar</button>
                 </div>
-                <div class="input">
-                    <p>Email</p>
-                    <input type="text">
-                </div>
-                <div class="input">
-                    <p>Senha</p>
-                    <input type="text">
-                </div>
-                <div class="select">
-                    <p>Cargo</p>
-                    <select name="" id="">
-                        <option value="">Selecione um cargo</option>
-                    </select>
-                </div>
-                
-                    <button class="btn cadastrar">Cadastrar </button>
-        
+
             </div>
         </div>
     </div>
@@ -105,45 +113,8 @@
                     <h1>Funcionários</h1>
                     <button onclick="openModal()"><img src="../assets/addBtn.svg" alt=""></button>
                 </div>
-                <div class="collaborator-container">
-                    <div class="collaborator-card">
-                        <div class="collab-picture">
-                            <img src="../assets/userImg.png" alt="">
-                        </div>
-                        <div class="collab-info">
-                            <p>Nome: Hamza Ali</p>
-                            <p>Cargo: Gerente</p>
-                            <p>Email: hamza@email.com</p>
-                        </div>
-                        <div class="collab-btn">
-                            <button class="btn editar">
-                                <p>Editar</p>
-                            </button>
-                            <button class="btn excluir">
-                                <p>Excluir</p>
-                            </button>
-                        </div>
-                    </div>
-                    <div class="collaborator-card">
-                        <div class="collab-picture">
-                            <img src="../assets/userImg.png" alt="">
-                        </div>
-                        <div class="collab-info">
-                            <p>Nome: Hamza Ali</p>
-                            <p>Cargo: Gerente</p>
-                            <p>Gestor: XPTO</p>
-                            <p>Loja: McDonald’s Augusta </p>
-                            <p>Email: hamza@email.com</p>
-                        </div>
-                        <div class="collab-btn">
-                            <button class="btn editar">
-                                <p>Editar</p>
-                            </button>
-                            <button class="btn excluir">
-                                <p>Excluir</p>
-                            </button>
-                        </div>
-                    </div>
+                <div class="collaborator-container" id="collaborators">
+
                 </div>
             </div>
         </div>

@@ -342,14 +342,20 @@ body {
 }
 
 .modal_container {
+    padding-top: 30px;
     text-align: start;
     width: 100%;
-    height: 100%;
+    height: 90%;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    overflow-x: auto;
 } 
+
+.modal_container button{
+ margin: auto;
+}
 
 .modal_container h1 {
     color: white;

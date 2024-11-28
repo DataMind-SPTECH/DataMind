@@ -135,6 +135,53 @@ function listarFuncionariosPorEmpresa(req, res) {
 
 }
 
+
+function cadastrarNovoFuncionario(req, res) {
+  var nome = req.body.nome;
+  var email = req.body.email;
+  var senha = req.body.senha;
+  var cpf = req.body.cpf;
+  var idEmpresa = req.body.idEmpresa;
+  var idCargo = req.body.idCargo;
+
+  if (nome == undefined) {
+    res.status(400).send("NOME UNDEFINED");
+  }
+  
+  if (email == undefined) {
+    res.status(400).send("EMAIL UNDEFINED");
+  }
+
+  if (senha == undefined) {
+    res.status(400).send("SENHA UNDEFINED");
+  }
+
+  if (cpf == undefined) {
+    res.status(400).send("CPF UNDEFINED");
+  }
+
+  if (idEmpresa == undefined) {
+    res.status(400).send("ID EMPRESA UNDEFINED");
+  }
+
+  if (idCargo == undefined) {
+    res.status(400).send("ID CARGO UNDEFINED");
+  }
+
+  dashboardModel.cadastrarFuncionario(nome, email, senha, cpf, idEmpresa, idCargo).then(function (resultado) {
+    if (resultado.length > 0) {
+      res.status(200).json(resultado);
+    } else {
+      res.status(204).send("Nenhum resultado encontrado!")
+    }
+  }).catch(function (erro) {
+    console.log(erro);
+    console.log("Houve um erro ao buscar ao cadastrar funcionario", erro.sqlMessage);
+    res.status(500).json(erro.sqlMessage);
+  });
+
+}
+
 module.exports = {
   buscarFiliasPorEmpresa,
   FeedbacksPorQuantidades,
@@ -142,5 +189,6 @@ module.exports = {
   buscarCategorias,
   listarFeedbacksPorCategoriaEFilial,
   buscarRecomendacoesPorFilialECategoria,
-  listarFuncionariosPorEmpresa
+  listarFuncionariosPorEmpresa,
+  cadastrarNovoFuncionario
 };

@@ -32,6 +32,10 @@ router.get("/funcionarios/:idEmpresa", function (req, res) {
 });
 
 
+router.post("/adicionarfuncionario", function(req,res) {
+    dashboardController.cadastrarNovoFuncionario(req,res);
+})
+
 
 
 
