@@ -27,6 +27,12 @@ router.get("/recomendacoes/:idFilial/:idCategoria", function (req, res) {
     dashboardController.buscarRecomendacoesPorFilialECategoria(req, res);
 });
 
+router.get("/funcionarios/:idEmpresa", function (req, res) {
+    dashboardController.listarFuncionariosPorEmpresa(req, res);
+});
+
+
+
 
 
 module.exports = router;
