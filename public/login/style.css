@@ -30,6 +30,10 @@ body {
     margin-top: -190px;
 }
 
+#success{
+    margin-top: 0px;
+}
+
 .login-image{
     width: 65vw;
     height: 100%;
@@ -132,4 +136,34 @@ a {
 
 #olho-fechado{
     display: none;
+}
+
+.toast{
+    position: absolute;
+    right: 0;
+    top: 0;
+    margin: 30px;
+    overflow: hidden;
+
+    background-color: #9bf0bd;
+    height: auto;
+    width: 150px;
+    padding: 12px;
+    border-radius: 8px;
+    box-shadow: 0 0 8px rgba(56, 56, 56, 0.8);
+
+    display: none;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.toast strong{
+    color: #467757;
+    font-weight: bold;
+    font-size: 18px;
+}
+
+.toast p{
+    color: #467757;
+    font-size: 14px;
 }
