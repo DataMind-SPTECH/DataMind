@@ -76,7 +76,13 @@ CREATE TABLE feedback (
 );
 
 
-
+CREATE TABLE palavrasChave (
+ idPalavrasChave INT PRIMARY KEY AUTO_INCREMENT,
+ qualidade VARCHAR(45),
+ palavras VARCHAR(400),
+ fkCategoria INT,
+ FOREIGN KEY (fkCategoria) REFERENCES categoria(idCategoria)
+);
 
 INSERT INTO dataset (url, nome, descricao) VALUES
 ('http://dataset1.com', 'Dataset 1', 'Dados de exemplo'),
