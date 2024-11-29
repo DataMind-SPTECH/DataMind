@@ -2,6 +2,8 @@ const nomeResponsavelInp = document.getElementById("input_nome")
 const emailInp = document.getElementById("input_email")
 const telefoneRespInp = document.getElementById("input_telefone")
 const cpfInp = document.getElementById("input_cpf")
+const cnpjInp = document.getElementById("input_cnpj")
+const nomeEmpresaInp = document.getElementById("input_empresa")
 const senhaInp = document.getElementById("input_senha")
 const confirmarSenhaInp = document.getElementById("input_senhaConfirmada")
 const btnCadastrar = document.querySelector(".botao-proximo")
@@ -9,50 +11,47 @@ btnCadastrar.addEventListener("click", cadastrarResponsavel)
 
 function cadastrarResponsavel() {
     if (!nomeResponsavelInp.value ||
-         !emailInp.value || 
-         !telefoneRespInp.value || 
-         !cpfInp.value ||
-         !senhaInp.value ||
-         !confirmarSenhaInp 
-        ) {
-            addAlert("Preencha todos os campos antes de prosseguir")
-            return
-        }
+        !emailInp.value ||
+        !telefoneRespInp.value ||
+        !cpfInp.value ||
+        !senhaInp.value ||
+        !confirmarSenhaInp || 
+        !nomeEmpresaInp ||
+        !cnpjInp
+    ) {
+        addAlert("Preencha todos os campos antes de prosseguir")
+        return
+    }
 
-        if (telefoneRespInp.value.length != 11) {
-            addAlert("Telefone inválido")
-            return
-        }
-        
-        if (cpfInp.value.length != 11) {
-            addAlert("CPF inválido")
-            return
-        }  
+    if (telefoneRespInp.value.length != 11) {
+        addAlert("Telefone inválido")
+        return
+    }
 
-        if(!verificarSenha(senhaInp.value)) {
-            addAlert("Senha inválida")
-            return
-        }
+    if (cpfInp.value.length != 11) {
+        addAlert("CPF inválido")
+        return
+    }
 
-        if(senhaInp.value != confirmarSenhaInp.value) {
-            addAlert("As senhas não correspondem")
-            return 
-        }
+    if (!verificarSenha(senhaInp.value)) {
+        addAlert("Senha inválida")
+        return
+    }
 
-    const idEmpresa = localStorage.getItem("idEmpresa")
+    if (senhaInp.value != confirmarSenhaInp.value) {
+        addAlert("As senhas não correspondem")
+        return
+    }
 
-    fetch("/responsavel/cadastrar", {
+    // cadastra empresa
+    fetch("/empresas/cadastrar", {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
         },
         body: JSON.stringify({
-            nomeServer: nomeResponsavelInp.value,
-            emailServer: emailInp.value,
-            telefoneServer: telefoneRespInp.value,
-            cpfServer: cpfInp.value,
-            senhaServer: senhaInp.value,
-            idEmpresaServer: idEmpresa
+            nomeServer: nomeEmpresaInp.value,
+            cnpjServer: cnpjInp.value,
         }),
     })
         .then(function (resposta) {
@@ -60,8 +59,44 @@ function cadastrarResponsavel() {
 
             if (resposta.ok) {
                 console.log('deu certo chefia')
-                addAlert("Cadastro realizado com sucesso... Redirecionando.")
-                setTimeout(() => window.location = '../login/login.html', 4000)
+
+                resposta.json()
+                    .then(
+                        function (json) {
+                            console.log('cadastrou empresa')
+
+                            fetch("/responsavel/cadastrar", {
+                                method: "POST",
+                                headers: {
+                                    "Content-Type": "application/json",
+                                },
+                                body: JSON.stringify({
+                                    nomeServer: nomeResponsavelInp.value,
+                                    emailServer: emailInp.value,
+                                    telefoneServer: telefoneRespInp.value,
+                                    cpfServer: cpfInp.value,
+                                    senhaServer: senhaInp.value,
+                                    idEmpresaServer: json.idEmpresa
+                                }),
+                            })
+                                .then(function (resposta) {
+                                    console.log("resposta: ", resposta);
+                        
+                                    if (resposta.ok) {
+                                        console.log('deu certo chefia')
+                                        addAlert("Cadastro realizado com sucesso... Redirecionando.")
+                                        setTimeout(() => window.location = '../login/login.html', 4000)
+                                    } else {
+                                        throw "Houve um erro ao tentar realizar o cadastro!";
+                                    }
+                                })
+                                .catch(function (resposta) {
+                                    console.log(`#ERRO: ${resposta}`);
+                        
+                                });
+                        }
+                    )
+
             } else {
                 throw "Houve um erro ao tentar realizar o cadastro!";
             }
@@ -70,6 +105,11 @@ function cadastrarResponsavel() {
             console.log(`#ERRO: ${resposta}`);
 
         });
+
+    
+    const idEmpresa = localStorage.getItem("idEmpresa")
+    
+   
 
     return false;
 }
@@ -80,14 +120,14 @@ function addAlert(mensagem, tempo = 4000) {
 
     addAlerta.innerHTML = mensagem
     divAlerta.classList.add('show')
-    
-    setTimeout( ()=> {
+
+    setTimeout(() => {
         divAlerta.classList.remove("show")
     }, tempo)
 }
 
 senhaInp.addEventListener('keyup', (e) => {
-    if(e.target.value.length < 1 ) {
+    if (e.target.value.length < 1) {
         passwordAlert('close')
     } else {
         passwordAlert('show')
@@ -100,11 +140,11 @@ senhaInp.addEventListener('keyup', (e) => {
 const alertaSenha = document.querySelector("#alerta-senha")
 
 function passwordAlert(action) {
-    if (action == 'show' ) {
+    if (action == 'show') {
         alertaSenha.classList.add("show")
     }
-    
-    if(action == 'close') {
+
+    if (action == 'close') {
         alertaSenha.classList.remove("show")
     }
 }
@@ -120,16 +160,16 @@ function verificarSenha(string) {
     const temMais = temMaiuscula(string)
     const temMinus = temMinuscula(string)
     const temNum = temNumero(string)
-    const temEsp = temEspecial(string) 
+    const temEsp = temEspecial(string)
 
     temMinChar ? alertaMinChar.style.color = 'green' : alertaMinChar.style.color = '#bd4b4b'
     temMais ? alertaMaiscula.style.color = 'green' : alertaMaiscula.style.color = '#bd4b4b'
-    temMinus? alertaMinuscula.style.color = 'green' : alertaMinuscula.style.color = '#bd4b4b'
+    temMinus ? alertaMinuscula.style.color = 'green' : alertaMinuscula.style.color = '#bd4b4b'
     temNum ? alertaNumero.style.color = 'green' : alertaNumero.style.color = '#bd4b4b'
     temEsp ? alertaEspChar.style.color = 'green' : alertaEspChar.style.color = '#bd4b4b'
-    
-    return temMinChar && temMais && temMinus && temNum && temEsp 
-} 
+
+    return temMinChar && temMais && temMinus && temNum && temEsp
+}
 
 function minChar(string) {
     return string.length >= 6
@@ -138,7 +178,7 @@ function minChar(string) {
 function temMaiuscula(string) {
     const regex = /[A-Z]/
     return regex.test(string)
-} 
+}
 
 function temMinuscula(string) {
     const regex = /[a-z]/
@@ -148,9 +188,9 @@ function temMinuscula(string) {
 function temNumero(string) {
     const regex = /[0-9]/
     return regex.test(string)
-} 
+}
 
 function temEspecial(string) {
-    const regex =  /[!@#$%^&*(),.?":{}|<>]/
+    const regex = /[!@#$%^&*(),.?":{}|<>]/
     return regex.test(string)
 } 

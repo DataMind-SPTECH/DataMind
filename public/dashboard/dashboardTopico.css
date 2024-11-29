@@ -8,6 +8,10 @@
     
 }
 
+* {
+    box-sizing: border-box;
+}
+
 body {
     display: flex;
     height: 100vh;
@@ -142,7 +146,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 12%;
+    height: 10%;
 }
 
 .navbar p{
@@ -151,38 +155,39 @@ body {
 }
 
 .graficos{
-    height: calc(90% - 20px);
+    height: 88%;
     display: flex;
     margin: 0 20px;
     justify-content: space-between;
     align-items: center;
+    box-sizing: border-box;
+    padding: 10px;
 }
 
 .grafico-first{
+    height: 100%;
     width: 65%;
-    height: calc(100% - 10px);
     display: flex;
     flex-direction: column;
     align-items: center;
+    gap: 20px;
 }
 
 .comentarios-second{
     display: flex;
-    width: calc(100% - 20px);
+    width: 100%;
     height: 40%;
     justify-content: space-between;
     align-items: center;
-    margin-top: 12px;
-    margin-bottom: -5px;
 }
 
 .grafico-third{
     width: 35%;
-    height: calc(100% - 10px);
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: space-between;
+    gap: 20px;
+    height: 100%;
 }
 
 #feedbacks-chart{
@@ -206,9 +211,8 @@ body {
     align-items: center;
     background-color: var(--background_footer_lateral);
     width: calc(100% - 20px);
-    height: calc(100% - 10px);
+    height: 250px;
     border-radius: 5px;
-    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.25);
     margin-top: -12px;
     justify-content:space-evenly;
     overflow-y: scroll;
@@ -232,14 +236,16 @@ body {
 .comentario{
     display: flex;
     align-items: flex-start;
-    justify-content: space-around;
+    justify-content: space-between;
     background-color: var(--background-comentario);
+    box-sizing: border-box;
     color: var(--words);
     width: 90%;
     box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.25);
     border-radius: 10px;
-    height: 35%;
+    height: fit-content;
     margin-top: 15px;
+    padding: 5px 20px;
 }
 
 .comentario p{
@@ -252,7 +258,6 @@ body {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    text-align: center;
 }
 
 .comentario-conteudo p, .comentario-nota p {
@@ -265,15 +270,15 @@ body {
 }
 
 .nota.baixa {
-    color: #FF0000;
+    color: #FF5353;
 }
 
 .nota.media {
-    color: #FFEE00;
+    color: #FFD221;
 }
 
 .nota.alta {
-    color: #40FF00;
+    color: #21D683;
 }
 
 #ratings-chart{
@@ -286,14 +291,20 @@ body {
     flex-direction: column;
     align-items: center;
     background-color: var(--background_footer_lateral);
-    width: calc(35% - 40px);
-    height: calc(100% - 10px);
+    width: 260px;
     border-radius: 5px;
     box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.25);
     margin-bottom: 0;
     color: var(--words);
+    
 }
 
+
+.chart-comentarios-second p {
+    font-size: 18px;
+    font-weight: 600;
+    font-family: 'Montserrat';
+}
 .chart-comentarios-second .nota{
     font-size: 30px;
     margin-block: auto;
@@ -302,19 +313,27 @@ body {
 /* Indice de satifação */
 .chart-satisfaction{
     background-color: var(--background_footer_lateral);
-    width: calc(100% - 20px);
+    width: 400px;
     height: calc(100% - 5px);
     border-radius: 5px;
 }
+
+.titulo-grafico {
+    background-color: var(--background_footer_lateral);
+    box-sizing: border-box;
+    padding: 10px;
+}
+
 .main-indice{
     background-color: var(--background_footer_lateral);
-    width: calc(100% - 20px);
-    height: calc(20% + 12px);
+    width: 400px;
+    height: 200px;
     border-radius: 5px;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: space-around;
+    gap: 5px;
     color: var(--words);
     font-family: 'Montserrat';
     box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.25);
@@ -328,18 +347,17 @@ body {
 /* palavras chaves */
 .main-topics{
     background-color: var(--background_footer_lateral);
-    width: calc(100% - 20px);
-    height: calc(50% + 180px);
+    width: 400px;
+    height: 433px;
     border-radius: 5px;
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: space-around;
     color: var(--words);
     font-family: 'Montserrat';
     box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.25);
-    /* margin-bottom: 10px; */
     margin-top: -20px;
+    padding: 10px;
 }
 
 .main-topics p {
@@ -351,9 +369,7 @@ body {
 .topics{
     display: flex;
     align-items: center;
-    /* color: var(--background-topics); */
     width: 90%;
-    /* box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.25); */
     border-radius: 10px;
     height: 15%;
 }
@@ -362,18 +378,6 @@ body {
     margin-left: 10px;
     font-size: 20px;
     font-weight: 600;
-}
-
-#positivas{
-    color: #40FF00;
-}
-
-#regulares{
-    color: #FFEE00;
-}
-
-#negativas{
-    color: #FF0000;
 }
 
 p.palavras-text{
@@ -389,24 +393,31 @@ p.palavras-text{
     font-family: 'Montserrat'; 
     font-weight: 600;
     text-align: center;
+    font-size: 18px;
+}
+
+.title.indice {
+    font-size: 18px;
 }
 
 h2#Palavras-chaves.title{
     margin: 30px;
     margin-top: 10px;
+
+
 }
 
 /* Recomendações */
 .main-recomendacao{
     display: flex;
     flex-direction: column;
-    /* align-items: center; */
     justify-content: center;
     background-color: var(--background_footer_lateral);
-    width: calc(100% - 20px);
-    height: 50%;
+    width: 100%;
+    height: 170px;
     border-radius: 5px;
     box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.25);
+    align-items: center;
 }
 
 .main-recomendacao h3{
@@ -414,26 +425,31 @@ h2#Palavras-chaves.title{
     justify-content: center;
     color: var(--words);
     margin: 0;
+    font-size: 18px;
+    padding: 5px;
 }
 
 
 .recomendation{
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    margin-left: 15px;
+    width: 95%;
+    overflow-y: auto;
+    height: 135px;
 }
 
 .main-recomendacao ul {
-   
-    list-style: none; /* Remove a marcação padrão dos itens da lista */
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
     padding: 0;
-    margin-top: -15spx;
     color: var(--words) ;
 }
 
 .main-recomendacao li {
     font-size: 18px;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.25);
+    background-color: var(--background-comentario);
+    padding: 5px 10px;
+    border-radius: 5px;
     font-weight: normal;
 }
 
@@ -441,3 +457,59 @@ h2#Palavras-chaves.title{
 /* .title-satisfaction{
     margin: -25px;
 } */
+
+.divSelect img {
+    width: 20px;
+}
+
+.select-filial {
+    appearance: none;
+    -webkit-appearance: none; 
+    -moz-appearance: none;
+    background: none; 
+    border: none; 
+    padding: 10px;
+    font-size: 16px;
+    cursor: pointer;
+    color: #FFFFFF;
+    font-family: "Inter", sans-serif;
+    font-size: 24px;
+}
+
+.select-filial:focus {
+    outline: none;
+}
+
+.select-filial option {
+    color: black;
+}
+
+.comentarios-relacionados {
+    width: 100%;
+    background-color: var(--background_footer_lateral);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    box-sizing: border-box;
+    padding: 5px;
+    border-radius: 5px;
+    gap: 20px;
+}
+
+.container-topics {
+    border-radius: 5px;
+    width: 90%;
+    height: 100px;
+    display: flex;
+    align-items: center;
+} 
+
+.container-topics.positivo{
+    border: 1px solid rgba(33, 214, 131, 0.4);
+}
+.container-topics.regular{
+    border: 1px solid rgba(255, 210, 33, 0.4);
+}
+.container-topics.negativo{
+    border: 1px solid rgba(255, 83, 83, 0.4);
+}

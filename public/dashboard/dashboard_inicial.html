@@ -14,7 +14,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
     <link rel="icon" href="../assets/Icone_DataMind.png" type="image/x-icon">
-
+    <script type="text/javascript" src="https://code.jscharting.com/latest/icons/material/maps/place.js"></script>
+    
 </head>
 <body>
     <div class="footer_lateral">
@@ -44,7 +45,13 @@
     </div>
     <div class="dashboard">
         <div class="navbar">
-            <p>McDonald’s Denver</p>
+            <div class="divSelect">                
+                <select class="select-filial" id="select-filial">
+                </select>
+                <label for="select-filial">
+                    <img src="../assets/sinal-de-seta-para-baixo-para-navegar.png" alt="">
+                </label>
+            </div>
         </div>
         <div class="graficos">
             <div class="grafico-first">
@@ -62,9 +69,9 @@
                 <div class="chart-map">
                     <div id="map-chart"></div>
                 </div>
-                <div class="main-topics">
-                    <p>Tópicos Principais</p>
-                    <div onclick="carregarConteudo()" class="topics">
+                <div class="main-topics" id="topicos-principais">
+                     <p>Tópicos Principais</p>
+                    <!-- <div onclick="carregarConteudo()" class="topics">
                         <p> 1 - Qualidade da comida</p>
                     </div>                    
                     <div class="topics">
@@ -75,11 +82,11 @@
                     </div>
                     <div class="topics">
                         <p>4 - Tempo de Preparo</p>
-                    </div>
+                    </div> -->
                 </div>
             </div>
         </div>
     </div>
 </body>
 </html>
-<script src="./dashboard.js"></script>
+<script src="./dashboard.js" defer></script>

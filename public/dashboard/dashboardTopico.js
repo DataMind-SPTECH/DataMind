@@ -5,6 +5,13 @@ const icone_pessoas = document.getElementById("icone_pessoas");
 const maleta = document.getElementById("maleta");
 const modo = document.getElementById("modo");
 const textoModo = document.querySelector(".texto-modo");
+const selectCategoria = document.getElementById("select-categoria")
+const insertFeedbacks = document.querySelector('.main-comentarios')
+const insertPositivos = document.getElementById("qtdPositivos")
+const insertNeutros = document.getElementById("qtdNeutros")
+const insertNegativos = document.getElementById("qtdNegativos")
+const inserirRecomendacoes = document.getElementById("inserir-recomedacoes")
+
 let textoGrafico = "#FFFFFF";
 let textoBolinha = "#2D2D2D";
 
@@ -71,8 +78,22 @@ modos.addEventListener("click", () => {
 });
 
 // Função para criar o gráfico com base no valor atual de textoGrafico
-function criarGrafico() {
-	
+function criarGrafico(valor) {
+
+	const indice = valor
+
+	let textoIndice = ''
+
+	if (indice < 500) {
+		textoIndice = 'Ruim!'
+	} else if (indice < 700) {
+		textoIndice = 'Ok.'
+	} else if (indice < 850) {
+		textoIndice = 'Bom!'
+	} else {
+		textoIndice = 'Muito Bom!'
+	}
+
 	// Índice de Satisfação
 	// JS 
 	JSC.chart("satisfaction-index", {
@@ -97,7 +118,7 @@ function criarGrafico() {
 				{ value: 0, color: "#FF5353" },
 				{ value: 500, color: "#FFD221" },
 				{ value: 700, color: "#77E6B4" },
-				{ value: [900, 1000], color: "#21D683" },
+				{ value: [850, 1000], color: "#21D683" },
 			],
 		},
 		yAxis: {
@@ -124,8 +145,8 @@ function criarGrafico() {
 			{
 				type: "marker",
 				name: "Score",
-				shape_label: {
-					text: "560<br/> <span style= 'font-family: 'Montserrat'; fontSize: 18px; '>Regular!</span>",
+				shape_label: {	
+					text: `${valor.toFixed(0)}<br/> <span style= 'font-family: 'Montserrat'; fontSize: 18px; '>${textoIndice}</span>`,
 					style: { fontSize: 24, color: textoGrafico },
 				},
 				defaultPoint: {
@@ -141,7 +162,7 @@ function criarGrafico() {
 						size: 15,
 					},
 				},
-				points: [[1, 560]],
+				points: [[1, Number(valor.toFixed(0))]],
 			},
 		],
 	});
@@ -149,5 +170,153 @@ function criarGrafico() {
 
 }
 
-// Chama o gráfico pela primeira vez ao carregar a página
-criarGrafico();
+
+selectCategoria.addEventListener('change', (e) => {
+	sessionStorage.setItem("ID_CATEGORIA_SELECIONADA", e.target.value)
+	getFeedbacks()
+	getRecomendacoes()
+})
+
+async function getCategorias() {
+	try {
+
+		const res = await fetch(`/dashboard/categorias`, {
+			method: "GET",
+			headers: {
+				"Content-Type": "application/json"
+			}
+		})
+
+
+		if (res.ok) {
+			data = await res.json();
+
+			data.forEach(categoria => {
+				selectCategoria.innerHTML += `
+				<option value=${categoria.idCategoria}>${categoria.descricao}</	option>
+				`
+			});
+
+			selectCategoria.value = sessionStorage.getItem('ID_CATEGORIA_SELECIONADA')
+		}
+
+	} catch (error) {
+		console.log(error)
+	}
+}
+
+async function getFeedbacks() {
+	try {
+		const idCategoria = sessionStorage.getItem("ID_CATEGORIA_SELECIONADA")
+		const idFilial = sessionStorage.getItem("ID_FILIAL_SELECIONADA")
+
+		const res = await fetch(`/dashboard/feedbacks/${idFilial}/${idCategoria}`, {
+			method: "GET",
+			headers: {
+				"Content-Type": "application/json"
+			}
+		})
+
+
+		if (res.ok) {
+			data = await res.json();
+
+			insertFeedbacks.innerHTML = ''
+
+
+			data.forEach(feedback => {
+				insertFeedbacks.innerHTML += `
+				<div class="comentario">
+                        <div class="comentario-conteudo">
+                            <p><strong>Comentário: </strong></p>
+                            <p>“${feedback.descricao_feedback}”</p>
+                        </div>
+                        <div class="comentario-nota">
+                            <p><strong>Nota</strong></p>
+                            <p class="nota ${feedback.rating == 5 ? 'alta' : feedback.rating > 2 ? 'media' : 'baixa'}">${feedback.rating}/5</p>
+                        </div>
+                        
+                    </div>
+				`
+
+			})
+
+			calcularIndicadores(data)
+		}
+
+	} catch (error) {
+		console.log(error)
+	}
+}
+
+async function getRecomendacoes() {
+	try {
+		const idCategoria = sessionStorage.getItem("ID_CATEGORIA_SELECIONADA")
+		const idFilial = sessionStorage.getItem("ID_FILIAL_SELECIONADA")
+
+		const res = await fetch(`/dashboard/recomendacoes/${idFilial}/${idCategoria}`, {
+			method: "GET",
+			headers: {
+				"Content-Type": "application/json"
+			}
+		})
+
+
+		if (res.status == 200) {
+			const data = await res.json()
+				
+			inserirRecomendacoes.innerHTML = ''
+			data.forEach(recomendacao => {
+				inserirRecomendacoes.innerHTML += `
+				<li>${recomendacao.recomendacao}</li>
+				`
+			})
+		} else if (res.status == 204) {
+			inserirRecomendacoes.innerHTML = ''
+			inserirRecomendacoes.innerHTML = `
+			<li>Ainda não há recomedações para está categoria.</li>
+			`
+			
+		}
+
+	} catch (error) {
+		console.log(error)
+	}
+}
+
+function calcularIndicadores (feedbacks) {
+	let qtdFeedbacks = 0;
+	let totalRating = 0;
+
+	let qtdPositivos = 0;
+	let qtdNegativos = 0;
+	let qtdNeutros = 0;
+
+
+	feedbacks.forEach(feedback => {
+		qtdFeedbacks++;
+		totalRating += feedback.rating;
+		
+		if(feedback.rating == 1 || feedback.rating == 2) {
+			qtdNegativos ++
+		} else if (feedback.rating == 3 || feedback.rating == 4 ) {
+			qtdNeutros ++
+		} else {
+			qtdPositivos ++ 
+		}
+		
+	})
+
+	insertPositivos.innerHTML = qtdPositivos;	
+	insertNegativos.innerHTML = qtdNegativos;
+	insertNeutros.innerHTML = qtdNeutros;
+
+	let indice = ((totalRating / qtdFeedbacks) * 2) * 100;
+
+
+	criarGrafico(indice)
+}
+
+getCategorias();
+getFeedbacks();
+getRecomendacoes();

@@ -21,6 +21,9 @@
 </head>
 
 <body data-theme="escuro">
+
+    
+
     <div class="footer_lateral">
         <div class="div_acessos">
             <img id="logo" class="img_logo" src="../assets/logo_claro.png" alt="">
@@ -57,138 +60,88 @@
     </div>
     <div class="dashboard">
         <div class="navbar">
-            <p>Qualidade da comida</p>
-            <i class="fas fa-chevron-down icon"></i>
+            <div class="divSelect">
+                <select class="select-filial" id="select-categoria">
+                </select>
+                <label for="select-filial">
+                    <img src="../assets/sinal-de-seta-para-baixo-para-navegar.png" alt="">
+                </label>
+            </div>
         </div>
         <div class="graficos">
             <div class="grafico-first">
                 <div class="main-recomendacao">
                     <h3>Recomendações</h3>
                     <div class="recomendation">
-                        <ul>
-                            <li><span>1 -</span> Aumentar a qualidade dos ingredientes</li>
-                            <li><span>2 -</span> Diminuir o tempo de preparo</li>
-                            <li><span>3 -</span> Usar lâmpadas de aquecimento</li>
+                        <ul id="inserir-recomedacoes">
+                            <li>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Amet enim impedit veniam eos
+                                dicta quia facilis.</li>
+                            <li>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Amet enim impedit veniam eos
+                                dicta quia facilis.</li>
+                            <li>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Amet enim impedit veniam eos
+                                dicta quia facilis.</li>
                         </ul>
                     </div>
                 </div>
 
-                <h2 class="title">Todos os comentarios relacionados</h2>
-                <div class="main-comentarios">
-                    <div class="comentario">
-                        <div class="comentario-conteudo">
-                            <p><strong>Comentario</strong></p>
-                            <p>“A comida estava muito fria!”</p>
-                        </div>
-                        <div class="comentario-nota">
-                            <p><strong>Nota</strong></p>
-                            <p class="nota baixa">2/5</p>
-                        </div>
-                        <div class="comentario-data"><br>
-                            <p> <i class="fa-regular fa-calendar-days"></i> 15/09/2024</p>
-                        </div>
-                    </div>
-
-                    <div class="comentario">
-                        <div class="comentario-conteudo">
-                            <p><strong>Comentario</strong></p>
-                            <p>“A comida estava muito mais <br>ou menos!”</p>
-                        </div>
-                        <div class="comentario-nota">
-                            <p><strong>Nota</strong></p>
-                            <p class="nota media">3/5</p><br>
-                        </div>
-                        <div class="comentario-data"><br>
-                            <p> <i class="fa-regular fa-calendar-days"></i> 15/09/2024</p>
-                        </div>
-                    </div>
-
-                    <div class="comentario">
-                        <div class="comentario-conteudo">
-                            <p><strong>Comentario</strong></p>
-                            <p>“A comida estava muito boa!”</p>
-                        </div>
-                        <div class="comentario-nota">
-                            <p><strong>Nota</strong></p>
-                            <p class="nota alta">5/5</p>
-                        </div>
-                        <div class="comentario-data"><br>
-                            <p> <i class="fa-regular fa-calendar-days"></i> 15/09/2024</p>
-                        </div>
-                    </div>
-
-                    <div class="comentario">
-                        <div class="comentario-conteudo">
-                            <p><strong>Comentario</strong></p>
-                            <p>“A comida estava muito boa!”</p>
-                        </div>
-                        <div class="comentario-nota">
-                            <p><strong>Nota</strong></p>
-                            <p class="nota baixa">2/5</p>
-                        </div>
-                        <div class="comentario-data"><br>
-                            <p> <i class="fa-regular fa-calendar-days"></i> 15/09/2024</p>
-                        </div>
-                    </div>
-
-                    <div class="comentario">
-                        <div class="comentario-conteudo">
-                            <p><strong>Comentario</strong></p>
-                            <p>“A comida estava muito fria!”</p>
-                        </div>
-                        <div class="comentario-nota">
-                            <p><strong>Nota</strong></p>
-                            <p class="nota baixa">2/5</p>
-                        </div>
-                        <div class="comentario-data"><br>
-                            <p> <i class="fa-regular fa-calendar-days"></i> 15/09/2024</p>
-                        </div>
+                <div class="comentarios-relacionados">
+                    <h2 class="title">Todos os comentarios relacionados</h2>
+                    <div class="main-comentarios">
                     </div>
                 </div>
 
                 <div class="comentarios-second">
-                    <div id="comentarios-positivos" class="chart-comentarios-second">
-                        <p>Comentarios Positivos</p>
-                        <p class="nota alta">98.431</p>
+
+                    <div id="comentarios-regulares" class="chart-comentarios-second">
+                        <p>Feedbacks Positivos</p>
+                        <p class="nota alta" id="qtdPositivos"></p><br>
                     </div>
                     <div id="comentarios-regulares" class="chart-comentarios-second">
-                        <p>Comentarios Regulares</p>
-                        <p class="nota media">232.323</p><br>
+                        <p>Feedbacks Regulares</p>
+                        <p class="nota media" id="qtdNeutros"></p><br>
                     </div>
-                    <div id="comentarios-negativos" class="chart-comentarios-second">
-                        <p>Comentarios Negativos</p>
-                        <p class="nota baixa">54.656</p>
+                    <div id="comentarios-regulares" class="chart-comentarios-second">
+                        <p>Feedbacks Regulares</p>
+                        <p class="nota baixa" id="qtdNegativos"></p><br>
                     </div>
+
                 </div>
             </div>
 
             <div class="grafico-third">
-                <!-- <div class="container-indice-satisfaction"> -->
-                <span class="title indice">Índice de <br> Satisfação</span>
                 <div class="main-indice">
+                    <div class="titulo-grafico">
+                        <span class="title indice">Índice de Satisfação</span>
+                    </div>
                     <div id="satisfaction-index" class="chart-satisfaction"></div>
-                <!-- </div> -->
                 </div>
-                <h2 class="title" id="Palavras-chaves">Palavras Chaves</h2>
+
                 <div class="main-topics">
+                    <h2 class="title" id="Palavras-chaves">Palavras Chaves</h2>
 
                     <div class="topics">
                         <p id="positivas">Positivas:</p>
                     </div>
-                    <p class="palavras-text">Suculenta, saborosa, quente,<br>
-                        deliciosa, maravilhosa, gostosa</p>
+                    <div class="container-topics positivo">
+                        <p class="palavras-text">Suculenta, saborosa, quente,<br>
+                            deliciosa, maravilhosa, gostosa</p>
+                    </div>
 
                     <div class="topics">
                         <p id="regulares">Regulares:</p>
                     </div>
-                    <p class="palavras-text">Ok, Mais ou menos, achei interresante,<br>
-                        podia ser melhor, aceitavel</p>
+                    <div class="container-topics regular">
+                        <p class="palavras-text">Ok, Mais ou menos, achei interresante,<br>
+                            podia ser melhor, aceitavel</p>
+                    </div>
 
                     <div class="topics">
                         <p id="negativas">Negativas:</p>
                     </div>
-                    <p class="palavras-text">Horrivel, terrivel, ruim, odiei,<br>
-                        não voltaria, não recomendo</p>
+                    <div class="container-topics negativo">
+                        <p class="palavras-text">Horrivel, terrivel, ruim, odiei,<br>
+                            não voltaria, não recomendo</p>
+                    </div>
                 </div>
             </div>
         </div>

@@ -10,68 +10,70 @@ btnOlhoAberto.addEventListener("click", mostrarSenha);
 btnOlhoFechado.addEventListener("click", esconderSenha);
 
 async function autenticar() {
-  // const emailVar = inputEmail.value;
-  // const senhaVar = inputSenha.value;
 
-  // if(emailVar == '' || senhaVar == '') {
-  //     alertaLogin("Preencha todos os campos antes de prosseguir.", 'erro')
-  //     return;
-  // }
+  const emailVar = inputEmail.value;
+  const senhaVar = inputSenha.value;
 
-  // fetch("/usuarios/autenticar", {
-  //     method: "POST",
-  //     headers: {
-  //         "Content-Type": "application/json"
-  //     },
-  //     body: JSON.stringify({
-  //         emailServer: emailVar,
-  //         senhaServer: senhaVar
-  //     })
-  // })
-  // .then(function (resposta) {
-  //     console.log("ESTOU NO THEN DO entrar()!");
+  if (emailVar == '' || senhaVar == '') {
+    alertaLogin("Preencha todos os campos antes de prosseguir.", 'erro')
+    return;
+  }
 
-  //     if (resposta.ok) {
-  //         console.log(resposta);
+  fetch("/usuarios/autenticar", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify({
+      emailServer: emailVar,
+      senhaServer: senhaVar
+    })
+  })
+    .then(function (resposta) {
+      console.log("ESTOU NO THEN DO entrar()!");
 
-  //         resposta.json().then(json => {
-  //             console.log(json);
-  //             console.log(JSON.stringify(json));
-  //             sessionStorage.EMAIL_USUARIO = json.email;
-  //             sessionStorage.NOME_USUARIO = json.nome;
-  //             sessionStorage.ID_USUARIO = json.id;
+      if (resposta.ok) {
+        console.log(resposta);
 
-  //             alertaLogin("Autenticado com sucesso.. Redirecionando", 'sucesso')
-  //             setTimeout(function () {
-  //                 console.log('autenticou')
-  //                 window.location = "../dashboard/dashboard_inicial.html";
-  //             }, 3000);
+        resposta.json().then(json => {
+          console.log(json);
+          console.log(JSON.stringify(json));
+          sessionStorage.EMAIL_USUARIO = json.email;
+          sessionStorage.NOME_USUARIO = json.nome;
+          sessionStorage.ID_USUARIO = json.id;
+          sessionStorage.ID_EMPRESA = json.idEmpresa;
 
-  //         });
-  //     } else {
-  //         alertaLogin("Email ou senha incorretos!", 'erro')
+          alertaLogin("Autenticado com sucesso.. Redirecionando", 'sucesso')
+          setTimeout(function () {
+            console.log('autenticou')
+            window.location = "../dashboard/dashboard_inicial.html";
+          }, 3000);
 
-  //     }
-  // })
+        });
+      } else {
+        alertaLogin("Email ou senha incorretos!", 'erro')
 
-setTimeout(function () {
-    toast.style.display = "flex"; 
+      }
+    })
+
+  setTimeout(function () {
+    toast.style.display = "flex";
     document
       .getElementById("toast")
       .animate([
         { transform: "translateY(0px)" },
         { transform: "translateY(-300px)" },
-      ],{
-          duration: 5000,
-          iteration: 1,
-          easing: "ease-out"
+      ], {
+        duration: 5000,
+        iteration: 1,
+        easing: "ease-out"
       }
-  
-  );
+
+      );
   }, 500);
-  
-  setTimeout(function(){
-      document.getElementById('toast').style.display = 'none';
+
+  setTimeout(function () {
+    document.getElementById('toast').style.display = 'none';
   }, 3000);
 
   setTimeout(() => (window.location = "../dashboard/dashboard_inicial.html"), 3500);
@@ -98,4 +100,4 @@ function mostrarSenha() {
   btnOlhoFechado.style.display = "block";
   btnOlhoAberto.style.display = "none";
   inputSenha.setAttribute("type", "text");
-}
+} 
