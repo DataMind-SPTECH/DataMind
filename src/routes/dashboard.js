@@ -31,6 +31,10 @@ router.get("/funcionarios/:idEmpresa", function (req, res) {
     dashboardController.listarFuncionariosPorEmpresa(req, res);
 });
 
+router.get("/palavras/:idCategoria", function (req, res) {
+    dashboardController.buscarPalavrasChavePorCategoria(req, res);
+});
+
 
 router.post("/adicionarfuncionario", function(req,res) {
     dashboardController.cadastrarNovoFuncionario(req,res);

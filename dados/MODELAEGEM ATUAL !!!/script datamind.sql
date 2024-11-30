@@ -117,6 +117,7 @@ INSERT INTO categoria (descricao) VALUES
 ('Experiência no Drive-thru'),
 ('Experiência Geral');
 
+
 -- Inserir dados na tabela recomendacoesIA
 INSERT INTO recomendacoesIA (descricao, dtCriacao, fkCategoria) VALUES
 ('Recomendação para otimizar vendas', '2024-11-15', 1),
@@ -166,4 +167,33 @@ INSERT INTO feedback (descricao, rating, fkCategoria, fkFilial) VALUES
 ('Faltou atenção ao pedido, itens vieram errados', 1, 3, 2),
 ('Drive-thru com bom fluxo e organização', 4, 4, 1),
 ('Funcionários foram simpáticos, mas não resolveram o problema', 3, 2, 1);
+
+INSERT INTO palavrasChaves (qualidade, palavras, fkCategoria) VALUES
+-- Qualidade do Produto
+('Positiva', 'delicioso, fresco, saboroso, perfeito, incrível, excelente, consistente, bem-preparado', 1),
+('Negativa', 'frio, velho, estragado, sem-gosto, ruim, salgado, malcozido, sem-qualidade', 1),
+('Neutra', 'ok, aceitável, padrão, simples, normal, médio, nada-especial, comum', 1),
+
+-- Atendimento
+('Positiva', 'educado, rápido, simpático, prestativo, atencioso, amigável, profissional, eficiente', 2),
+('Negativa', 'lento, rude, desinteressado, confuso, ineficiente, irritado, grosseiro, descuidado', 2),
+('Neutra', 'normal, básico, médio, regular, simples, esperado, ok, indiferente', 2),
+
+-- Tempo de Espera
+('Positiva', 'rápido, ágil, eficiente, instantâneo, imediato, pontual, veloz, sem-espera', 3),
+('Negativa', 'demorado, lento, atrasado, interminável, cansativo, frustrante, arrastado, longo', 3),
+('Neutra', 'razoável, esperado, médio, normal, comum, aceitável, dentro-do-padrão, regular', 3),
+
+-- Experiência no Drive-thru
+('Positiva', 'prático, ágil, organizado, funcional, rápido, conveniente, eficiente, sem-filas', 4),
+('Negativa', 'confuso, demorado, desorganizado, frustrante, ineficiente, caótico, problemático, ruim', 4),
+('Neutra', 'adequado, razoável, funcional, comum, esperado, normal, simples, dentro-do-padrão', 4),
+
+-- Experiência Geral
+('Positiva', 'excelente, incrível, satisfatória, excepcional, agradável, perfeita, memorável, ótima', 5),
+('Negativa', 'horrível, insatisfatória, decepcionante, ruim, frustrante, péssima, desastrosa, inadequada', 5),
+('Neutra', 'razoável, comum, normal, aceitável, média, básica, ok, dentro-do-padrão', 5);
+
+
+show table
 

@@ -135,6 +135,26 @@ function listarFuncionariosPorEmpresa(req, res) {
 
 }
 
+function buscarPalavrasChavePorCategoria (req, res) {
+  var idCategoria = req.params.idCategoria;
+
+  if (idCategoria == undefined) {
+    res.status(400).send("ID CATEGORIA UNDEFINIED")
+  }
+
+  dashboardModel.buscarPalavrasChave(idCategoria).then(function (resultado) {
+    if (resultado.length > 0) {
+      res.status(200).json(resultado);
+    } else {
+      res.status(204).send("Nenhum resultado encontrado!")
+    }
+  }).catch(function (erro) {
+    console.log(erro);
+    console.log("Houve um erro ao buscar as palavras chave", erro.sqlMessage);
+    res.status(500).json(erro.sqlMessage);
+  });
+}
+
 
 function cadastrarNovoFuncionario(req, res) {
   var nome = req.body.nome;
@@ -190,5 +210,6 @@ module.exports = {
   listarFeedbacksPorCategoriaEFilial,
   buscarRecomendacoesPorFilialECategoria,
   listarFuncionariosPorEmpresa,
-  cadastrarNovoFuncionario
+  cadastrarNovoFuncionario,
+  buscarPalavrasChavePorCategoria
 };
