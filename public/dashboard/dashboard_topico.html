@@ -22,23 +22,29 @@
 
 <body data-theme="escuro">
 
-    
+
 
     <div class="footer_lateral">
         <div class="div_acessos">
             <img id="logo" class="img_logo" src="../assets/logo_claro.png" alt="">
             <ul>
                 <li class="selecionado">
-                    <p>Dashboard</p>
+                    <img src="../assets/painel.png" alt="" class="icone_dashboard">
+                    <a href="../dashboard/dashboard_inicial.html">
+                        <p>Dashboard</p>
+                    </a>
+                </li>
+                <li><img id="maleta" src="../assets/maleta.png" alt="">
+                    <a href="../meuNegocio/index.html">
+                        <p>Meu Negócio</p>
+                    </a>
+                </li>
                 </li>
                 <li><img id="icone_relatorio" src="../assets/icon_relatorio.png" alt="">
                     <p>Relatorios</p>
                 </li>
                 <li><img id="icone_pessoas" src="../assets/icon_pessoas.png" alt="">
                     <p>Suporte</p>
-                </li>
-                <li><img id="maleta" src="../assets/maleta.png" alt="">
-                    <p>Meu Negócio</p>
                 </li>
             </ul>
         </div>
@@ -53,7 +59,7 @@
             </div>
         </div>
         <!--  -->
-        <div class="logout">
+        <div class="logout" onclick="logout()">
             <img src="../assets/portaSaida.svg" alt="">
             <p>Logout</p>
         </div>
@@ -74,12 +80,7 @@
                     <h3>Recomendações</h3>
                     <div class="recomendation">
                         <ul id="inserir-recomedacoes">
-                            <li>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Amet enim impedit veniam eos
-                                dicta quia facilis.</li>
-                            <li>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Amet enim impedit veniam eos
-                                dicta quia facilis.</li>
-                            <li>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Amet enim impedit veniam eos
-                                dicta quia facilis.</li>
+                          
                         </ul>
                     </div>
                 </div>

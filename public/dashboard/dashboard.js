@@ -538,4 +538,12 @@ function redirecionarParaTopicos(idTopico){
 	window.location = './dashboard_topico.html'
 }
 
+function logout() {
+    sessionStorage.clear()
+
+    window.location = '../login/login.html'
+}
+
+
+
 getLojasSelect();

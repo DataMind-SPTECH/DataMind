@@ -356,6 +356,13 @@ function calcularIndicadores (feedbacks) {
 	criarGrafico(indice)
 }
 
+
+function loggout() {
+    sessionStorage.clear()
+
+    window.location = '../login/login.html'
+}
+
 getCategorias();
 getFeedbacks();
 getRecomendacoes();
