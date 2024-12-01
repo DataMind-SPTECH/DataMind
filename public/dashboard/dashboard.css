@@ -303,3 +303,12 @@ body {
 .select-filial option {
     color: black;
 }
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+.icone_dashboard {
+    width: 25px;
+}

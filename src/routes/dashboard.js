@@ -40,6 +40,11 @@ router.post("/adicionarfuncionario", function(req,res) {
     dashboardController.cadastrarNovoFuncionario(req,res);
 })
 
+router.delete("/deletarfuncionario/:idFuncionario", function(req,res) {
+    dashboardController.deletarFuncionario(req,res);
+})
+
+
 
 
 
