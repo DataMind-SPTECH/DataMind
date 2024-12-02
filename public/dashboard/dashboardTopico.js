@@ -11,6 +11,9 @@ const insertPositivos = document.getElementById("qtdPositivos")
 const insertNeutros = document.getElementById("qtdNeutros")
 const insertNegativos = document.getElementById("qtdNegativos")
 const inserirRecomendacoes = document.getElementById("inserir-recomedacoes")
+const palavraNegativas = document.getElementById('palavrasNegativas')
+const palavraPositivas = document.getElementById('palavrasPositivas')
+const palavraNeutras = document.getElementById('palavrasNeutras')
 
 let textoGrafico = "#FFFFFF";
 let textoBolinha = "#2D2D2D";
@@ -175,6 +178,7 @@ selectCategoria.addEventListener('change', (e) => {
 	sessionStorage.setItem("ID_CATEGORIA_SELECIONADA", e.target.value)
 	getFeedbacks()
 	getRecomendacoes()
+	getPalavrasChave()
 })
 
 async function getCategorias() {
@@ -284,6 +288,41 @@ async function getRecomendacoes() {
 	}
 }
 
+async function getPalavrasChave() {
+	try {
+		const idCategoria = sessionStorage.getItem("ID_CATEGORIA_SELECIONADA")
+
+		const res = await fetch(`/dashboard/palavras/${idCategoria}`, {
+			method: "GET",
+			headers: {
+				"Content-Type": "application/json"
+			}
+		})
+
+
+		if (res.ok) {
+			const data = await res.json()
+			
+			console.log(data)
+
+			data.forEach(element => {
+				if(element.qualidade == 'Positiva') {
+					palavraPositivas.innerHTML = element.palavras
+				}
+				if(element.qualidade == 'Negativa') {
+					palavraNegativas.innerHTML = element.palavras
+				}
+				if(element.qualidade == 'Neutra') {
+					palavraNeutras.innerHTML = element.palavras
+				}
+			})
+		}
+
+	} catch (error) {
+		console.log(error)
+	}
+}
+
 function calcularIndicadores (feedbacks) {
 	let qtdFeedbacks = 0;
 	let totalRating = 0;
@@ -317,6 +356,14 @@ function calcularIndicadores (feedbacks) {
 	criarGrafico(indice)
 }
 
+
+function loggout() {
+    sessionStorage.clear()
+
+    window.location = '../login/login.html'
+}
+
 getCategorias();
 getFeedbacks();
 getRecomendacoes();
+getPalavrasChave();

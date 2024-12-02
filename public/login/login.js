@@ -56,27 +56,27 @@ async function autenticar() {
       }
     })
 
-  setTimeout(function () {
-    toast.style.display = "flex";
-    document
-      .getElementById("toast")
-      .animate([
-        { transform: "translateY(0px)" },
-        { transform: "translateY(-300px)" },
-      ], {
-        duration: 5000,
-        iteration: 1,
-        easing: "ease-out"
-      }
+  // setTimeout(function () {
+  //   toast.style.display = "flex";
+  //   document
+  //     .getElementById("toast")
+  //     .animate([
+  //       { transform: "translateY(0px)" },
+  //       { transform: "translateY(-300px)" },
+  //     ], {
+  //       duration: 5000,
+  //       iteration: 1,
+  //       easing: "ease-out"
+  //     }
 
-      );
-  }, 500);
+  //     );
+  // }, 500);
 
-  setTimeout(function () {
-    document.getElementById('toast').style.display = 'none';
-  }, 3000);
+  // setTimeout(function () {
+  //   document.getElementById('toast').style.display = 'none';
+  // }, 3000);
 
-  setTimeout(() => (window.location = "../dashboard/dashboard_inicial.html"), 3500);
+  // setTimeout(() => (window.location = "../dashboard/dashboard_inicial.html"), 3500);
 }
 
 function alertaLogin(mensagem, type) {

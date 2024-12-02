@@ -1,4 +1,5 @@
 const overlay = document.querySelector(".overlay")
+const overlay2 = document.querySelector(".overlay2")
 const CloseBtn = document.querySelector("#closeModalBtn")
 const insertCollaborators = document.querySelector("#collaborators")
 var inputNome = document.getElementById("input_nome");
@@ -17,6 +18,18 @@ function openModal() {
 
     overlay.classList.remove("close")
     overlay.classList.add("open")
+}
+
+async function openModalConfirm() {
+
+    overlay2.classList.remove("close")
+    overlay2.classList.add("open")
+}
+
+function closeModalConfirm() {
+    overlay2.classList.add("close")
+    overlay2.classList.remove("open")
+
 }
 
 function closeModal() {
@@ -64,7 +77,7 @@ async function getFunctionarios() {
                             <button class="btn editar">
                                 <p>Editar</p>
                             </button>
-                            <button data-id-usuario="${colab.idFuncionario}" class="btn excluir">
+                            <button data-idfuncionario="${colab.idFuncionario}" class="btn excluir" onclick="definirFuncionarioAserDeleteado(event)">
                                 <p>Excluir</p>
                             </button>
                         </div>
@@ -105,6 +118,48 @@ async function adicionarFuncionario () {
         console.error(error)
     }
  }
+
+
+ function definirFuncionarioAserDeleteado(event) {
+    const target = event.target
+    const idFuncionario = target.parentNode.dataset.idfuncionario
+
+    sessionStorage.setItem('ID_FUNCIONARIO_DELETAR', idFuncionario)
+    openModalConfirm()
+ } 
+
+async function deletarFuncionario() {
+
+    const idFuncionario = sessionStorage.getItem('ID_FUNCIONARIO_DELETAR')
+
+
+    try {
+        const res = await fetch(`/dashboard/deletarfuncionario/${idFuncionario}`, {
+            method: 'DELETE',
+            headers : {
+                "Content-Type": "application/json"
+            },
+        })
+
+        if(res.ok) {
+            alert("funcionário delatado com sucesso");
+            getFunctionarios();
+            closeModalConfirm();
+        }
+
+
+    } catch(error) {
+        console.error(error)
+    }
+ }
+
+
+function logout() {
+    sessionStorage.clear()
+
+    window.location = '../login/login.html'
+}
+
 
 getFunctionarios()
 

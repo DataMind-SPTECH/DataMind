@@ -182,6 +182,12 @@ body {
     padding: 38px;
 } 
 
+.container-card.left {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
 .card-company {
     width: 100%;
     display: flex;
@@ -326,6 +332,23 @@ body {
 .overlay.close {
     display: none;
 }
+.overlay2 {
+    z-index: 9998;
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.5);
+} 
+
+.overlay2.open {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.overlay2.close {
+    display: none;
+}
 
 .modal {
     z-index: 9999;
@@ -335,6 +358,26 @@ body {
     border-radius: 10px;
     padding: 15px;
     text-align: end;
+}
+
+.modal_confirm {
+    z-index: 9999;
+    width: 500px;
+    height: 200px;
+    background-color: var(--background_footer_lateral);
+    border-radius: 10px;
+    padding: 15px;
+    text-align: center;
+}
+
+.confirm_btns {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+}
+
+.modal_confirm h1 {
+    color: white;
 }
 
 #closeModalBtn {
@@ -386,3 +429,54 @@ body {
     margin-top: 10px;
 }
 
+.btn.cancelar {
+    background-color: #F33232;
+    color: white;
+    font-size: 20px;
+    margin-top: 10px;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+.icone_dashboard {
+    width: 25px;
+}
+
+.dataset_dados {
+    box-sizing: border-box;
+    width: 100%;
+    height: 300px;
+    border: 1px solid var(--background-topics);
+    border-radius: 10px;
+    padding: 10px;
+}
+
+.dataset_dados h1 {
+    color: white;
+    font-size: 24px;
+    font-weight: 300;
+}
+
+.csv {
+    display: flex;
+    gap: 20px;
+    box-sizing: border-box;
+    align-items: center;
+    justify-content: center ;
+    padding: 10px;
+}
+
+.csv_desc button{
+    background-color: var(--background-modos);
+    color: white;
+    border: none;
+    border-radius: 10px;
+    padding: 5px 25px; 
+    font-size: 20px;
+    cursor: pointer;
+    box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.2);
+
+} 

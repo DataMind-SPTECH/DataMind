@@ -30,7 +30,7 @@
 
                     <h1>Adicionar Funcionário</h1>
 
-                    <div class="input" >
+                    <div class="input">
                         <p>Nome</p>
                         <input type="text" id="input_nome">
                     </div>
@@ -50,6 +50,8 @@
                         <p>Cargo</p>
                         <select id="select_cargo">
                             <option value="">Selecione um cargo</option>
+                            <option value="1">Gerente</option>
+                            <option value="2">Analista</option>
                             <option value="3">Desenvolvedor</option>
                         </select>
                     </div>
@@ -61,16 +63,36 @@
         </div>
     </div>
 
+    <div class="overlay2 close">
+        <div class="modal_confirm">
+            <h1>Você deseja excluir este usuario? </h1>
+
+            <div class="confirm_btns">
+                <button class="btn cancelar" onclick="closeModalConfirm()">Cancelar</button>
+                <button class="btn cadastrar" onclick="deletarFuncionario()">Confirmar</button>
+            </div>
+        </div>
+    </div>
+
 
     <div class="footer_lateral">
         <div class="div_acessos">
             <img id="logo" class="img_logo" src="../assets/logo_claro.png" alt="">
             <ul>
                 <li>
-                    <p>Dashboard</p>
+                    <img src="../assets/painel.png" alt="" class="icone_dashboard">
+                    <a href="../dashboard/dashboard_inicial.html">
+                        <p>Dashboard</p>
+                    </a>
                 </li>
                 <li class="selecionado"><img id="maleta" src="../assets/maleta.png" alt="">
                     <p>Meu Negócio</p>
+                </li>
+                <li><img id="icone_relatorio" src="../assets/icon_relatorio.png" alt="">
+                    <p>Relatorios</p>
+                </li>
+                <li><img id="icone_pessoas" src="../assets/icon_pessoas.png" alt="">
+                    <p>Suporte</p>
                 </li>
             </ul>
         </div>
@@ -85,7 +107,7 @@
             </div>
         </div>
         <!--  -->
-        <div class="logout">
+        <div class="logout" onclick="logout()">
             <img src="../assets/portaSaida.svg" alt="">
             <p>Logout</p>
         </div>
@@ -97,7 +119,7 @@
             <div class="user-container"></div>
         </div>
         <div class="meu-negocio_container">
-            <div class="container-card">
+            <div class="container-card left">
                 <div class="card-company">
                     <div class="company-pic">
                         <img src="../assets/image 20.svg" alt="">
@@ -105,6 +127,20 @@
                     <div class="company-name">
                         <h1>Empresa: </h1>
                         <h1>McDonald's </h1>
+                    </div>
+                </div>
+                <div class="dataset_dados">
+                    <h1>Dados do dataset:</h1>
+                    <h1>Total de dados Análisados: 19.234</h1>
+                    <h1>Última Atualização: 01/12/2024</h1>
+                    <div class="csv">
+                        <img src="../assets/csv.svg" alt="">
+                        <div class="csv_desc">
+                            <h1>Descrição: Rewiews-Mcdonalds-stores.csv</h1>
+                            <a href="../assets/feedbacks_categorizados.csv" download="feedbacks.csv">
+                                <button>Download</button>
+                            </a>
+                        </div>
                     </div>
                 </div>
             </div>

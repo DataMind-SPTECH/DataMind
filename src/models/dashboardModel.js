@@ -124,6 +124,24 @@ function cadastrarFuncionario(nome, email, senha, cpf, idEmpresa, idCargo) {
     return database.executar(instrucaoSql);
 }
 
+function buscarPalavrasChave(idCategoria) {
+    console.log("ACESSEI O AVISO  MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function listar()");
+    var instrucaoSql = `
+    select * from palavrasChave where fkCategoria = ${idCategoria};
+   `;
+    console.log("Executando a instrução SQL: \n" + instrucaoSql);
+    return database.executar(instrucaoSql);
+}
+
+function deletarFuncionario(idFuncionario) {
+    console.log("ACESSEI O AVISO  MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function listar()");
+    var instrucaoSql = `
+    DELETE FROM funcionario WHERE idFuncionario =${idFuncionario};
+    `;
+    console.log("Executando a instrução SQL: \n" + instrucaoSql);
+    return database.executar(instrucaoSql);
+}
+
 
 
 module.exports = {
@@ -134,5 +152,7 @@ module.exports = {
     buscarFeedbackPorCategoriaEFilial,
     buscarRecomendacoesPorFilialECategoria,
     listarFuncionarios,
-    cadastrarFuncionario
+    cadastrarFuncionario,
+    buscarPalavrasChave,
+    deletarFuncionario
 }
